@@ -1,0 +1,5 @@
+<%= link_to "Add Receipt", root_path %>
+
+<% @receipts.each do |receipt| %>
+  <%= link_to "Receipt ##{receipt.id}", receipt_path(receipt) %>
+<% end %>

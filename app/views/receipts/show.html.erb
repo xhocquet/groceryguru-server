@@ -1,0 +1,6 @@
+<%= image_tag(@receipt.image_url) %>
+<% debugger %>
+<%= link_to "PDF", @receipt.pdf_url %>
+<pre>
+  <%= raw @receipt.text %>
+</pre>

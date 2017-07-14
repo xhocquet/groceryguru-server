@@ -1,0 +1,7 @@
+<h2>Create Receipt:</h2>
+<%= form_for @receipt, html: { multipart: true }  do |f| %>
+  <%= image_tag(@receipt.image_url) if @receipt.image? %>
+  <%= f.file_field :image %>
+  <%= f.hidden_field :image_cache %>
+  <%= f.submit %>
+<% end %>
