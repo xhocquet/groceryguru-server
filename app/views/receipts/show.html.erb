@@ -2,8 +2,12 @@
   <div class="container">
     <div class="content column is-8 is-offset-2">
       <h2 class="title">
-        <%= @receipt.store.name.titleize %> - <%= @receipt.date.strftime("%F") %> <div class="field is-grouped is-pulled-right"><%= link_to "Show Receipt", '#', class: 'button is-primary is-pulled-right control show-receipt-button' %> <%= link_to "Download PDF", @receipt.pdf_url, class: 'button is-primary is-pulled-right control' %></div>
+        <%= @receipt.store.name.titleize %> - <%= @receipt.date.to_date.to_formatted_s(:long) %> <div class="field is-grouped is-pulled-right"><%= link_to "Show Receipt", '#', class: 'button is-primary is-pulled-right control show-receipt-button' %> <%= link_to "Download PDF", @receipt.pdf_url, class: 'button is-primary is-pulled-right control' %></div>
       </h2>
+      <h3 class="title">Progress</h3>
+      <hr>
+      <progress class="progress is-large is-success" value="76" max="100"></progress>
+      <h3>Transactions</h3>
       <table class="table is-striped">
         <thead>
           <tr>
@@ -18,10 +22,10 @@
         <tbody>
           <% @receipt.transactions.each do |transaction| %>
             <tr>
-              <td><%= transaction.name.humanize %></td>
+              <td><%= transaction.name.try(:humanize) || '-' %></td>
               <td><%= humanized_money_with_symbol(transaction.price)  %></td>
-              <td><%= transaction.weight.to_s %></td>
-              <td><%= transaction.count %></td>
+              <td><%= transaction.weight.try(:to_s) || '-' %></td>
+              <td><%= transaction.count || '-' %></td>
               <td><%= transaction.raw %></td>
               <td>
                 <%= link_to edit_transaction_path(transaction) do %>
@@ -35,7 +39,7 @@
           <% end %>
         </tbody>
       </table>
-      <h2 class="title">Recognized Text</h2>
+      <h3 class="title">Recognized Text</h3>
       <hr>
       <div class="column is-6 is-offset-3">
         <pre>
