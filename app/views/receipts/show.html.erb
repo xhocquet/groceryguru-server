@@ -17,23 +17,24 @@
             <th>Count</th>
             <th>Original Text</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <% @receipt.transactions.each do |transaction| %>
-            <tr>
+            <tr class="<%= 'incomplete' unless transaction.complete? %>">
               <td><%= transaction.name.try(:humanize) || '-' %></td>
               <td><%= humanized_money_with_symbol(transaction.price)  %></td>
               <td><%= transaction.weight.try(:to_s) || '-' %></td>
               <td><%= transaction.count || '-' %></td>
-              <td><%= transaction.raw %></td>
+              <td class="raw-cell"><span class="raw"><%= transaction.raw %></span></td>
+              <td><a class="button is-info is-small disabled" disabled>Save</a></td>
               <td>
                 <%= link_to edit_transaction_path(transaction) do %>
                   <span class="icon">
                     <i class="fa fa-pencil"></i>
                   </span>
                 <% end %>
-                
               </td>
             </tr>
           <% end %>
@@ -43,7 +44,9 @@
       <hr>
       <div class="column is-6 is-offset-3">
         <pre>
-          <%= raw @receipt.text %>
+          <% @receipt.text.split("\n").each do |line| %>
+            <span><%= line %></span>
+          <% end %>
         </pre>
       </div>
     </div>

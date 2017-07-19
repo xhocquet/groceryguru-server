@@ -1,5 +1,38 @@
 body.receipts {
+  tr.incomplete {
+    background-color: #f9e7c5 !important;
+  }
+
+  td.raw-cell {
+    font-family: 'consolas';
+
+    span.raw {
+      padding: 2px 8px;
+      background-color: #ccc;
+    }
+  }
+
   pre {
+    counter-reset: line;
     font-size: 20px;
+    line-height: 0;
+    padding: 10px;
+  }
+
+  pre span {
+    display: block;
+    height: 20px;
+    line-height: 24px;
+    padding: 12px 0;
+
+    &:before {
+      border-right: 3px solid #ddd;
+      color: #aaa;
+      content: counter(line);
+      counter-increment: line;
+      display: inline-block;
+      margin-right: 12px;
+      width: 30px;
+    }
   }
 }
