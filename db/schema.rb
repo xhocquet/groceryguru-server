@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714174008) do
+ActiveRecord::Schema.define(version: 20170717004515) do
+
+  create_table "items", force: :cascade do |t|
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "receipts", force: :cascade do |t|
     t.string "text"
@@ -19,7 +25,33 @@ ActiveRecord::Schema.define(version: 20170714174008) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "pdf"
+    t.datetime "date"
+    t.integer "store_id"
+    t.index ["store_id"], name: "index_receipts_on_store_id"
     t.index ["user_id"], name: "index_receipts_on_user_id"
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.integer "postal_code"
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.text "raw"
+    t.decimal "weight_value", precision: 10, scale: 2
+    t.string "weight_unit", limit: 12
+    t.integer "count"
+    t.integer "price_cents"
+    t.string "price_currency", default: "USD", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "receipt_id"
+    t.text "name"
+    t.index ["receipt_id"], name: "index_transactions_on_receipt_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

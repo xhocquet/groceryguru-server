@@ -22,15 +22,19 @@ gem 'turbolinks', '~> 5'
 
 gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.11'
 
 gem 'devise'
 gem 'omniauth'
 
 gem 'rmagick'
-gem 'rtesseract'
+gem 'rtesseract' #OCR
 
-gem 'carrierwave'
+gem 'carrierwave' # attachments
+
+gem 'measured-rails' # units and measures
+gem 'money-rails' # money
+gem 'openfoodfacts' #FOOOOOD
 
 # gem 'capistrano-rails', group: :development
 

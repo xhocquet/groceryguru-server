@@ -1,7 +1,30 @@
-<h2>Create Receipt:</h2>
-<%= form_for @receipt, html: { multipart: true }  do |f| %>
-  <%= image_tag(@receipt.image_url) if @receipt.image? %>
-  <%= f.file_field :image %>
-  <%= f.hidden_field :image_cache %>
-  <%= f.submit %>
-<% end %>
+<section class="hero is-primary is-info is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Grocery Guru
+      </h1>
+      <h2 class="subtitle">
+        Shop smart.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="column is-8 is-offset-2">
+      <h1 class="title center">Add a Receipt</h1>
+      <hr>
+      <h2 class="subtitle">
+        <%= form_for @receipt, html: { multipart: true }  do |f| %>
+          <%= image_tag(@receipt.image_url) if @receipt.image? %>
+          <%= f.file_field :image %>
+          <%= f.hidden_field :image_cache %>
+          <%= f.submit 'Create', class: 'button is-primary' %>
+        <% end %>
+      </h2>
+    </div>
+  </div>
+</section>
+

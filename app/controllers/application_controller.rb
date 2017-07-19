@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
-    @receipt = current_user.receipts.build
+    @receipt = Receipt.new
   end
 end

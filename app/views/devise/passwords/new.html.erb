@@ -1,0 +1,26 @@
+<section class="section">
+  <div class="container">
+    <div class="column is-4 is-offset-4">
+      <h1 class="title">Forgot password</h1>
+      <hr>
+      <h2 class="subtitle">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="field">
+            <%= f.label :email, class: 'label' %>
+            <%= f.email_field :email, autofocus: true, class: 'input is-medium' %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Send me reset password instructions", class: 'button is-primary' %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+      </h2>
+    </div>
+  </div>
+</section>
+
+

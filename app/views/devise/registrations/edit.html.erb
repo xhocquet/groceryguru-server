@@ -1,0 +1,49 @@
+<section class="section">
+  <div class="container">
+    <div class="column is-4 is-offset-4">
+      <h1 class="title">Edit Account</h1>
+      <hr>
+      <h2 class="subtitle">
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="field">
+            <%= f.label :email, class: 'label' %>
+            <%= f.email_field :email, autofocus: true, class: 'input is-medium' %>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :password, class: 'label' %> <em class="label">(leave blank if you don't want to change it)</em>
+            <% if @minimum_password_length %>
+              <em class="label">(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "off", class: 'input is-medium' %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation, class: 'label' %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: 'input is-medium' %>
+          </div>
+
+          <div class="field">
+            <%= f.label :current_password, class: 'label' %> <em class="label">(we need your current password to confirm your changes)</em>
+            <%= f.password_field :current_password, autocomplete: "off", class: 'input is-medium' %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Update", class: 'button is-primary' %>
+            <%= link_to "Back", :back, class: 'button' %>
+            <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'button is-link' %>
+          </div>
+        <% end %>
+
+      </h2>
+    </div>
+  </div>
+</section>
+

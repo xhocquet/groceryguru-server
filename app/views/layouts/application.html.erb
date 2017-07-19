@@ -3,14 +3,25 @@
   <head>
     <title>GroceryGuruServer</title>
     <%= csrf_meta_tags %>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <body class="<%= controller.controller_name %> <%= controller.action_name %>">
+    <div class="notification is-success <%= 'show' if (notice || flash[:notice]).present? %>">
+      <button class="delete"></button>
+      <%= notice || flash[:notice] %>
+    </div>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="notification is-danger <%= 'show' if (alert || flash[:error]).present? %>">
+      <button class="delete"></button>
+      <%= alert || flash[:error] %>
+    </div>
+
+    <%= render 'application/navigation' %>
     <%= yield %>
+    <%= render 'application/footer' %>
   </body>
 </html>

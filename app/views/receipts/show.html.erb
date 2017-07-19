@@ -1,6 +1,57 @@
-<%= image_tag(@receipt.image_url) %>
-<% debugger %>
-<%= link_to "PDF", @receipt.pdf_url %>
-<pre>
-  <%= raw @receipt.text %>
-</pre>
+<section class="section">
+  <div class="container">
+    <div class="content column is-8 is-offset-2">
+      <h2 class="title">
+        <%= @receipt.store.name.titleize %> - <%= @receipt.date.strftime("%F") %> <div class="field is-grouped is-pulled-right"><%= link_to "Show Receipt", '#', class: 'button is-primary is-pulled-right control show-receipt-button' %> <%= link_to "Download PDF", @receipt.pdf_url, class: 'button is-primary is-pulled-right control' %></div>
+      </h2>
+      <table class="table is-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Weight</th>
+            <th>Count</th>
+            <th>Original Text</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @receipt.transactions.each do |transaction| %>
+            <tr>
+              <td><%= transaction.name.humanize %></td>
+              <td><%= humanized_money_with_symbol(transaction.price)  %></td>
+              <td><%= transaction.weight.to_s %></td>
+              <td><%= transaction.count %></td>
+              <td><%= transaction.raw %></td>
+              <td>
+                <%= link_to edit_transaction_path(transaction) do %>
+                  <span class="icon">
+                    <i class="fa fa-pencil"></i>
+                  </span>
+                <% end %>
+                
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <h2 class="title">Recognized Text</h2>
+      <hr>
+      <div class="column is-6 is-offset-3">
+        <pre>
+          <%= raw @receipt.text %>
+        </pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <p class="image">
+      <%= image_tag(@receipt.image_url) %>
+    </p>
+  </div>
+  <button class="modal-close is-large"></button>
+</div>
