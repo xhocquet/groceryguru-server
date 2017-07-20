@@ -8,6 +8,10 @@ class ReceiptUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def filename
+    super.chomp(File.extname(super)) + '.png' if original_filename.present?
+  end
+
   def extension_whitelist
     %w(jpg jpeg gif png)
   end
@@ -18,8 +22,12 @@ class ReceiptUploader < CarrierWave::Uploader::Base
 
   def clean_image
     manipulate! do |img|
-      img.resize! 3.5
+      img.format = "png"
+      img.resize! 2.25
+      img.auto_level_channel
       img.deskew
+      img.sharpen
+      img.contrast
     end
   end
 end

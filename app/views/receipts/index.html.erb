@@ -16,7 +16,7 @@
               <tr>
                <td><%= link_to receipt.store.name.titleize, receipt_path(receipt) %></td>
                <td><%= receipt.created_at.to_date.to_formatted_s(:long) %></td>
-               <td><progress class="progress is-success" value="76" max="100"></progress></td>
+               <td><progress class="progress is-success" value="<%= completed_transactions_count(receipt) %>" max="<%= transactions_count(receipt) %>"></progress></td>
               </tr>
             <% end %>
           </tbody>

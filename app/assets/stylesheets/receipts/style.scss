@@ -1,6 +1,10 @@
 body.receipts {
   tr.incomplete {
     background-color: #f9e7c5 !important;
+
+    td.missing {
+      background-color: #ff9393 !important;
+    }
   }
 
   td.raw-cell {
@@ -17,6 +21,7 @@ body.receipts {
     font-size: 20px;
     line-height: 0;
     padding: 10px;
+    overflow: hidden;
   }
 
   pre span {
@@ -32,7 +37,7 @@ body.receipts {
       counter-increment: line;
       display: inline-block;
       margin-right: 12px;
-      width: 30px;
+      width: 40px;
     }
   }
 }
