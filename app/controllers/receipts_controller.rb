@@ -35,13 +35,14 @@ class ReceiptsController < ActionController::Base
         price = match[3]
         tax = match[4]
         
-        @receipt.transactions.build name: name, raw: line, price: price
+        @receipt.transactions.build name: name, raw: line, price: price, user: current_user
       end
     end
 
     if @receipt.save
       redirect_to receipt_path(@receipt)
     else
+      @receipts = current_user.receipts
       flash[:error] =  @receipt.errors.full_messages.first
       render :index
     end
