@@ -1,21 +1,63 @@
 body.receipts {
-  tr.incomplete {
-    background-color: #f9e7c5 !important;
+  table {
+    width: 100%;
+  }
 
-    td.missing {
-      background-color: #ff9393 !important;
+  div.transaction-table {
+    width: 100%;
+    display: table;
+
+    div.table-row, form.table-row {
+      display: table-row;
+    }
+
+    div.table-cell {
+      display: table-cell;
+      padding: 4px;
+    }
+
+    div.table-header {
+      font-weight: bold;
+
+      div {
+        border-bottom: 1px solid #bbb;
+      }
+    }
+
+    div.data {
+      input {
+        padding: 0;
+      }
+    }
+
+    div.data:hover {
+      box-shadow:0px 0px 0px 2px #ccc inset;
+      border-radius: 4px;
+    }
+
+    form.incomplete {
+      background-color: #f9e7c5;
+
+      div.missing {
+        background-color: #ff9393;
+      }
+    }
+
+    a.delete {
+      vertical-align: middle;
+    }
+
+    div.raw-cell {
+      font-family: 'consolas';
+
+      span.raw {
+        padding: 2px 8px;
+        background-color: #ccc;
+      }
     }
   }
 
-  td.raw-cell {
-    font-family: 'consolas';
-
-    span.raw {
-      padding: 2px 8px;
-      background-color: #ccc;
-    }
-  }
-
+  // RAW LINE NUMBERS
   pre {
     counter-reset: line;
     font-size: 20px;

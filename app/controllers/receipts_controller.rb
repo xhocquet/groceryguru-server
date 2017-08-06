@@ -1,4 +1,4 @@
-class ReceiptsController < ActionController::Base
+class ReceiptsController < ApplicationController  
   before_action :authenticate_user!
   layout 'application'
 
@@ -50,6 +50,13 @@ class ReceiptsController < ActionController::Base
 
   def show
     @receipt = current_user.receipts.includes(:transactions).find(params[:id])
+  end
+
+  def destroy
+    @receipt = current_user.receipts.find(params[:id])
+    @receipt.destroy
+    flash[:notice] = "Receipt deleted."
+    redirect_to receipts_path
   end
 
   private

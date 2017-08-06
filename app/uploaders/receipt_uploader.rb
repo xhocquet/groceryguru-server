@@ -21,13 +21,20 @@ class ReceiptUploader < CarrierWave::Uploader::Base
   end
 
   def clean_image
+    dpi_string =  `identify -format "%x-%y" #{current_path}`
+    x,y = dpi_string.split('-')
+    puts "X-Y DPI not equal" unless x == y
+    resize_ratio = (300/x.to_f).round(2)
+    
     manipulate! do |img|
+      debugger
+      img.auto_orient!
       img.format = "png"
-      img.resize! 2.25
       img.auto_level_channel
       img.deskew
       img.sharpen
       img.contrast
+      img.resize! resize_ratio
     end
   end
 end

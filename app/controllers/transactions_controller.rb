@@ -3,20 +3,18 @@ class TransactionsController < ActionController::Base
   layout 'application'
   default_form_builder AppFormBuilder
 
-  def index
-    @receipt = current_user.receipts.find(params[:receipt_id])
-    @transactions = @receipt.transactions
-  end
-
-  def new
-  end
-
   def create
-  end
+    @receipt = Receipt.find(params[:receipt_id])
+    @transaction = @receipt.transactions.build transaction_params
 
-  def edit
-    @transaction = current_user.transactions.find(params[:id])
-    @receipt = @transaction.receipt
+    debugger
+    if @transaction.save
+      flash[:notice] = "Transaction added"
+    else
+      flash[:error] = @transaction.errors.full_messages.first 
+    end
+
+    redirect_to receipt_path(@receipt)
   end
 
   def update
@@ -25,7 +23,7 @@ class TransactionsController < ActionController::Base
 
     if @transaction.update transaction_params
       flash[:notice] = "Transaction updated"
-      redirect_to edit_transaction_path(@transaction)
+      redirect_to receipt_path(@receipt)
     else
       flash[:error] =  @transaction.errors.full_messages.first
       render :edit
@@ -33,11 +31,16 @@ class TransactionsController < ActionController::Base
   end
 
   def destroy
+    @transaction = current_user.transactions.find(params[:id])
+    @receipt = @transaction.receipt
+    @transaction.destroy
+    flash[:notice] = "Transaction deleted"
+    redirect_to receipt_path(@receipt)
   end
 
   private
 
   def transaction_params
-    params.require(:transaction).permit(:name, :weight_value, :weight_unit, :price, :count)
+    params.require(:transaction).permit(:name, :weight_value, :weight_unit, :price, :count, :weight, :raw).merge({user: current_user})
   end
 end

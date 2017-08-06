@@ -3,6 +3,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable
 
-  has_many :receipts, dependent: :destroy
-  has_many :transactions, dependent: :destroy
+  has_many :receipts, dependent: :destroy, inverse_of: :user
+  has_many :transactions, dependent: :destroy, inverse_of: :user
 end

@@ -1,8 +1,8 @@
 class Transaction < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, inverse_of: :transactions
   belongs_to :receipt, inverse_of: :transactions
 
-  monetize :price_cents 
+  monetize :price_cents , allow_nil: true
   measured_weight :weight
 
   scope :completed, -> { where.not(name: nil).where.not(price_cents: nil).where('(weight_value AND weight_unit IS NOT NULL) OR count IS NOT NULL') }

@@ -2,49 +2,69 @@
   <div class="container">
     <div class="content column is-8 is-offset-2">
       <h2 class="title">
-        <%= @receipt.store.try(:name).try(:titleize) %> - <%= @receipt.date.try(:to_date).try(:to_formatted_s, :long) %> <div class="field is-grouped is-pulled-right"><%= link_to "Show Receipt", '#', class: 'button is-primary is-pulled-right control show-receipt-button' %> <%= link_to "Download PDF", @receipt.pdf_url, class: 'button is-primary is-pulled-right control' %></div>
+        <%= @receipt.store.try(:name).try(:titleize) %> - <%= @receipt.date.try(:to_date).try(:to_formatted_s, :long) %> 
+        <div class="field is-grouped is-pulled-right">
+          <%= link_to "Show Receipt", '#', class: 'button is-info is-pulled-right control show-receipt-button' %> 
+          <%= link_to "Download PDF", @receipt.pdf_url, class: 'button is-info is-pulled-right control' %>
+          <div class="dropdown">
+            <div class="dropdown-trigger">
+              <button class="button is-danger" aria-haspopup="true" aria-controls="dropdown-menu3">
+                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+              <div class="dropdown-content">
+                <%= link_to 'Delete Receipt', receipt_path(@receipt), method: :delete, class: 'dropdown-item' %>
+              </div>
+            </div>
+          </div>
+        </div>
       </h2>
       <h3 class="title">Progress</h3>
       <hr>
       <progress class="progress is-large is-success" value="<%= completed_transactions_count(@receipt) %>" max="<%= transactions_count(@receipt) %>"></progress>
-      <h3>Transactions</h3>
-      <table class="table is-striped">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Weight</th>
-            <th>Count</th>
-            <th>Original Text</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @receipt.transactions.each do |transaction| %>
-            <tr class="<%= 'incomplete' unless transaction.complete? %>">
-              <td class="<%= 'missing' unless transaction.name %>"><%= transaction.name.try(:humanize) || '-' %></td>
-              <td class="<%= 'missing' unless transaction.price %>"><%= humanized_money_with_symbol(transaction.price)  %></td>
-              <td class="<%= 'missing' unless transaction.weight %>"><%= transaction.weight.try(:to_s) || '-' %></td>
-              <td class="<%= 'missing' unless transaction.count %>"><%= transaction.count || '-' %></td>
-              <td class="raw-cell"><span class="raw"><%= transaction.raw %></span></td>
-              <td><a class="button is-info is-small disabled" disabled>Save</a></td>
-              <td>
-                <%= link_to edit_transaction_path(transaction) do %>
-                  <span class="icon">
-                    <i class="fa fa-pencil"></i>
-                  </span>
-                <% end %>
-              </td>
-            </tr>
+      <h3>Transactions
+      <div class="field is-grouped is-pulled-right"><%= link_to "Add Missing Transaction", '#', class: 'button is-info is-pulled-right control add-new-transaction-button' %>
+      </h3>
+      <div class="transaction-table">
+        <div class="table-row table-header">
+          <div class="table-cell">Name</div>
+          <div class="table-cell">Price</div>
+          <div class="table-cell">Weight</div>
+          <div class="table-cell">Count</div>
+          <div class="table-cell">Original Text</div>
+          <div class="table-cell"></div>
+          <div class="table-cell"></div>
+        </div>
+
+        <% @receipt.transactions.each do |transaction| %>
+          <%= form_for transaction, html: { class: "table-row #{'incomplete' unless transaction.complete?}" } do |f| %>
+            <div class="table-cell <%= 'missing' unless transaction.name %> data" data-field-name="name"><%= transaction.name.try(:humanize) || '-' %></div>
+            <div class="table-cell <%= 'missing' unless transaction.price %> data" data-field-name="price"><%= humanized_money_with_symbol(transaction.price)  %></div>
+            <div class="table-cell <%= 'missing' unless transaction.weight %> data" data-field-name="weight"><%= transaction.weight.try(:to_s) || '-' %></div>
+            <div class="table-cell <%= 'missing' unless transaction.count %> data" data-field-name="count"><%= transaction.count || '-' %></div>
+            <div class="table-cell raw-cell data" data-field-name="raw"><span class="raw"><%= transaction.raw %></span></div>
+            <div class="table-cell"><a class="button is-info is-small save-button" disabled>Save</a></div>
+            <div class="table-cell"><%= link_to '', transaction_path(transaction), method: :delete, class: 'delete' %></div>
           <% end %>
-        </tbody>
-      </table>
+        <% end %>
+
+        <%= form_for [@receipt, @receipt.transactions.new], html: { class: 'table-row is-hidden new-transaction-form' } do |f| %>
+          <div class="table-cell"><input type="text" class="input" name="transaction[name]"></div>
+          <div class="table-cell"><input type="text" class="input" name="transaction[price]"></div>
+          <div class="table-cell"><input type="text" class="input" name="transaction[weight]"></div>
+          <div class="table-cell"><input type="text" class="input" name="transaction[count]"></div>
+          <div class="table-cell raw-cell"><input type="text" class="input" name="transaction[raw]"></div>
+          <div class="table-cell"><a class="button is-info is-small save-button">Save</a></div>
+          <div class="table-cell"></div>
+        <% end %>
+
+      </div>
       <h3 class="title">Recognized Text</h3>
       <hr>
       <div class="column is-8 is-offset-2">
         <pre>
-          <% @receipt.text.split("\n").each do |line| %>
+          <% @receipt.lines.each do |line| %>
             <span><%= line %></span>
           <% end %>
         </pre>
@@ -53,12 +73,16 @@
   </div>
 </section>
 
-<div class="modal">
+<div class="modal receipt-modal">
   <div class="modal-background"></div>
   <div class="modal-content">
     <p class="image">
-      <%= image_tag(@receipt.image_url) %>
+      <%= image_tag(@receipt.image_url || "") %>
     </p>
   </div>
   <button class="modal-close is-large"></button>
 </div>
+
+<script>
+  var transactionPath = '/transactions/';
+</script>

@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root to: "application#index"
 
   resources :receipts, except: :new do
-    resources :transactions, shallow: true
+    resources :transactions, shallow: true, except: [:edit, :new, :show]
   end
 end
