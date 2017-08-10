@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   protect_from_forgery with: :exception
 
+  layout 'application'
+
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
   def index

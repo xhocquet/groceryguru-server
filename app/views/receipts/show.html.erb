@@ -50,7 +50,7 @@
         <% end %>
 
         <%= form_for [@receipt, @receipt.transactions.new], html: { class: 'table-row is-hidden new-transaction-form' } do |f| %>
-          <div class="table-cell"><input type="text" class="input" name="transaction[name]"></div>
+          <div class="table-cell"><input type="text" class="input" name="transaction[name]"><input type="hidden" name="transaction[item_id]"></div>
           <div class="table-cell"><input type="text" class="input" name="transaction[price]"></div>
           <div class="table-cell"><input type="text" class="input" name="transaction[weight]"></div>
           <div class="table-cell"><input type="text" class="input" name="transaction[count]"></div>
@@ -85,4 +85,5 @@
 
 <script>
   var transactionPath = '/transactions/';
+  var itemSearchPath = "<%= api_item_search_path %>";
 </script>

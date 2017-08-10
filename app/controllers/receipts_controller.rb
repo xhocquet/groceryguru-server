@@ -1,7 +1,4 @@
-class ReceiptsController < ApplicationController  
-  before_action :authenticate_user!
-  layout 'application'
-
+class ReceiptsController < ApplicationController
   def index
     @receipts = current_user.receipts.all
   end

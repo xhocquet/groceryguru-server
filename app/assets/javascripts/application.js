@@ -12,4 +12,6 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require underscore
+//= require awesomplete
 //= require_tree .

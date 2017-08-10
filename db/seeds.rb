@@ -21,7 +21,6 @@ Store.create([
   { name: "century 21" },
   { name: "charleston department stores" },
   { name: "costco" },
-  { name: "costco" },
   { name: "curacao" },
   { name: "david m. brian  owned by mccaulou's" },
   { name: "dd's discounts" },
@@ -73,7 +72,6 @@ Store.create([
   { name: "marshalls" },
   { name: "mccaulou's department store" },
   { name: "meijer" },
-  { name: "meijer" },
   { name: "murphy's" },
   { name: "national stores" },
   { name: "national wholesale liquidators" },
@@ -116,7 +114,6 @@ Store.create([
   { name: "stop and shop" },
   { name: "t.j. maxx" },
   { name: "target" },
-  { name: "target" },
   { name: "the bon-ton" },
   { name: "the fresh grocer" },
   { name: "the sm store" },
@@ -126,7 +123,6 @@ Store.create([
   { name: "tuesday morning" },
   { name: "von maur" },
   { name: "vons" },
-  { name: "walmart" },
   { name: "walmart" },
   { name: "weaver's" },
   { name: "wegmans" },
@@ -9302,6 +9298,7 @@ Store.create([
 "zuppa inglese,general",
 "zwieback,general",
 "zwiebelkuchen,general"].each do |food_mode|
-  item, mode = food_mode.split(',')
-  Item.find_or_create_by(name: item, mode: Item::Mode.find_or_create_by(name: mode))
+  item, mode = food_mode.downcase.split(',')
+  mode = Item::Mode.find_or_create_by!(name: mode)
+  Item.find_or_create_by!(name: item, mode_id: mode.id)
 end

@@ -1,4 +1,15 @@
 class Item < ApplicationRecord
   has_many :receipts
-  has_and_belongs_to_many :modes
+
+  has_one :mode
+  has_one :receipt_transaction, class_name: "Transaction"
+
+  def self.search(query = nil)
+    if query
+      items = Item.arel_table
+      Item.where(items[:name].matches("%#{query}%")).limit(6)
+    else
+      Item.first(6)
+    end
+  end
 end

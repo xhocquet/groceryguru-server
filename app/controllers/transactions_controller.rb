@@ -7,7 +7,6 @@ class TransactionsController < ActionController::Base
     @receipt = Receipt.find(params[:receipt_id])
     @transaction = @receipt.transactions.build transaction_params
 
-    debugger
     if @transaction.save
       flash[:notice] = "Transaction added"
     else
