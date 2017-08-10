@@ -1,7 +1,8 @@
 class Item < ApplicationRecord
   has_many :receipts
 
-  has_one :mode
+  belongs_to :mode
+  
   has_one :receipt_transaction, class_name: "Transaction"
 
   def self.search(query = nil)

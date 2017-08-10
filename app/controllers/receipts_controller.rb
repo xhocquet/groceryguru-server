@@ -52,6 +52,7 @@ class ReceiptsController < ApplicationController
   def destroy
     @receipt = current_user.receipts.find(params[:id])
     @receipt.destroy
+    flash.now[:notice] = "Invisible"
     flash[:notice] = "Receipt deleted."
     redirect_to receipts_path
   end

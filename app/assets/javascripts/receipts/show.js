@@ -1,5 +1,3 @@
-let autoComplete = null;
-
 function onClickNewTransaction(e) {
   e.preventDefault();
   $(e.currentTarget).attr('disabled', true);
@@ -16,11 +14,10 @@ function onClickNewTransaction(e) {
   $('.new-transaction-form').find('.input')[0].select();
 }
 
-function autocompleteReplace(text) {
-  this.input.value = text;
-}
-
 function populateDataInput(e) {
+  let autoComplete = null;
+  let currentList = null;
+
   // Prevent duplicating inputs
   if ($(e.currentTarget).find('input').length > 0) {
     return;
@@ -40,18 +37,32 @@ function populateDataInput(e) {
   newInput.value = currentValue;
   newInput.name = 'transaction['+fieldName+']';
 
+  var hiddenInput = null;
+
   $(e.currentTarget).empty();
   $(newInput).appendTo(e.currentTarget);
 
   // Special autocomplete stuff for name
   if (fieldName === 'name') {
-    autoComplete = new Awesomplete(newInput, {replace: autocompleteReplace, autoFirst: true});
+    hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+    hiddenInput.name = 'transaction[item_id]';
+    $(hiddenInput).appendTo(e.currentTarget);
+
+    autoComplete = new Awesomplete(newInput, {autoFirst: true});
+    $(newInput).on('awesomplete-selectcomplete', updateItemIDInput);
+
+    function updateItemIDInput(event) {
+      $(this).parents('.table-cell').find("input[name='transaction[item_id]']").attr('value', event.originalEvent.text.value);
+      this.value = event.originalEvent.text.label;
+    }
 
     function populateAutocomplete(value) {
       var ajax = new XMLHttpRequest();
       ajax.open("GET", itemSearchPath+'/'+value, true);
       ajax.onload = function() {
-        autoComplete.list = JSON.parse(ajax.responseText).map(function(i) { return { label: i.name, value: i.id}; });
+        currentList = JSON.parse(ajax.responseText).map(function(i) { return { label: i.name, value: i.id}; });
+        autoComplete.list = currentList;
       };
       ajax.send();
     }

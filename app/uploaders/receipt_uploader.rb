@@ -27,13 +27,7 @@ class ReceiptUploader < CarrierWave::Uploader::Base
     resize_ratio = (300/x.to_f).round(2)
     
     manipulate! do |img|
-      debugger
-      img.auto_orient!
       img.format = "png"
-      img.auto_level_channel
-      img.deskew
-      img.sharpen
-      img.contrast
       img.resize! resize_ratio
     end
   end

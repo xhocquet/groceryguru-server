@@ -19,7 +19,7 @@ class TransactionsController < ActionController::Base
   def update
     @transaction = current_user.transactions.find(params[:id])
     @receipt = @transaction.receipt
-
+    
     if @transaction.update transaction_params
       flash[:notice] = "Transaction updated"
       redirect_to receipt_path(@receipt)
@@ -40,6 +40,6 @@ class TransactionsController < ActionController::Base
   private
 
   def transaction_params
-    params.require(:transaction).permit(:name, :weight_value, :weight_unit, :price, :count, :weight, :raw).merge({user: current_user})
+    params.require(:transaction).permit(:name, :weight_value, :weight_unit, :price, :count, :weight, :raw, :item_id).merge({user: current_user})
   end
 end
