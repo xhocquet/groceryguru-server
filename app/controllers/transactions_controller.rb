@@ -1,8 +1,4 @@
-class TransactionsController < ActionController::Base
-  before_action :authenticate_user!
-  layout 'application'
-  default_form_builder AppFormBuilder
-
+class TransactionsController < ApplicationController
   def create
     @receipt = Receipt.find(params[:receipt_id])
     @transaction = @receipt.transactions.build transaction_params
