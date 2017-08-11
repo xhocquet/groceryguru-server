@@ -13,17 +13,36 @@
 
 <section class="section">
   <div class="container">
-    <div class="column is-8 is-offset-2">
-      <h1 class="title center">Add a Receipt</h1>
+    <div class="column is-4 is-offset-4">
+      <h1 class="title">Add a Receipt</h1>
       <hr>
-      <h2 class="subtitle">
-        <%= form_for @receipt, html: { multipart: true }  do |f| %>
-          <%= image_tag(@receipt.image_url) if @receipt.image? %>
-          <%= f.file_field :image %>
-          <%= f.hidden_field :image_cache %>
-          <%= f.submit 'Create', class: 'button is-primary' %>
-        <% end %>
-      </h2>
+      <div class="file is-centered is-primary is-boxed">
+        <label class="file-label">
+          <%= form_for @receipt, html: { multipart: true }  do |f| %>
+            <input class="file-input receipt-upload-input" type="file" name="receipt[image]">
+          <% end %>
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fa fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Upload your receipt
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <div class="sk-cube-grid is-hidden">
+        <div class="sk-cube sk-cube1"></div>
+        <div class="sk-cube sk-cube2"></div>
+        <div class="sk-cube sk-cube3"></div>
+        <div class="sk-cube sk-cube4"></div>
+        <div class="sk-cube sk-cube5"></div>
+        <div class="sk-cube sk-cube6"></div>
+        <div class="sk-cube sk-cube7"></div>
+        <div class="sk-cube sk-cube8"></div>
+        <div class="sk-cube sk-cube9"></div>
+      </div>
     </div>
   </div>
 </section>
