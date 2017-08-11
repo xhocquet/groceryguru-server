@@ -28,6 +28,11 @@
       </h3>
       <div class="transaction-table">
         <div class="table-row table-header">
+          <div class="table-cell">
+            <span class="icon is-small">
+              <i class="fa fa-info-circle"></i>
+            </span>
+          </div>
           <div class="table-cell">Name</div>
           <div class="table-cell">Price</div>
           <div class="table-cell">Weight</div>
@@ -38,7 +43,12 @@
         </div>
 
         <% @receipt.transactions.each do |transaction| %>
-          <%= form_for transaction, html: { class: "table-row #{'incomplete' unless transaction.complete?}" } do |f| %>
+          <%= form_for transaction, html: { class: "table-row #{'incomplete' unless transaction.complete?}" }, data: { 'line-number': transaction.line_number} do |f| %>
+            <div class="table-cell select-transaction-cell">
+              <span class="icon is-small <%= 'is-hidden' unless transaction.line_number.present? %>">
+                <i class="fa fa-search"></i>
+              </span>
+            </div>
             <div class="table-cell <%= 'missing' unless transaction.name %> data" data-field-name="name"><%= transaction.name.try(:humanize) || '-' %></div>
             <div class="table-cell <%= 'missing' unless transaction.price %> data" data-field-name="price"><%= humanized_money_with_symbol(transaction.price)  %></div>
             <div class="table-cell <%= 'missing' unless transaction.weight %> data" data-field-name="weight"><%= transaction.weight.try(:to_s) || '-' %></div>

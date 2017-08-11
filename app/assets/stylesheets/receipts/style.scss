@@ -16,6 +16,14 @@ body.receipts {
       padding: 4px;
     }
 
+    .select-transaction-cell {
+      cursor: pointer;
+
+      &:hover {
+        font-weight: bold;
+      }
+    }
+
     div.table-header {
       font-weight: bold;
 
@@ -61,17 +69,19 @@ body.receipts {
   // RAW LINE NUMBERS
   pre {
     counter-reset: line;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 0;
-    padding: 10px;
     overflow: hidden;
   }
 
   pre span {
     display: block;
-    height: 20px;
-    line-height: 24px;
-    padding: 12px 0;
+    height: 26px;
+    line-height: 28px;
+
+    &.focused {
+      background-color: #f9e7c5;
+    }
 
     &:before {
       border-right: 3px solid #ddd;

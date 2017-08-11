@@ -89,6 +89,15 @@ function populateDataInput(e) {
   $(e.currentTarget).parents('.table-row').find('.save-button').removeAttr('disabled');
 }
 
+function goToTransaction(e) {
+  lineNumber = $(e.currentTarget).parents('.table-row').data('line-number')
+  selectedSpan = $('body').find('pre').find('span').get(lineNumber - 1)
+  $(selectedSpan).addClass('focused')
+  $('html, body').animate({
+    scrollTop: $(selectedSpan).offset().top
+  });
+}
+
 $(document).on('turbolinks:load', function() {
   // Show receipt button
   $('.show-receipt-button').click(function(e) {
@@ -124,6 +133,8 @@ $(document).on('turbolinks:load', function() {
 
     $(e.currentTarget).parents('form').submit();
   });
+
+  $('.select-transaction-cell').click(goToTransaction);
 
   // Add row for new transaction
   $('.add-new-transaction-button').click(onClickNewTransaction);
