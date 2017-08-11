@@ -43,7 +43,7 @@
             <div class="table-cell <%= 'missing' unless transaction.price %> data" data-field-name="price"><%= humanized_money_with_symbol(transaction.price)  %></div>
             <div class="table-cell <%= 'missing' unless transaction.weight %> data" data-field-name="weight"><%= transaction.weight.try(:to_s) || '-' %></div>
             <div class="table-cell <%= 'missing' unless transaction.count %> data" data-field-name="count"><%= transaction.count || '-' %></div>
-            <div class="table-cell raw-cell data" data-field-name="raw"><span class="raw"><%= transaction.raw %></span></div>
+            <div class="table-cell raw-cell data" data-field-name="raw"><div class="raw"><%= raw transaction.raw %></div></div>
             <div class="table-cell"><a class="button is-info is-small save-button" disabled>Save</a></div>
             <div class="table-cell"><%= link_to '', transaction_path(transaction), method: :delete, class: 'delete' %></div>
           <% end %>

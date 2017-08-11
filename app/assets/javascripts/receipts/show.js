@@ -89,7 +89,7 @@ function populateDataInput(e) {
   $(e.currentTarget).parents('.table-row').find('.save-button').removeAttr('disabled');
 }
 
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
   // Show receipt button
   $('.show-receipt-button').click(function(e) {
     e.preventDefault();

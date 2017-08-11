@@ -50,9 +50,10 @@ body.receipts {
     div.raw-cell {
       font-family: 'consolas';
 
-      span.raw {
+      div.raw {
         padding: 2px 8px;
         background-color: #ccc;
+        white-space: pre-wrap;
       }
     }
   }
