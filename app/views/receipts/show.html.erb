@@ -2,9 +2,9 @@
   <div class="container">
     <div class="content column is-8 is-offset-2">
       <h2 class="title">
-        <%= @receipt.store.try(:name).try(:titleize) %> - <%= @receipt.date.try(:to_date).try(:to_formatted_s, :long) %> 
+        <%= store_or_add_store(@receipt) %> - <%= date_or_add_date(@receipt) %>
         <div class="field is-grouped is-pulled-right">
-          <%= link_to "Show Receipt", '#', class: 'button is-info is-pulled-right control show-receipt-button' %> 
+          <%= link_to "Show Receipt", '#', class: 'button is-info is-pulled-right control show-receipt-button' %>
           <%= link_to "Download PDF", @receipt.pdf_url, class: 'button is-info is-pulled-right control' %>
           <div class="dropdown">
             <div class="dropdown-trigger">
@@ -47,7 +47,7 @@
                 <i class="fa fa-search"></i>
               </span>
             </div>
-            <div class="table-cell <%= 'missing' unless transaction.name %> data" data-field-name="name"><%= transaction.name.try(:humanize) || '-' %></div>
+            <div class="table-cell <%= 'missing' unless transaction.name.present? %> data" data-field-name="name"><%= transaction.name.try(:humanize) || '-' %></div>
             <div class="table-cell <%= 'missing' unless transaction.price %> data" data-field-name="price"><%= humanized_money_with_symbol(transaction.price)  %></div>
             <div class="table-cell <%= 'missing' unless transaction.weight %> data" data-field-name="weight"><%= transaction.weight.try(:to_s) || '-' %></div>
             <div class="table-cell <%= 'missing' unless transaction.count %> data" data-field-name="count"><%= transaction.count || '-' %></div>
@@ -94,7 +94,8 @@
 
 <script>
   var options = {
-    itemSearchPath: "<%= api_item_search_path %>"
+    itemSearchPath: "<%= api_item_search_path %>",
+    storeSearchPath: "<%= api_store_search_path %>"
   }
   var page = new ShowReceiptPage(options);
 </script>

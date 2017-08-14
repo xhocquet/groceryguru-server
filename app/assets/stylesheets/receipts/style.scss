@@ -3,6 +3,14 @@ body.receipts {
     width: 100%;
   }
 
+  .store-date-form {
+    display: inline;
+
+    input.store-date-input {
+      width: 200px;
+    }
+  }
+
   div.transaction-table {
     width: 100%;
     display: table;

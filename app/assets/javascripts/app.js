@@ -4,6 +4,6 @@ $(document).ready(function(){
   });
 
   setTimeout(function() {
-    $('.notification.show').removeClass('show');
+    $('.notification.show').removeClass('show', 1000);
   }, 2500);
 });

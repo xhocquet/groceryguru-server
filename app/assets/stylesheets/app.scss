@@ -2,16 +2,23 @@
   position: fixed;
   margin: 0 auto;
   z-index: 1;
-  top: auto;
-  display: none;
+  top: -100%;
   text-align: center;
   right: 35%;
   left: 35%;
+  transition: top 1.5s;
 
   &.show {
-    display: block;
+    top: 0;
+    transition: top 1.5s;
   }
  }
+
+.receipt-upload-button {
+  display: flex;
+  height: 240px !important;
+  justify-content: center;
+}
 
 progress {
   &.progress::-moz-progress-bar {
@@ -26,19 +33,21 @@ progress {
   text-align: center;
 }
 
+
+// LOADING ANIMATION
 .sk-cube-grid {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   margin: 20px auto;
 }
 
 .sk-cube-grid .sk-cube {
-  width: 33%;
-  height: 33%;
+  width: 33.3333333%;
+  height: 33.3333333%;
   background-color: #00d1b2;
   float: left;
   -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
-          animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
+          animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
 }
 .sk-cube-grid .sk-cube1 {
   -webkit-animation-delay: 0.2s;
@@ -74,7 +83,7 @@ progress {
             transform: scale3D(1, 1, 1);
   } 35% {
     -webkit-transform: scale3D(0, 0, 1);
-            transform: scale3D(0, 0, 1); 
+            transform: scale3D(0, 0, 1);
   }
 }
 
@@ -85,5 +94,5 @@ progress {
   } 35% {
     -webkit-transform: scale3D(0, 0, 1);
             transform: scale3D(0, 0, 1);
-  } 
+  }
 }

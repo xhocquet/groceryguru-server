@@ -19,7 +19,7 @@
           <%= form_for @receipt, html: { multipart: true }  do |f| %>
             <input class="file-input receipt-upload-input" type="file" name="receipt[image]">
           <% end %>
-          <span class="file-cta">
+          <span class="file-cta receipt-upload-button">
             <span class="file-icon">
               <i class="fa fa-upload"></i>
             </span>
@@ -30,7 +30,6 @@
         </label>
       </div>
 
-      <h2 class="title is-5 loading-title is-hidden">Your receipt is being processed, hang on!</h2>
       <div class="sk-cube-grid is-hidden">
         <div class="sk-cube sk-cube1"></div>
         <div class="sk-cube sk-cube2"></div>
@@ -42,6 +41,7 @@
         <div class="sk-cube sk-cube8"></div>
         <div class="sk-cube sk-cube9"></div>
       </div>
+      <h2 class="title is-5 loading-title is-hidden">Your receipt is being processed, hang on!</h2>
     </div>
   </div>
 </section>

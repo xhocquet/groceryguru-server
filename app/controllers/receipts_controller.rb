@@ -5,7 +5,7 @@ class ReceiptsController < ApplicationController
 
   def create
     @receipt = current_user.receipts.build receipt_params
-    
+
     if @receipt.save
       redirect_to receipt_path(@receipt)
     else
@@ -19,10 +19,20 @@ class ReceiptsController < ApplicationController
     @receipt = current_user.receipts.includes(:transactions).find(params[:id])
   end
 
+  def update
+    @receipt = current_user.receipts.find(params[:id])
+
+    if @receipt.update receipt_params
+      flash[:notice] = "Successfully updated receipt"
+      redirect_to receipt_path(@receipt)
+    else
+      flash[:error] = "Something went wrong, try again"
+    end
+  end
+
   def destroy
     @receipt = current_user.receipts.find(params[:id])
     @receipt.destroy
-    flash.now[:notice] = "Invisible"
     flash[:notice] = "Receipt deleted."
     redirect_to receipts_path
   end
@@ -30,6 +40,6 @@ class ReceiptsController < ApplicationController
   private
 
   def receipt_params
-    params.require(:receipt).permit(:image, :image_cache)
+    params.require(:receipt).permit(:image, :image_cache, :date, :store_id)
   end
 end
