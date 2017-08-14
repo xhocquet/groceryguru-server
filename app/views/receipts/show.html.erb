@@ -20,8 +20,6 @@
           </div>
         </div>
       </h2>
-      <h3 class="title">Progress</h3>
-      <hr>
       <progress class="progress is-large is-success" value="<%= completed_transactions_count(@receipt) %>" max="<%= transactions_count(@receipt) %>"></progress>
       <h3>Transactions
       <div class="field is-grouped is-pulled-right"><%= link_to "Add Missing Transaction", '#', class: 'button is-info is-pulled-right control add-new-transaction-button' %>
@@ -60,13 +58,14 @@
         <% end %>
 
         <%= form_for [@receipt, @receipt.transactions.new], html: { class: 'table-row is-hidden new-transaction-form' } do |f| %>
+          <div class="table-cell"></div>
           <div class="table-cell"><input type="text" class="input" name="transaction[name]"><input type="hidden" name="transaction[item_id]"></div>
           <div class="table-cell"><input type="text" class="input" name="transaction[price]"></div>
           <div class="table-cell"><input type="text" class="input" name="transaction[weight]"></div>
           <div class="table-cell"><input type="text" class="input" name="transaction[count]"></div>
           <div class="table-cell raw-cell"><input type="text" class="input" name="transaction[raw]"></div>
           <div class="table-cell"><a class="button is-info is-small save-button">Save</a></div>
-          <div class="table-cell"></div>
+          <div class="table-cell"><a href="#" class="delete delete-new-transaction"></a></div>
         <% end %>
 
       </div>
@@ -94,6 +93,8 @@
 </div>
 
 <script>
-  var transactionPath = '/transactions/';
-  var itemSearchPath = "<%= api_item_search_path %>";
+  var options = {
+    itemSearchPath: "<%= api_item_search_path %>"
+  }
+  var page = new ShowReceiptPage(options);
 </script>
