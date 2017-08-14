@@ -59,11 +59,11 @@
 
         <%= form_for [@receipt, @receipt.transactions.new], html: { class: 'table-row is-hidden new-transaction-form' } do |f| %>
           <div class="table-cell"></div>
-          <div class="table-cell"><input type="text" class="input" name="transaction[name]"><input type="hidden" name="transaction[item_id]"></div>
-          <div class="table-cell"><input type="text" class="input" name="transaction[price]"></div>
-          <div class="table-cell"><input type="text" class="input" name="transaction[weight]"></div>
-          <div class="table-cell"><input type="text" class="input" name="transaction[count]"></div>
-          <div class="table-cell raw-cell"><input type="text" class="input" name="transaction[raw]"></div>
+          <div class="table-cell data"><input type="text" class="input" name="transaction[name]"><input type="hidden" name="transaction[item_id]"></div>
+          <div class="table-cell data"><input type="text" class="input" name="transaction[price]"></div>
+          <div class="table-cell data"><input type="text" class="input" name="transaction[weight]"></div>
+          <div class="table-cell data"><input type="text" class="input" name="transaction[count]"></div>
+          <div class="table-cell data raw-cell"><input type="text" class="input" name="transaction[raw]"></div>
           <div class="table-cell"><a class="button is-info is-small save-button">Save</a></div>
           <div class="table-cell"><a href="#" class="delete delete-new-transaction"></a></div>
         <% end %>

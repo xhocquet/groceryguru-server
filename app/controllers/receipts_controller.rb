@@ -5,13 +5,13 @@ class ReceiptsController < ApplicationController
 
   def create
     @receipt = current_user.receipts.build receipt_params
-
+    
     if @receipt.save
       redirect_to receipt_path(@receipt)
     else
       @receipts = current_user.receipts
       flash[:error] =  @receipt.errors.full_messages.first
-      render :index
+      redirect_to root_path
     end
   end
 
