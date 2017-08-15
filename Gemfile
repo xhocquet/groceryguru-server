@@ -32,7 +32,7 @@ gem 'rtesseract' #OCR
 
 gem 'carrierwave' # attachments
 
-gem 'measured-rails' # units and measures
+gem 'rails-units'
 gem 'money-rails' # money
 gem 'openfoodfacts' #FOOOOOD
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170811080701) do
+ActiveRecord::Schema.define(version: 20170815192759) do
 
   create_table "item_modes", force: :cascade do |t|
     t.string "name"
@@ -50,8 +50,6 @@ ActiveRecord::Schema.define(version: 20170811080701) do
 
   create_table "transactions", force: :cascade do |t|
     t.text "raw"
-    t.decimal "weight_value", precision: 10, scale: 2
-    t.string "weight_unit", limit: 12
     t.integer "count"
     t.integer "price_cents"
     t.string "price_currency", default: "USD", null: false
@@ -62,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170811080701) do
     t.text "name"
     t.integer "item_id"
     t.integer "line_number"
+    t.text "weight"
     t.index ["item_id"], name: "index_transactions_on_item_id"
     t.index ["receipt_id"], name: "index_transactions_on_receipt_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"

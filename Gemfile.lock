@@ -133,6 +133,7 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-units (1.7.1)
     railties (5.1.3)
       actionpack (= 5.1.3)
       activesupport (= 5.1.3)
@@ -210,6 +211,7 @@ DEPENDENCIES
   openfoodfacts
   puma (~> 3.7)
   rails (~> 5.1.2)
+  rails-units
   rmagick
   rtesseract
   sass-rails (~> 5.0)

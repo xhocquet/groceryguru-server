@@ -1,16 +1,14 @@
 one:
   name: bread
   raw: BREAD       1232123123123123     2.88 N
-  weight_unit: null
-  weight_value: null
+  weight: null
   price_cents: 288
   count: 1
 
 two:
   name: peanut butter
   raw: GV PNT BUTTR 883993773759395     3.84 N
-  weight_unit: null
-  weight_value: null
+  weight: null
   price_cents: null
   count: 1
 
@@ -18,22 +16,19 @@ three:
   name: parmesan
   raw: GV PARM 16OZ 758237592739587     4.98 N
   price_cents: 498
-  weight_value: 16
-  weight_unit: 'oz'
+  weight: '16 oz'
   count: null
 
 four:
   name: null
   raw: GV PARM 16OZ 758237592739587     4.98 N
   price_cents: 498
-  weight_value: 16
-  weight_unit: 'oz'
+  weight: '16 oz'
   count: null
 
 five:
   name: parmesan
   raw: GV PARM 16OZ 758237592739587     4.98 N
   price_cents: 498
-  weight_value: 16
-  weight_unit: null
+  weight: null
   count: null

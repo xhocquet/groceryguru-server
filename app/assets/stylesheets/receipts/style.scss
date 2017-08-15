@@ -30,11 +30,19 @@ body.receipts {
       &.select-transaction-cell, &.select-transaction-cell-title {
         padding: 0;
         text-align: center;
+        cursor: pointer;
       }
 
       .awesomplete {
         display: inline-flex;
         vertical-align: top;
+      }
+
+      a {
+        i {
+          font-size: 24px;
+          vertical-align: middle;
+        }
       }
     }
 

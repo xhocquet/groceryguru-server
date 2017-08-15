@@ -29,4 +29,12 @@ module ReceiptHelper
       end)
     end
   end
+
+  def weight_text(transaction)
+    if transaction.weight.present?
+      Unit.new(transaction.weight).to_s
+    else
+      '-'
+    end
+  end
 end

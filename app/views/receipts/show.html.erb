@@ -20,7 +20,7 @@
           </div>
         </div>
       </h2>
-      <progress class="progress is-large is-success" value="<%= completed_transactions_count(@receipt) %>" max="<%= transactions_count(@receipt) %>"></progress>
+      <progress class="progress is-large is-success" value="<%= completed_transactions_count(@receipt) %>" max="<%= transactions_count(@receipt) %>" ></progress>
       <h3>Transactions
       <div class="field is-grouped is-pulled-right">
         <%= link_to "Add Missing Transaction", '#', class: 'button is-info is-pulled-right control add-new-transaction-button' %>
@@ -29,7 +29,7 @@
       <div class="transaction-table">
         <div class="table-row table-header">
           <div class="table-cell select-transaction-cell-title">
-            <i class="material-icons">info</i>
+            <i class="material-icons hint--bottom hint--info hint--no-animate" aria-label="Click on a lense to go to a line">info</i>
           </div>
           <div class="table-cell">Name</div>
           <div class="table-cell">Price</div>
@@ -47,11 +47,15 @@
             </div>
             <div class="table-cell <%= 'missing' unless transaction.name.present? %> data" data-field-name="name"><%= transaction.name.try(:humanize) || '-' %></div>
             <div class="table-cell <%= 'missing' unless transaction.price %> data" data-field-name="price"><%= humanized_money_with_symbol(transaction.price)  %></div>
-            <div class="table-cell <%= 'missing' unless transaction.weight %> data" data-field-name="weight"><%= transaction.weight.try(:to_s) || '-' %></div>
+            <div class="table-cell <%= 'missing' unless transaction.weight %> data" data-field-name="weight"><%= weight_text(transaction) %></div>
             <div class="table-cell <%= 'missing' unless transaction.count %> data" data-field-name="count"><%= transaction.count || '-' %></div>
             <div class="table-cell raw-cell data" data-field-name="raw"><div class="raw"><%= raw transaction.raw %></div></div>
             <div class="table-cell"><a class="button is-info is-small save-button" disabled>Save</a></div>
-            <div class="table-cell"><%= link_to '', transaction_path(transaction), method: :delete, class: 'delete' %></div>
+            <div class="table-cell">
+              <%= link_to transaction_path(transaction), method: :delete do %>
+                <i class="material-icons hint--right hint--error hint--no-animate" aria-label="Delete transaction">delete</i>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
 
