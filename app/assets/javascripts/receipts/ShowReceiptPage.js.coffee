@@ -1,6 +1,5 @@
 class @ShowReceiptPage
   constructor: (@options = {}) ->
-    self = this
     @$newTransactionForm = $('.new-transaction-form')
 
     $(document).on 'turbolinks:load', =>
@@ -26,19 +25,17 @@ class @ShowReceiptPage
       $(e.currentTarget).parents('.dropdown').toggleClass('is-active')
 
     # Populate input on item click
-    $('div.data').click(@populateDataInput)
+    $('div.data').click @populateDataInput
 
     # Save transaction row
     $('a.save-button').click (e) ->
-      if $(e.currentTarget).attr('disabled')
-        return
-
+      return if $(e.currentTarget).attr('disabled')
       $(e.currentTarget).parents('form').submit()
 
-    $('.select-transaction-cell').click(@goToTransaction)
+    $('.select-transaction-cell').click @goToTransaction
 
     # Add row for new transaction
-    $('.add-new-transaction-button').click(@onClickNewTransaction)
+    $('.add-new-transaction-button').click @onClickNewTransaction
 
     # Remove new transaction row
     $('.delete-new-transaction').click (e) ->
@@ -56,15 +53,14 @@ class @ShowReceiptPage
 
   initiateStoreSearch: ->
     $addStoreButton = $('.add-store-button')
-    $storeInput = $('input.store-date-input')
+    $storeInput = $('input.store-input')
     $hiddenIDInput = $storeInput.siblings('input#receipt_store_id')
 
     $addStoreButton.addClass('is-hidden')
     $storeInput.removeClass('is-hidden')
 
     $storeInput.keyup (e) ->
-      if e.which == 13
-        $storeInput.parents('form').submit()
+      $storeInput.parents('form').submit() if e.which == 13
 
     autoComplete = new Awesomplete($storeInput[0], {autoFirst: true})
 
@@ -80,6 +76,18 @@ class @ShowReceiptPage
 
     $storeInput.select()
 
+  initiateDateInput: ->
+    $addDateButton = $('.add-date-button')
+    $dateInput = $('input.date-input')
+
+    $addDateButton.addClass('is-hidden')
+    $dateInput.removeClass('is-hidden')
+
+    $dateInput.keyup (e) ->
+      $dateInput.parents('form').submit() if e.which == 13
+
+    $dateInput.select()
+
   populateAutocomplete: (value, path, autoComplete, JSONparseMethod) ->
     ajax = new XMLHttpRequest()
     ajax.open("GET", path+'/'+value, true)
@@ -93,9 +101,6 @@ class @ShowReceiptPage
 
   itemSearchJSONMap: (i) ->
     { label: i.name + (if i.mode != undefined then (' - ' + i.mode.name) else ''), value: i.id }
-
-  initiateDateInput: ->
-
 
   clickNearestSaveButton: (e) ->
     e.preventDefault()

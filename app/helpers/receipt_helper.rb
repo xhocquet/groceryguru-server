@@ -14,7 +14,7 @@ module ReceiptHelper
       link_to('Add Store', '#', class: 'button is-warning add-store-button') +
       (form_for receipt, html: { class: 'store-date-form store-form' } do
         (hidden_field 'receipt', :store_id, class: 'input') +
-        (content_tag :input, '', class: 'input store-date-input is-hidden' )
+        (content_tag :input, '', class: 'input store-input is-hidden' )
       end)
     end
   end
@@ -24,8 +24,8 @@ module ReceiptHelper
       @receipt.date.try(:to_date).try(:to_formatted_s, :long)
     else
       (link_to 'Add Date', '#', class: 'button is-warning add-date-button') +
-      (form_for receipt_path(receipt), html: { class: 'store-date-form date-form' } do |f|
-        f.hidden_field :date, class: 'input store-date-input'
+      (form_for receipt, html: { class: 'store-date-form date-form' } do
+        text_field 'receipt', :date, class: 'input date-input is-hidden'
       end)
     end
   end

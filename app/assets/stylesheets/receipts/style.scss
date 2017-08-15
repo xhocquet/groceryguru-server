@@ -6,7 +6,7 @@ body.receipts {
   .store-date-form {
     display: inline;
 
-    input.store-date-input {
+    input.date-input, input.store-input {
       width: 200px;
     }
   }
@@ -22,6 +22,16 @@ body.receipts {
     div.table-cell {
       display: table-cell;
       padding: 4px;
+
+      &.select-transaction-cell, &.select-transaction-cell-title {
+        padding: 0;
+        text-align: center;
+      }
+
+      .awesomplete {
+        display: inline-flex;
+        vertical-align: top;
+      }
     }
 
     .select-transaction-cell {

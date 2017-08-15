@@ -1,7 +1,14 @@
 <section class="section">
   <div class="container">
     <div class="column is-6 is-offset-3">
-      <h1 class="title">My Receipts</h1>
+      <h1 class="title">
+      My Receipts
+      <div class="field is-grouped is-pulled-right">
+        <%= link_to '#', class: 'button is-info is-pulled-right control' do %>
+          <i class="material-icons">note_add</i>
+        <% end %>
+      </div>
+      </h1>
       <hr>
         <table class="table">
           <thead>
