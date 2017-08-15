@@ -17,6 +17,10 @@ body.receipts {
 
     div.table-row, form.table-row {
       display: table-row;
+
+      .save-button {
+        height: 28px;
+      }
     }
 
     div.table-cell {

@@ -113,6 +113,11 @@ class @ShowReceiptPage
     @$newTransactionForm.find('input').keypress (e) =>
       @clickNearestSaveButton(e) if e.which == 13
 
+    $lastRow = $('.select-transaction-cell').last().parents('.table-row')
+
+    @$newTransactionForm.find('.table-cell').each (index, item) ->
+      item.style.maxWidth = $lastRow.find('.table-cell')[index].offsetWidth+"px"
+
     @$newTransactionForm.removeClass('is-hidden')
     @setupItemAutocompleteCell(@$newTransactionForm.find('.table-cell.data').first())
     @$newTransactionForm.find('.input').first().select()
@@ -146,14 +151,18 @@ class @ShowReceiptPage
     currentFieldName = $tableCell.data('field-name')
     currentValue = $tableCell.text()
 
-    curHeight = $tableCell.height()
+    curHeight = $tableCell.outerHeight()
     curWidth = $tableCell.width()
 
     newInput = document.createElement("input")
     newInput.type = "text"
     newInput.classList.add('input')
-    newInput.style.maxWidth = curWidth+'px'
-    newInput.style.maxHeight = curHeight+'px'
+    newInput.style.verticalAlign = 'baseline';
+
+    $tableCell[0].style.maxWidth = curWidth+'px'
+    $tableCell[0].style.maxHeight = curHeight+'px'
+    $tableCell[0].style.padding = 0
+
     if currentValue != '-'
       newInput.value = currentValue
     newInput.name = 'transaction['+currentFieldName+']'

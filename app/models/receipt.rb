@@ -38,10 +38,10 @@ class Receipt < ApplicationRecord
         end
       end
 
-      break if index > 5 || self.store.present?      
+      break if index > 5 || self.store.present?
     end
 
-    if self.store.present? && "Parsers::#{self.store.name.titleize}".constantize.present?
+    if self.store.present? && "Parsers::#{self.store.name.titleize}".safe_constantize
       "Parsers::#{self.store.name.titleize}".constantize.new(self).process
     else
       Parsers::Base.new(self).process
