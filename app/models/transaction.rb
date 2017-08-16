@@ -21,4 +21,17 @@ class Transaction < ApplicationRecord
       return self[:name]
     end
   end
+
+  def price_per_unit
+    return nil if self.price.blank?
+    if self.weight.present?
+      unit = Unit.new(self.weight)
+      unit >>= 'kg'
+      (self.price.to_f/unit.scalar.to_f).round(2)
+    elsif self.count.present?
+      (self.price/self.count).round(2)
+    else
+      nil
+    end
+  end
 end

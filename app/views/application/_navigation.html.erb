@@ -15,7 +15,7 @@
     <% if current_user.present? %>
       <div class="navbar-start">
         <%= link_to "My Receipts", receipts_path, class: 'navbar-item' %>
-        <%= link_to "My Foods", '#', class: 'navbar-item' %>
+        <%= link_to "My Foods", data_path, class: 'navbar-item' %>
       </div>
     <% end %>
 

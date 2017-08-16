@@ -1,0 +1,38 @@
+body.data.index {
+  .item-card {
+    &.is-worst {
+      background-color: #ff3860;
+    }
+
+    &.is-best {
+      background-color: #23d160;
+    }
+
+    button {
+      width: 100%;
+      justify-content: space-between;
+
+      .field {
+        margin: 0;
+
+        i {
+          font-size: 40px;
+        }
+      }
+    }
+
+    .transaction-list {
+      margin-top: 24px;
+    }
+
+    table {
+      tr.is-worst {
+        background-color: #ff3860;
+      }
+
+      tr.is-best {
+        background-color: #23d160;
+      }
+    }
+  }
+}

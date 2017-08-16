@@ -1,0 +1,67 @@
+<section class="section">
+  <div class="container">
+    <div class="content column is-8 is-offset-2">
+      <h2 class="title">Let's see where you can save!</h2>
+      <hr>
+      <% @transaction_groups.each do |item_id, transactions| %>
+        <% next if item_id.blank? %>
+        <% @mode = Item.find(item_id).mode %>
+        <% best_ppu = transactions.map(&:price_per_unit).min %>
+        <% worst_ppu = transactions.map(&:price_per_unit).max %>
+        <% most_recent_transaction = transactions.sort_by(&:created_at).reverse.first %>
+
+        <div class="box item-card <%= 'is-worst' if most_recent_transaction.price_per_unit == worst_ppu %> <%= 'is-best' if most_recent_transaction.price_per_unit == best_ppu %>" data-item-id="<%=item_id%>">
+          <button class="button is-large toggle-card-button">
+            <div class="field is-grouped">
+              <i class="material-icons">arrow_drop_down</i>
+              <%= Item.find(item_id).name.titleize %><%= mode_no_general(@mode) %>
+            </div>
+            <div class="field is-grouped">
+              <%= n_days_ago(most_recent_transaction) %>
+            </div>
+          </button>
+
+          <div class="box transaction-list is-hidden">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Store</th>
+                  <th>Price</th>
+                  <th>Amount</th>
+                  <th><abbr title="Price per Unit">PPU</abbr></th>
+                </tr>
+              </thead>
+              <tbody>
+              <% transactions.sort_by{|t| t.receipt.date}.reverse.each do |transaction| %>
+                <tr data-transaction-id="<%= transaction.id %>" class="<%= transaction_row_class(transaction, best_ppu, worst_ppu) %>">
+                  <td>
+                    <%= transaction.receipt.date.to_date.try(:to_formatted_s, :long) %>
+                  </td>
+                  <td>
+                    <%= transaction.receipt.store.name.titleize %>
+                  </td>
+                  <td>
+                    <%= "$#{transaction.price}" %>
+                  </td>
+                  <td>
+                    <%= transaction.weight.to_s.presence || transaction.count %>
+                  </td>
+                  <td>
+                    <%= price_per_unit(transaction) %>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  var page = new DataIndexPage();
+</script>
