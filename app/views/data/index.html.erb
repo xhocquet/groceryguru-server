@@ -13,7 +13,7 @@
         <div class="box item-card <%= 'is-worst' if most_recent_transaction.price_per_unit == worst_ppu %> <%= 'is-best' if most_recent_transaction.price_per_unit == best_ppu %>" data-item-id="<%=item_id%>">
           <button class="button is-large toggle-card-button">
             <div class="field is-grouped">
-              <i class="material-icons">arrow_drop_down</i>
+              <i class="material-icons">keyboard_arrow_right</i>
               <%= Item.find(item_id).name.titleize %><%= mode_no_general(@mode) %>
             </div>
             <div class="field is-grouped">
