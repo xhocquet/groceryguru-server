@@ -8,7 +8,7 @@
         <% @mode = Item.find(item_id).mode %>
         <% best_ppu = transactions.map(&:price_per_unit).min %>
         <% worst_ppu = transactions.map(&:price_per_unit).max %>
-        <% most_recent_transaction = transactions.sort_by(&:created_at).reverse.first %>
+        <% most_recent_transaction = transactions.sort_by{|t| t.receipt.date}.reverse.first %>
 
         <div class="box item-card <%= 'is-worst' if most_recent_transaction.price_per_unit == worst_ppu %> <%= 'is-best' if most_recent_transaction.price_per_unit == best_ppu %>" data-item-id="<%=item_id%>">
           <button class="button is-large toggle-card-button">
@@ -21,39 +21,53 @@
             </div>
           </button>
 
-          <div class="box transaction-list is-hidden">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Store</th>
-                  <th>Price</th>
-                  <th>Amount</th>
-                  <th><abbr title="Price per Unit">PPU</abbr></th>
-                </tr>
-              </thead>
-              <tbody>
-              <% transactions.sort_by{|t| t.receipt.date}.reverse.each do |transaction| %>
-                <tr data-transaction-id="<%= transaction.id %>" class="<%= transaction_row_class(transaction, best_ppu, worst_ppu) %>">
-                  <td>
-                    <%= transaction.receipt.date.to_date.try(:to_formatted_s, :long) %>
-                  </td>
-                  <td>
-                    <%= transaction.receipt.store.name.titleize %>
-                  </td>
-                  <td>
-                    <%= "$#{transaction.price}" %>
-                  </td>
-                  <td>
-                    <%= transaction.weight.to_s.presence || transaction.count %>
-                  </td>
-                  <td>
-                    <%= price_per_unit(transaction) %>
-                  </td>
-                </tr>
-              <% end %>
-              </tbody>
-            </table>
+          <div class="transaction-list is-hidden">
+            <% unless transactions.count < 2 %>
+              <div class="fluid-container transaction-summary">
+                <% if most_recent_transaction.price_per_unit == best_ppu %>
+                  <i class="material-icons">check_circle</i><h2 class="title">You saved up to $<%= transaction_saved(most_recent_transaction, worst_ppu) %> on your last purchase</h2>
+                <% elsif most_recent_transaction.price_per_unit == worst_ppu %>
+                  <i class="material-icons">error</i><h2 class="title">You lost $<%= transaction_loss(most_recent_transaction, best_ppu) %> on your last purchase</h2>
+                <% else %>
+                  <i class="material-icons">help</i><h2 class="title">InfoOOO</h2>
+                <% end %>
+              </div>
+            <% end %>
+
+            <div class="box">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Store</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                    <th><abbr title="Price per Unit">PPU</abbr></th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% transactions.sort_by{|t| t.receipt.date}.reverse.each do |transaction| %>
+                  <tr data-transaction-id="<%= transaction.id %>" class="<%= transaction_row_class(transaction, best_ppu, worst_ppu) %>">
+                    <td>
+                      <%= transaction.receipt.date.to_date.try(:to_formatted_s, :long) %>
+                    </td>
+                    <td>
+                      <%= transaction.receipt.store.name.titleize %>
+                    </td>
+                    <td>
+                      <%= "$#{transaction.price}" %>
+                    </td>
+                    <td>
+                      <%= transaction.weight.to_s.presence || transaction.count %>
+                    </td>
+                    <td>
+                      <%= price_per_unit(transaction) %>
+                    </td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
           </div>
 
         </div>

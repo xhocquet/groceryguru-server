@@ -17,10 +17,15 @@ class Receipt < ApplicationRecord
     text.present? ? text.split("\n") : []
   end
 
+  def date
+    self[:date] || self.created_at
+  end
+
   private
 
   def process_text
     return if self.processed
+    return if self.text.blank?
 
     tesseract_image = RTesseract.new(self.image.path, psm: 4)
     self.pdf = File.open(tesseract_image.to_pdf)

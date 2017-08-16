@@ -1,5 +1,7 @@
 body.data.index {
   .item-card {
+    background-color: #ffdd57;
+
     &.is-worst {
       background-color: #ff3860;
     }
@@ -22,10 +24,31 @@ body.data.index {
     }
 
     .transaction-list {
-      margin-top: 24px;
+
+      .transaction-summary {
+        margin: 24px 0;
+
+        h2 {
+          float: right;
+          font-size: 36px;
+          line-height: 58px;
+          font-weight: bold;
+          margin: 0;
+          color: white;
+        }
+
+        i {
+          font-size: 58px;
+          color: white;
+        }
+      }
     }
 
-    table {
+    tbody {
+      tr {
+        background-color: #ffdd57;
+      }
+
       tr.is-worst {
         background-color: #ff3860;
       }

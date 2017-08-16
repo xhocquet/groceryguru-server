@@ -18,7 +18,29 @@ module TransactionHelper
     end
   end
 
+  def transaction_loss(recent_transaction, best_ppu)
+    diff = recent_transaction.price_per_unit - best_ppu
+    if recent_transaction.count.present?
+      (diff * recent_transaction.count).round(2)
+    elsif recent_transaction.weight.present?
+      (diff * (Unit.new(recent_transaction.weight).convert_to('kg').scalar.to_f.round(2))).round(2)
+    else
+      nil
+    end
+  end
+
+  def transaction_saved(recent_transaction, worst_ppu)
+    diff = worst_ppu - recent_transaction.price_per_unit
+    if recent_transaction.count.present?
+      (diff * recent_transaction.count).round(2)
+    elsif recent_transaction.weight.present?
+      (diff * (Unit.new(recent_transaction.weight).convert_to('kg').scalar.to_f.round(2))).round(2)
+    else
+      nil
+    end
+  end
+
   def n_days_ago(transaction)
-    time_ago_in_words(transaction.created_at.to_date) + ' ago'
+    "Last bought #{time_ago_in_words(transaction.created_at.to_date)} ago"
   end
 end

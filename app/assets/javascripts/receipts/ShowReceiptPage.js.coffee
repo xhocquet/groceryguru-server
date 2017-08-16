@@ -115,8 +115,9 @@ class @ShowReceiptPage
 
     $lastRow = $('.select-transaction-cell').last().parents('.table-row')
 
-    @$newTransactionForm.find('.table-cell').each (index, item) ->
-      item.style.maxWidth = $lastRow.find('.table-cell')[index].offsetWidth+"px"
+    if $lastRow.length > 0
+      @$newTransactionForm.find('.table-cell').each (index, item) ->
+        item.style.maxWidth = $lastRow.find('.table-cell')[index].offsetWidth+"px"
 
     @$newTransactionForm.removeClass('is-hidden')
     @setupItemAutocompleteCell(@$newTransactionForm.find('.table-cell.data').first())
