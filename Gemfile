@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.1.2'
-gem 'faster_require'
+gem 'faster_require' # caching for significant windows speed increase
 
 gem 'sqlite3'
 
@@ -15,7 +15,6 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
-# Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 
 gem 'turbolinks', '~> 5'
@@ -28,6 +27,8 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+
+gem 'active_link_to'
 
 gem 'rmagick'
 gem 'rtesseract' #OCR
