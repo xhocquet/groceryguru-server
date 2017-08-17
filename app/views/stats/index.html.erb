@@ -4,8 +4,8 @@
       <% @transaction_groups.each do |item_id, transactions| %>
         <% next if item_id.blank? %>
         <% @mode = Item.find(item_id).mode %>
-        <% best_ppu = transactions.pluck(&:price_per_unit).compact.min %>
-        <% worst_ppu = transactions.pluck(&:price_per_unit).compact.max %>
+        <% best_ppu = transactions.pluck(:price_per_unit).compact.min %>
+        <% worst_ppu = transactions.pluck(:price_per_unit).compact.max %>
         <% most_recent_transaction = transactions.sort_by{|t| t.receipt.date}.reverse.first %>
 
         <div class="box item-card <%= 'is-worst' if most_recent_transaction.price_per_unit == worst_ppu %> <%= 'is-best' if most_recent_transaction.price_per_unit == best_ppu %>" data-item-id="<%=item_id%>">
@@ -20,14 +20,17 @@
           </button>
 
           <div class="transaction-list is-hidden">
-            <% unless transactions.count < 2 %>
+            <% if transactions.pluck(:price_per_unit).compact.count > 1 %>
               <div class="fluid-container transaction-summary">
-                <% if most_recent_transaction.price_per_unit == best_ppu %>
+                <% if best_ppu && most_recent_transaction.price_per_unit == best_ppu %>
                   <i class="material-icons">check_circle</i><h2 class="title">You saved up to $<%= transaction_saved(most_recent_transaction, worst_ppu) %> on your last purchase</h2>
-                <% elsif most_recent_transaction.price_per_unit == worst_ppu %>
+                <% elsif worst_ppu && most_recent_transaction.price_per_unit == worst_ppu %>
                   <i class="material-icons">error</i><h2 class="title">You lost $<%= transaction_loss(most_recent_transaction, best_ppu) %> on your last purchase</h2>
                 <% else %>
-                  <i class="material-icons">help</i><h2 class="title">You could have saved $<%= transaction_loss(most_recent_transaction, best_ppu) %> more on your last purchase</h2>
+                  <i class="material-icons">help</i>
+                  <% if best_ppu %>
+                    <h2 class="title">You could have saved $<%= transaction_loss(most_recent_transaction, best_ppu) %> more on your last purchase</h2>
+                  <% end %>
                 <% end %>
               </div>
             <% end %>
@@ -59,7 +62,7 @@
                       <%= transaction.weight.to_s.presence || transaction.count %>
                     </td>
                     <td>
-                      <%= price_per_unit(transaction) %>
+                      <%= display_price_per_unit(transaction) %>
                     </td>
                   </tr>
                 <% end %>

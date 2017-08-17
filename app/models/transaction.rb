@@ -6,8 +6,10 @@ class Transaction < ApplicationRecord
   monetize :price_cents , allow_nil: true
 
   scope :completed, -> { where.not(name: nil).where.not(price_cents: nil).where('weight IS NOT NULL OR count IS NOT NULL') }
+  scope :incomplete, -> { where("name IS NULL OR price_cents IS NULL OR (weight IS NULL AND count IS NULL)") }
 
   after_commit :update_metadata, on: [:create, :update]
+  after_save :touch_receipt
 
   def complete?
     return false if price.blank?
@@ -33,6 +35,10 @@ class Transaction < ApplicationRecord
   end
 
   private
+
+  def touch_receipt
+    self.receipt.update(updated_at: Time.now)
+  end
 
   def update_metadata
     self.update_column(:name, self.item.name) if self.item.present?

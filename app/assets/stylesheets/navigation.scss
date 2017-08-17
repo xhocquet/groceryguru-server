@@ -1,5 +1,12 @@
 nav.navbar {
   .navbar-start {
+    .receipt-count-badge {
+      margin: 0 4px;
+      padding: 0px 6px;
+      background: white;
+      color: black;
+      border-radius: 6px;
+    }
     .navbar-item.active {
       background-color: #2186e0;
       color: white;

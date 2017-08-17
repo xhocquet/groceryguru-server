@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817130246) do
+ActiveRecord::Schema.define(version: 20170817134104) do
 
   create_table "item_modes", force: :cascade do |t|
     t.string "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170817130246) do
     t.integer "store_id"
     t.integer "line_count", default: 0
     t.boolean "processed", default: false
+    t.boolean "completed", default: false
     t.index ["store_id"], name: "index_receipts_on_store_id"
     t.index ["user_id"], name: "index_receipts_on_user_id"
   end

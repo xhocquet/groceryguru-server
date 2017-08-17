@@ -1,10 +1,10 @@
 module TransactionHelper
-  def price_per_unit(transaction)
+  def display_price_per_unit(transaction)
     return "N/A" if transaction.price.blank?
     if transaction.weight.present?
-      "$#{transaction.price_per_unit}/kg"
+      "$#{'%.2f' % transaction.price_per_unit}/kg"
     elsif transaction.count.present?
-      "$#{transaction.price_per_unit}"
+      "$#{'%.2f' % transaction.price_per_unit}"
     else
       "N/A"
     end

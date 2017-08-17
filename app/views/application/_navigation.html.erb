@@ -14,7 +14,9 @@
   <div id="navMenu" class="navbar-menu">
     <% if current_user.present? %>
       <div class="navbar-start">
-        <%= active_link_to "My Receipts", receipts_path, class: 'navbar-item' %>
+        <%= active_link_to receipts_path, class: 'navbar-item' do %>
+          My Receipts <span class="receipt-count-badge hint--bottom" aria-label="Some receipts need filling"><%= current_user.receipts.incomplete.count %></span>
+        <% end %>
         <%= active_link_to "My Stats", stats_path, class: 'navbar-item' %>
       </div>
     <% end %>

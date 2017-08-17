@@ -13,6 +13,11 @@ class Receipt < ApplicationRecord
 
   after_create :process_text
 
+  after_commit :update_metadata, on: [:create, :update]
+
+  scope :completed, -> { where(completed: true) }
+  scope :incomplete, -> { where(completed: false) }
+
   def lines
     text.present? ? text.split("\n") : []
   end
@@ -55,5 +60,10 @@ class Receipt < ApplicationRecord
 
     self.processed = true
     self.save!
+  end
+
+  def update_metadata
+    complete = self.transactions.incomplete.size == 0
+    self.update_column(:completed, complete)
   end
 end
