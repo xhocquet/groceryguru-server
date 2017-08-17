@@ -1,8 +1,6 @@
 <section class="section">
   <div class="container">
     <div class="content column is-8 is-offset-2">
-      <h2 class="title">My Stats</h2>
-      <hr>
       <% @transaction_groups.each do |item_id, transactions| %>
         <% next if item_id.blank? %>
         <% @mode = Item.find(item_id).mode %>
