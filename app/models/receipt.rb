@@ -65,5 +65,7 @@ class Receipt < ApplicationRecord
   def update_metadata
     complete = self.transactions.incomplete.size == 0
     self.update_column(:completed, complete)
+
+    self.user.update(last_stats_update: Time.now)
   end
 end
