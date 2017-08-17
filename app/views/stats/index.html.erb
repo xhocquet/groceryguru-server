@@ -4,8 +4,8 @@
       <% @transaction_groups.each do |item_id, transactions| %>
         <% next if item_id.blank? %>
         <% @mode = Item.find(item_id).mode %>
-        <% best_ppu = transactions.map(&:price_per_unit).min %>
-        <% worst_ppu = transactions.map(&:price_per_unit).max %>
+        <% best_ppu = transactions.pluck(&:price_per_unit).compact.min %>
+        <% worst_ppu = transactions.pluck(&:price_per_unit).compact.max %>
         <% most_recent_transaction = transactions.sort_by{|t| t.receipt.date}.reverse.first %>
 
         <div class="box item-card <%= 'is-worst' if most_recent_transaction.price_per_unit == worst_ppu %> <%= 'is-best' if most_recent_transaction.price_per_unit == best_ppu %>" data-item-id="<%=item_id%>">
