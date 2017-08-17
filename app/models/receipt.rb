@@ -17,6 +17,7 @@ class Receipt < ApplicationRecord
     text.present? ? text.split("\n") : []
   end
 
+  # Fallback date to created_at
   def date
     self[:date] || self.created_at
   end

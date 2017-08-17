@@ -26,6 +26,8 @@ gem 'bcrypt', '~> 3.1.11'
 
 gem 'devise'
 gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 
 gem 'rmagick'
 gem 'rtesseract' #OCR

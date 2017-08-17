@@ -14,14 +14,6 @@ class Transaction < ApplicationRecord
     return true
   end
 
-  def name
-    if self.item.present?
-      return self.item.name
-    else
-      return self[:name]
-    end
-  end
-
   def price_per_unit
     return nil if self.price.blank?
     if self.weight.present?

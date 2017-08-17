@@ -1,7 +1,7 @@
 <section class="section">
   <div class="container">
     <div class="content column is-8 is-offset-2">
-      <h2 class="title">Let's see where you can save!</h2>
+      <h2 class="title">My Stats</h2>
       <hr>
       <% @transaction_groups.each do |item_id, transactions| %>
         <% next if item_id.blank? %>
@@ -29,7 +29,7 @@
                 <% elsif most_recent_transaction.price_per_unit == worst_ppu %>
                   <i class="material-icons">error</i><h2 class="title">You lost $<%= transaction_loss(most_recent_transaction, best_ppu) %> on your last purchase</h2>
                 <% else %>
-                  <i class="material-icons">help</i><h2 class="title">InfoOOO</h2>
+                  <i class="material-icons">help</i><h2 class="title">You could have saved $<%= transaction_loss(most_recent_transaction, best_ppu) %> more on your last purchase</h2>
                 <% end %>
               </div>
             <% end %>
@@ -77,5 +77,5 @@
 </section>
 
 <script type="text/javascript">
-  var page = new DataIndexPage();
+  var page = new StatsPage();
 </script>

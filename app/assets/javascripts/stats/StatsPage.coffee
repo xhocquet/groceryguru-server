@@ -1,4 +1,4 @@
-class @DataIndexPage
+class @StatsPage
   constructor: (@options = {}) ->
     $(document).on 'turbolinks:load', => @setupEventListeners()
 
