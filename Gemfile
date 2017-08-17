@@ -35,7 +35,7 @@ gem 'rtesseract' #OCR
 
 gem 'carrierwave' # attachments
 
-gem 'rails-units'
+gem 'ruby-units'
 gem 'money-rails' # money
 gem 'openfoodfacts' #FOOOOOD
 
@@ -43,6 +43,7 @@ gem 'openfoodfacts' #FOOOOOD
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker'
   # gem 'capybara', '~> 2.13'
   # gem 'selenium-webdriver'
 end

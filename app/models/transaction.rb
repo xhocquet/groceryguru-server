@@ -7,6 +7,8 @@ class Transaction < ApplicationRecord
 
   scope :completed, -> { where.not(name: nil).where.not(price_cents: nil).where('weight IS NOT NULL OR count IS NOT NULL') }
 
+  after_commit :save_name_to_model, on: [:create, :update]
+
   def complete?
     return false if price.blank?
     return false if weight.blank? && count.blank?
@@ -21,9 +23,15 @@ class Transaction < ApplicationRecord
       unit >>= 'kg'
       (self.price.to_f/unit.scalar.to_f).round(2)
     elsif self.count.present?
-      (self.price/self.count).round(2)
+      (self.price.to_f/self.count.to_f).round(2)
     else
       nil
     end
+  end
+
+  private
+
+  def save_name_to_model
+    self.update_column(:name, self.item.name) if self.item.present?
   end
 end
