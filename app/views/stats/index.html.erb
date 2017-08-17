@@ -13,7 +13,9 @@
             <button class="button is-large toggle-card-button">
               <div class="field is-grouped">
                 <i class="material-icons">keyboard_arrow_right</i>
-                <%= Item.find(item_id).name.titleize %><%= mode_no_general(@mode) %>
+                <span class="item-name">
+                  <%= Item.find(item_id).name.titleize %><%= mode_no_general(@mode) %>
+                </span>
               </div>
               <div class="field is-grouped">
                 <%= n_days_ago(most_recent_transaction) %>

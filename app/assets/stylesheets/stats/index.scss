@@ -7,18 +7,25 @@ body.stats.index {
     }
 
     &.is-best {
-      background-color: #23d160;
-    }
+      background-color: #23d160    }
 
     button {
       width: 100%;
       justify-content: space-between;
 
-      .field {
-        margin: 0;
+      .field:first-child {
+        margin: 0 12px 0 0;
+        overflow: hidden;
+
+        .item-name {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
 
         i {
           font-size: 36px;
+          margin-left: -8px;
         }
       }
     }
