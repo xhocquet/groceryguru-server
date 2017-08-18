@@ -1,4 +1,4 @@
-body.admin.index {
+body.admin.index, body.stores.index, body.items.index {
   hr {
     margin: 0;
   }
@@ -30,6 +30,10 @@ body.admin.index {
 
     .dashboard-tile:nth-of-type(3) {
       background-color: hsl(217, 71%,  53%);
+    }
+
+    .admin-data-table {
+      margin: 24px auto 0;
     }
   }
 

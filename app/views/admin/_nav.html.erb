@@ -9,7 +9,7 @@
     Administration
   </p>
   <ul class="menu-list">
-    <li><a href="">Stores</a></li>
-    <li><a href="">Items</a></li>
+    <%= active_link_to 'Stores', admin_stores_path, active: :exclusive, wrap_tag: :li %>
+    <%= active_link_to 'Items', admin_items_path, active: :exclusive, wrap_tag: :li %>
   </ul>
 </aside>

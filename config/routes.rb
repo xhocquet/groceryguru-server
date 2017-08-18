@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/', controller: "/admin", action: :index
+    resources :items, controller: "/items"
+    resources :stores, controller: "/stores"
   end
 
   namespace :api do

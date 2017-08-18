@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
   def render_404
     render 'shared/404'
   end
+
+  def validate_admin
+    render_404 unless current_user.admin?
+  end
 end
