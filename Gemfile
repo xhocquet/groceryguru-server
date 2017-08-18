@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.1.2'
-gem 'faster_require' # caching for significant windows speed increase
 
 gem 'sqlite3'
 
@@ -14,9 +13,7 @@ gem 'puma', '~> 3.7'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-
 gem 'coffee-rails', '~> 4.2'
-
 gem 'turbolinks', '~> 5'
 
 gem 'jbuilder', '~> 2.5'
@@ -35,7 +32,7 @@ gem 'rtesseract' #OCR
 
 gem 'carrierwave' # attachments
 
-gem 'ruby-units'
+gem 'ruby-units' # measurements and weights
 gem 'money-rails' # money
 gem 'openfoodfacts' #FOOOOOD
 
@@ -44,6 +41,7 @@ gem 'openfoodfacts' #FOOOOOD
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker'
+  gem 'faster_require' # caching for significant windows speed increase
   # gem 'capybara', '~> 2.13'
   # gem 'selenium-webdriver'
 end

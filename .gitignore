@@ -10,6 +10,7 @@ secrets.yml
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+/vendor/.keep
 !/log/.keep
 !/tmp/.keep
 /bin/*
@@ -22,3 +23,5 @@ secrets.yml
 .byebug_history
 /public/packs
 /node_modules
+
+.jshintrc
