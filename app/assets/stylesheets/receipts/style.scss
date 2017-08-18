@@ -1,4 +1,15 @@
 body.receipts {
+  .progress-label {
+    top: 1.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    margin: 0;
+    text-align: center;
+    position: relative;
+    color: white;
+  }
+
   table {
     width: 100%;
   }

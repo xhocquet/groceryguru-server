@@ -19,6 +19,11 @@ module ReceiptHelper
     end
   end
 
+  def completion_percentage(receipt)
+    value = ((completed_transactions_count(receipt).to_f / transactions_count(receipt).to_f)*100).round
+    "#{value}%"
+  end
+
   def date_or_add_date(receipt)
     if receipt.date.present?
       @receipt.date.try(:to_date).try(:to_formatted_s, :long)

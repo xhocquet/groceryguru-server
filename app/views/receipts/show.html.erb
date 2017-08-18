@@ -20,6 +20,7 @@
           </div>
         </div>
       </h2>
+      <h2 class="progress-label"><%= completion_percentage(@receipt) %></h2>
       <progress class="progress is-large is-success" value="<%= completed_transactions_count(@receipt) %>" max="<%= transactions_count(@receipt) %>" ></progress>
       <h3>Transactions
       <div class="field is-grouped is-pulled-right">
