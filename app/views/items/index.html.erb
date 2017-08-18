@@ -25,10 +25,13 @@
     <tbody>
       <% @items.each do |item| %>
         <tr>
-          <td><%= item.name.titleize %></td>
+          <td>
+            <%= item.name.titleize %>
+            <div id="item-anchor-<%= item.id %>" class="long-list-anchor"></div>
+          </td>
           <td><%= item.mode.try(:name).try(:titleize) %></td>
           <td>
-            <%= link_to admin_item_path(item), method: :delete do %>
+            <%= link_to admin_item_path(item, alpha: params[:alpha]), method: :delete do %>
               <i class="material-icons">delete</i>
             <% end %>
           </td>

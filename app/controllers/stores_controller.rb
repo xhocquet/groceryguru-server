@@ -12,12 +12,15 @@ class StoresController < ApplicationController
 
   def destroy
     @store = Store.find(params[:id])
+    @next_store = Store.where("id > ?", @store.id).first
+    alpha = params[:alpha]
+
     if @store.destroy
       flash[:notice] = "Successfully destroyed store"
-      redirect_to request.referer
+      redirect_to admin_stores_path(alpha: alpha, anchor: "store-anchor-#{@next_store.id}")
     else
       flash[:error] = "Could not destroy store"
-      redirect_to request.referer
+      redirect_to admin_stores_path(alpha: alpha, anchor: "store-anchor-#{@next_store.id}")
     end
   end
 

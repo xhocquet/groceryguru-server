@@ -12,12 +12,15 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
+    @next_item = Item.where("id > ?", @item.id).first
+    alpha = params[:alpha]
+
     if @item.destroy
       flash[:notice] = "Successfully destroyed item"
-      redirect_to request.referer
+      redirect_to admin_items_path(alpha: alpha, anchor: "item-anchor-#{@next_item.id}")
     else
       flash[:error] = "Could not destroy item"
-      redirect_to request.referer
+      redirect_to admin_items_path(alpha: alpha, anchor: "item-anchor-#{@next_item.id}")
     end
   end
 

@@ -24,10 +24,13 @@
     <tbody>
       <% @stores.each do |store| %>
         <tr>
-          <td><%= store.name.titleize %></td>
+          <td>
+            <%= store.name.titleize %>
+            <div id="store-anchor-<%= store.id %>" class="long-list-anchor"></div>
+          </td>
           <td><%= store.postal_code %></td>
           <td>
-            <%= link_to admin_store_path(store), method: :delete do %>
+            <%= link_to admin_store_path(store, alpha: params[:alpha]), method: :delete do %>
               <i class="material-icons">delete</i>
             <% end %>
           </td>
