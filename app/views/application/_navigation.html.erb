@@ -19,6 +19,11 @@
         <%= active_link_to stats_path, class: 'navbar-item' do %>
           <i class="material-icons">attach_money</i>My Stats
         <% end %>
+        <% if current_user.admin? %>
+          <%= active_link_to admin_path, class: 'navbar-item' do %>
+            <i class="material-icons">vpn_key</i>Admin
+          <% end %>
+        <% end %>
       </div>
     <% end %>
 

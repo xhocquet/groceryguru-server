@@ -1,6 +1,6 @@
 class ReceiptsController < ApplicationController
   def index
-    @receipts = current_user.receipts.all
+    @receipts = current_user.receipts.includes(:store).all
   end
 
   def create

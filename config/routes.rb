@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     get '/', controller: "/stats", action: :index
   end
 
+  namespace :admin do
+    get '/', controller: "/admin", action: :index
+  end
+
   namespace :api do
     get 'store/(:query)', controller: "/stores", action: :search, as: :store_search
     get 'item/(:query)', controller: "/items", action: :search, as: :item_search
