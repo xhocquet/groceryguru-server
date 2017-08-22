@@ -38,6 +38,10 @@ gem 'openfoodfacts' #FOOOOOD
 
 # gem 'capistrano-rails', group: :development
 
+group :test do
+  gem 'simplecov'
+end
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker'

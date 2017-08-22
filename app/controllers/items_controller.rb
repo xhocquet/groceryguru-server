@@ -12,16 +12,20 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
-    @next_item = Item.where("id > ?", @item.id).first
-    alpha = params[:alpha]
+    options = {}
+    options[:alpha] = params[:alpha]
+
+    if Item.where("id > ?", @item.id).first
+      next_item = Item.where("id > ?", @item.id).first
+      options[:anchor] = "item-anchor-#{next_item.id}"
+    end
 
     if @item.destroy
-      flash[:notice] = "Successfully destroyed item"
-      redirect_to admin_items_path(alpha: alpha, anchor: "item-anchor-#{@next_item.id}")
+      flash[:notice] = "Item destroyed"
     else
       flash[:error] = "Could not destroy item"
-      redirect_to admin_items_path(alpha: alpha, anchor: "item-anchor-#{@next_item.id}")
     end
+    redirect_to admin_items_path(options)
   end
 
   def search

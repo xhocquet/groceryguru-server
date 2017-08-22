@@ -4,3 +4,7 @@ require 'rails/test_help'
 class ActiveSupport::TestCase
   fixtures :all
 end
+
+class ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+end

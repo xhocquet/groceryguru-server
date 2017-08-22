@@ -1,5 +1,7 @@
-one:
+banana:
   name: banana
+  mode: general
 
-two:
+yogurt:
   name: yogurt
+  mode: general

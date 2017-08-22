@@ -20,8 +20,8 @@ module ReceiptHelper
   end
 
   def completion_percentage(receipt)
-    value = ((completed_transactions_count(receipt).to_f / transactions_count(receipt).to_f)*100).round
-    "#{value}%"
+    value = ((completed_transactions_count(receipt).to_f / transactions_count(receipt).to_f)*100)
+    "#{value.round}%" unless value.infinite? || value.nan?
   end
 
   def date_or_add_date(receipt)

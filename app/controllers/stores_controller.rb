@@ -12,16 +12,20 @@ class StoresController < ApplicationController
 
   def destroy
     @store = Store.find(params[:id])
-    @next_store = Store.where("id > ?", @store.id).first
-    alpha = params[:alpha]
+    options = {}
+    options[:alpha] = params[:alpha]
+
+    if Store.where("id > ?", @store.id).first
+      next_store = Store.where("id > ?", @store.id).first
+      options[:anchor] = "store-anchor-#{next_store.id}"
+    end
 
     if @store.destroy
-      flash[:notice] = "Successfully destroyed store"
-      redirect_to admin_stores_path(alpha: alpha, anchor: "store-anchor-#{@next_store.id}")
+      flash[:notice] = "Store destroyed"
     else
       flash[:error] = "Could not destroy store"
-      redirect_to admin_stores_path(alpha: alpha, anchor: "store-anchor-#{@next_store.id}")
     end
+    redirect_to admin_stores_path(options)
   end
 
   def search

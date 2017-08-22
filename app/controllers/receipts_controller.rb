@@ -23,17 +23,17 @@ class ReceiptsController < ApplicationController
     @receipt = current_user.receipts.find(params[:id])
 
     if @receipt.update receipt_params
-      flash[:notice] = "Successfully updated receipt"
-      redirect_to receipt_path(@receipt)
+      flash[:notice] = "Receipt updated"
     else
       flash[:error] = "Something went wrong, try again"
     end
+    redirect_to receipt_path(@receipt)
   end
 
   def destroy
     @receipt = current_user.receipts.find(params[:id])
     @receipt.destroy
-    flash[:notice] = "Receipt deleted."
+    flash[:notice] = "Receipt deleted"
     redirect_to receipts_path
   end
 
