@@ -14,10 +14,14 @@
 <section class="section">
   <div class="container">
     <div class="column is-4 is-offset-4">
-      <div class="file is-centered is-primary is-boxed">
+      <div class="file is-centered is-primary is-boxed file-container">
         <label class="file-label">
-          <%= form_for @receipt, html: { multipart: true }  do |f| %>
+          <%= form_for @receipt, html: { multipart: true, class: 'create-receipt-form' }  do |f| %>
             <input class="file-input receipt-upload-input" type="file" name="receipt[image]">
+            <input type="hidden" name="receipt[image_crop_x]" class="image_crop_x">
+            <input type="hidden" name="receipt[image_crop_y]" class="image_crop_y">
+            <input type="hidden" name="receipt[image_crop_w]" class="image_crop_w">
+            <input type="hidden" name="receipt[image_crop_h]" class="image_crop_h">
           <% end %>
           <span class="file-cta receipt-upload-button">
             <span class="file-icon">
@@ -45,6 +49,21 @@
     </div>
   </div>
 </section>
+
+<div class="modal crop-modal">
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Crop your image</p>
+    </header>
+    <section class="modal-card-body">
+      <img id="image" class="receipt-preview" src="">
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success save-crop-button">Save changes</button>
+      <button class="button close-modal-button">Cancel</button>
+    </footer>
+  </div>
+</div>
 
 <script type="text/javascript">
   var page = new RootPage();

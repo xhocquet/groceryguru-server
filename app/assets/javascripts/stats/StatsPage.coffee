@@ -2,7 +2,6 @@ class @StatsPage
   constructor: (@options = {}) ->
     $(document).on 'turbolinks:load', => @setupEventListeners()
 
-
   setupEventListeners: ->
     $('.toggle-card-button').click (e) ->
       if $(e.currentTarget).find('i.material-icons').text() == 'keyboard_arrow_right'

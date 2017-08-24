@@ -14,4 +14,5 @@
 //= require turbolinks
 //= require underscore
 //= require awesomplete
+//= require cropper
 //= require_tree .

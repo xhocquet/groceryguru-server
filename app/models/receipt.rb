@@ -4,7 +4,7 @@ class Receipt < ApplicationRecord
   # Attachments
   mount_uploader :image, ReceiptUploader
   mount_uploader :pdf, ReceiptPDFUploader
-  attr_accessor :image_cache
+  attr_accessor :image_cache, :image_crop_x, :image_crop_y, :image_crop_h, :image_crop_w
 
   belongs_to :user, inverse_of: :receipts
   belongs_to :store, required: false, inverse_of: :receipts
@@ -31,7 +31,6 @@ class Receipt < ApplicationRecord
 
   def process_text
     return if self.processed
-    return if self.text.blank?
 
     tesseract_image = RTesseract.new(self.image.path, psm: 4)
     self.pdf = File.open(tesseract_image.to_pdf)
@@ -65,7 +64,6 @@ class Receipt < ApplicationRecord
   def update_metadata
     complete = self.transactions.incomplete.size == 0
     self.update_column(:completed, complete)
-
     self.user.update(last_stats_update: Time.now)
   end
 end

@@ -40,6 +40,6 @@ class ReceiptsController < ApplicationController
   private
 
   def receipt_params
-    params.require(:receipt).permit(:image, :image_cache, :date, :store_id)
+    params.require(:receipt).permit(:image_crop_x, :image_crop_y, :image_crop_w, :image_crop_h, :image, :image_cache, :date, :store_id)
   end
 end
