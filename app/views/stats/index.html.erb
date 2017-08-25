@@ -4,17 +4,17 @@
       <div class="content column is-8 is-offset-2">
         <% @transaction_groups.each do |item_id, transactions| %>
           <% next if item_id.blank? %>
-          <% @mode = Item.find(item_id).mode %>
+          <% next if transactions.pluck(:price_per_unit).compact.uniq.size < 2 %>
           <% best_ppu = transactions.pluck(:price_per_unit).compact.min %>
           <% worst_ppu = transactions.pluck(:price_per_unit).compact.max %>
           <% most_recent_transaction = transactions.sort_by{|t| t.receipt.date}.reverse.first %>
 
-          <div class="box item-card <%= 'is-worst' if most_recent_transaction.price_per_unit == worst_ppu %> <%= 'is-best' if most_recent_transaction.price_per_unit == best_ppu %>" data-item-id="<%=item_id%>">
+          <div class="box item-card <%= transaction_class(most_recent_transaction, worst_ppu, best_ppu) %>" data-item-id="<%=item_id%>">
             <button class="button is-large toggle-card-button">
               <div class="field is-grouped">
                 <i class="material-icons">keyboard_arrow_right</i>
                 <span class="item-name">
-                  <%= Item.find(item_id).name.titleize %><%= mode_no_general(@mode) %>
+                  <%= most_recent_transaction.item.name.titleize %>
                 </span>
               </div>
               <div class="field is-grouped">
@@ -23,20 +23,18 @@
             </button>
 
             <div class="transaction-list is-hidden">
-              <% if transactions.pluck(:price_per_unit).compact.count > 1 %>
-                <div class="fluid-container transaction-summary">
-                  <% if best_ppu && most_recent_transaction.price_per_unit == best_ppu %>
-                    <i class="material-icons">check_circle</i><h2 class="title">You saved up to $<%= transaction_saved(most_recent_transaction, worst_ppu) %> on your last purchase</h2>
-                  <% elsif worst_ppu && most_recent_transaction.price_per_unit == worst_ppu %>
-                    <i class="material-icons">error</i><h2 class="title">You lost $<%= transaction_loss(most_recent_transaction, best_ppu) %> on your last purchase</h2>
-                  <% else %>
-                    <i class="material-icons">help</i>
-                    <% if best_ppu %>
-                      <h2 class="title">You could have saved $<%= transaction_loss(most_recent_transaction, best_ppu) %> more on your last purchase</h2>
-                    <% end %>
+              <div class="fluid-container transaction-summary">
+                <% if best_ppu && most_recent_transaction.price_per_unit == best_ppu %>
+                  <i class="material-icons">check_circle</i><h2 class="title">You saved up to $<%= transaction_saved(most_recent_transaction, worst_ppu) %> on your last purchase</h2>
+                <% elsif worst_ppu && most_recent_transaction.price_per_unit == worst_ppu %>
+                  <i class="material-icons">error</i><h2 class="title">You lost $<%= transaction_loss(most_recent_transaction, best_ppu) %> on your last purchase</h2>
+                <% else %>
+                  <i class="material-icons">help</i>
+                  <% if best_ppu %>
+                    <h2 class="title">You could have saved $<%= transaction_loss(most_recent_transaction, best_ppu) %> more on your last purchase</h2>
                   <% end %>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
 
               <div class="box">
                 <table class="table">
