@@ -1,4 +1,19 @@
 body.stats.index {
+  .transactions-list {
+    border-right: 5px solid #ffdd57;
+    border-radius: 5px;
+    padding-right: 24px;
+    margin-bottom: 24px;
+
+    &.worst-transactions-list {
+      border-color: #ff3860;
+    }
+
+    &.best-transactions-list {
+      border-color: #23d160;
+    }
+  }
+
   .item-card {
     background-color: #ffdd57;
 
