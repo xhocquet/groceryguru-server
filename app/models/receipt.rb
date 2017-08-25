@@ -30,6 +30,7 @@ class Receipt < ApplicationRecord
 
   def process_text
     return if self.processed
+    return if self.image.blank?
 
     tesseract_image = RTesseract.new(self.image.path, psm: 4)
     self.pdf = File.open(tesseract_image.to_pdf)
