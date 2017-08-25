@@ -1,4 +1,36 @@
 body.stats.index {
+  .transactions-list-button-container {
+    background-color: #ffdd57;
+
+    &.is-worst {
+      background-color: #ff3860;
+    }
+
+    &.is-best {
+      background-color: #23d160
+    }
+  }
+  button {
+    width: 100%;
+    justify-content: space-between;
+
+    .field:first-child {
+      margin: 0 12px 0 0;
+      overflow: hidden;
+
+      .item-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      i {
+        font-size: 36px;
+        margin-left: -8px;
+      }
+    }
+  }
+
   .transactions-list {
     border-right: 5px solid #ffdd57;
     border-radius: 5px;
@@ -12,72 +44,54 @@ body.stats.index {
     &.best-transactions-list {
       border-color: #23d160;
     }
-  }
 
-  .item-card {
-    background-color: #ffdd57;
+    .item-card {
+      background-color: #ffdd57;
 
-    &.is-worst {
-      background-color: #ff3860;
-    }
-
-    &.is-best {
-      background-color: #23d160    }
-
-    button {
-      width: 100%;
-      justify-content: space-between;
-
-      .field:first-child {
-        margin: 0 12px 0 0;
-        overflow: hidden;
-
-        .item-name {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        i {
-          font-size: 36px;
-          margin-left: -8px;
-        }
-      }
-    }
-
-    .transaction-list {
-
-      .transaction-summary {
-        margin: 24px 0;
-
-        h2 {
-          float: right;
-          font-size: 26px;
-          line-height: 58px;
-          font-weight: bold;
-          margin: 0;
-          color: white;
-        }
-
-        i {
-          font-size: 58px;
-          color: white;
-        }
-      }
-    }
-
-    tbody {
-      tr {
-        background-color: #ffdd57;
-      }
-
-      tr.is-worst {
+      &.is-worst {
         background-color: #ff3860;
       }
 
-      tr.is-best {
-        background-color: #23d160;
+      &.is-best {
+        background-color: #23d160
+      }
+
+      .transaction-list {
+
+        .transaction-summary {
+          margin: 24px 0;
+
+          h2 {
+            float: right;
+            font-size: 26px;
+            line-height: 58px;
+            font-weight: bold;
+            margin: 0;
+            color: white;
+          }
+
+          i {
+            font-size: 58px;
+            color: white;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          background-color: #ffdd57;
+        }
+
+        tr.is-worst {
+          background-color: #ff3860;
+        }
+
+        tr.is-best {
+          background-color: #23d160;
+        }
       }
     }
   }
+
+
 }
