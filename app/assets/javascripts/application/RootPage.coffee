@@ -8,6 +8,7 @@ class @RootPage
     $('.save-crop-button').click (e) => @handleSaveCrop(e)
 
   handleFileUpload: (e) ->
+    $('.modal-loader').removeClass 'is-hidden'
     $('.crop-modal').addClass 'is-active'
 
     reader = new FileReader()
@@ -16,6 +17,7 @@ class @RootPage
 
   onLoadImage: (e) =>
     $('.receipt-preview').attr('src', e.target.result)
+    $('.modal-loader').addClass 'is-hidden'
     @cropper = new Cropper($('.receipt-preview')[0], {
       viewMode: 2,
       crop: (e) ->
