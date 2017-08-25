@@ -56,7 +56,7 @@
                         <%= transaction.receipt.date.to_date.try(:to_formatted_s, :long) %>
                       </td>
                       <td>
-                        <%= transaction.receipt.store.name.titleize %>
+                        <%= transaction.receipt.store.try(:name).try(:titleize) %>
                       </td>
                       <td>
                         <%= "$#{transaction.price}" %>

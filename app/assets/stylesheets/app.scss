@@ -19,13 +19,22 @@ section.hero.is-info {
  }
 
 .modal-card {
-  border: 1px solid #dbdbdb;
+
+  .modal-card-body {
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .modal-card-head {
+    i {
+      vertical-align: bottom;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+  }
 }
 
-.modal-card-body {
-  overflow: hidden;
-  padding: 0;
-}
 
 .receipt-preview {
   display: block;

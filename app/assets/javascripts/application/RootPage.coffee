@@ -4,12 +4,17 @@ class @RootPage
 
   setupEventListeners: () ->
     $('.receipt-upload-input').change (e) => @handleFileUpload(e)
+    $('.receipt-upload-input').click (e) => @handleFileUploadClick(e)
     $('.close-modal-button').click (e) => @handleCloseModal(e)
     $('.save-crop-button').click (e) => @handleSaveCrop(e)
 
-  handleFileUpload: (e) ->
+    $('.footer').addClass 'is-hidden'
+
+  handleFileUploadClick: (e) =>
     $('.modal-loader').removeClass 'is-hidden'
     $('.crop-modal').addClass 'is-active'
+
+  handleFileUpload: (e) ->
 
     reader = new FileReader()
     reader.onload = @onLoadImage

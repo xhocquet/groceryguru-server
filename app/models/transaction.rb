@@ -23,7 +23,12 @@ class Transaction < ApplicationRecord
     return nil if self.price.blank?
     if self.weight.present?
       unit = Unit.new(self.weight)
-      unit >>= 'kg'
+      case unit.kind
+      when :volume
+        unit >>= 'l'
+      when :mass
+        unit >>= 'kg'
+      end
       value = (self.price.to_f/unit.scalar.to_f).round(2)
       value.infinite? ? nil : value
     elsif self.count.present?
