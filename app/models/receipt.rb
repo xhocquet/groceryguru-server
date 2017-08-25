@@ -12,8 +12,7 @@ class Receipt < ApplicationRecord
   has_many :transactions, inverse_of: :receipt, dependent: :destroy
 
   after_create :process_text
-
-  after_commit :update_metadata, on: [:create, :update]
+  after_commit :update_metadata
 
   scope :completed, -> { where(completed: true) }
   scope :incomplete, -> { where(completed: false) }
@@ -62,8 +61,9 @@ class Receipt < ApplicationRecord
   end
 
   def update_metadata
+    self.user.update(last_stats_update: Time.now)
+    return if self.destroyed?
     complete = self.transactions.incomplete.size == 0
     self.update_column(:completed, complete)
-    self.user.update(last_stats_update: Time.now)
   end
 end

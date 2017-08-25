@@ -9,7 +9,7 @@ class Transaction < ApplicationRecord
   scope :incomplete, -> { where("name IS NULL OR price_cents IS NULL OR (weight IS NULL AND count IS NULL)") }
 
   after_commit :update_metadata, on: [:create, :update]
-  after_save :touch_receipt
+  after_commit :touch_receipt
 
   def complete?
     return false if price.blank?
@@ -42,7 +42,7 @@ class Transaction < ApplicationRecord
   private
 
   def touch_receipt
-    self.receipt.update(updated_at: Time.now)
+    self.receipt.update(updated_at: Time.now) unless self.receipt.destroyed?
   end
 
   def update_metadata

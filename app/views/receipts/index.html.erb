@@ -1,24 +1,32 @@
 <section class="section">
   <div class="container">
     <div class="column is-6 is-offset-3">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Store</th>
-              <th>Date</th>
-              <th>Progress</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @receipts.each_with_index do |receipt,index| %>
+        <% if @receipts.size == 0 %>
+          <article class="message is-warning">
+            <div class="message-body">
+              <p>You have no receipts. Please <a href="<%= root_path %>">add a receipt</a>.</p>
+            </div>
+          </article>
+        <% else %>
+          <table class="table">
+            <thead>
               <tr>
-               <td><%= link_to receipt.store.try(:name).try(:titleize), receipt_path(receipt) %></td>
-               <td><%= receipt.created_at.to_date.to_formatted_s(:long) %></td>
-               <td><progress class="progress is-success" value="<%= completed_transactions_count(receipt) %>" max="<%= transactions_count(receipt) %>"></progress></td>
+                <th>Store</th>
+                <th>Date</th>
+                <th>Progress</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% @receipts.each_with_index do |receipt,index| %>
+                <tr>
+                 <td><%= link_to receipt.store.try(:name).try(:titleize) || 'Store Missing', receipt_path(receipt) %></td>
+                 <td><%= receipt.created_at.to_date.to_formatted_s(:long) %></td>
+                 <td><progress class="progress is-success" value="<%= completed_transactions_count(receipt) %>" max="<%= transactions_count(receipt) %>"></progress></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
       </h2>
     </div>
   </div>

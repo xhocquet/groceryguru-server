@@ -32,9 +32,9 @@ body.stats.index {
   }
 
   .transactions-list {
-    border-right: 5px solid #ffdd57;
+    border-left: 5px solid #ffdd57;
     border-radius: 5px;
-    padding-right: 24px;
+    padding-left: 24px;
     margin-bottom: 24px;
 
     &.worst-transactions-list {
