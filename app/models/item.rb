@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   has_many :receipts
   has_one :receipt_transaction, class_name: "Transaction"
   belongs_to :mode
+  belongs_to :group
 
   def self.search(query = nil)
     if query

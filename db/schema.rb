@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818101215) do
+ActiveRecord::Schema.define(version: 20170826061525) do
+
+  create_table "item_groups", force: :cascade do |t|
+    t.string "name"
+    t.integer "usda_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "item_modes", force: :cascade do |t|
     t.string "name"
@@ -23,6 +30,9 @@ ActiveRecord::Schema.define(version: 20170818101215) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "mode_id"
+    t.integer "usda_id"
+    t.integer "group_id"
+    t.index ["group_id"], name: "index_items_on_group_id"
     t.index ["mode_id"], name: "index_items_on_mode_id"
     t.index ["name", "mode_id"], name: "index_items_on_name_and_mode_id", unique: true
   end
