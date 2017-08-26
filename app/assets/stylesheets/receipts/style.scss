@@ -14,6 +14,15 @@ body.receipts {
     width: 100%;
   }
 
+  .store-title-span, .date-title-span {
+    padding: 4px 6px;
+
+    &:hover {
+      cursor: pointer;
+      outline: 1px solid #dbdbdb;
+    }
+  }
+
   .store-date-form {
     display: inline;
 

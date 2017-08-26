@@ -1,27 +1,7 @@
 /*! Hint.css - v2.5.0 - 2017-04-23
 * http://kushagragour.in/lab/hint/
 * Copyright (c) 2017 Kushagra Gour */
-
-/*-------------------------------------*	HINT.css - A CSS tooltip library
-\*-------------------------------------*/
-/**
- * HINT.css is a tooltip library made in pure CSS.
- *
- * Source: https://github.com/chinchang/hint.css
- * Demo: http://kushagragour.in/lab/hint/
- *
- */
-/**
- * source: hint-core.scss
- *
- * Defines the basic styling for the tooltip.
- * Each tooltip is made of 2 parts:
- * 	1) body (:after)
- * 	2) arrow (:before)
- *
- * Classes added:
- * 	1) hint
- */
+/*MODIFIED XAVIER HOCQUET 2017*/
 [class*="hint--"] {
   position: relative;
   display: inline-block;
@@ -383,7 +363,8 @@
 	 */ }
   [class*="hint--"]:after {
     text-shadow: 0 -1px 0px black;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); }
+    /*box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); */
+  }
 
 /**
  * source: hint-color-types.scss

@@ -47,16 +47,22 @@ class @ShowReceiptPage
       e.preventDefault()
       @initiateStoreSearch()
 
+    $('.store-title-span').click (e) =>
+      @initiateStoreSearch()
+
     $('.add-date-button').click (e) =>
       e.preventDefault()
       @initiateDateInput()
 
+    $('.date-title-span').click (e) =>
+      @initiateDateInput()
+
   initiateStoreSearch: ->
-    $addStoreButton = $('.add-store-button')
+    $storeButtonOrLabel = $('.add-store-button, .store-title-span')
     $storeInput = $('input.store-input')
     $hiddenIDInput = $storeInput.siblings('input#receipt_store_id')
 
-    $addStoreButton.addClass('is-hidden')
+    $storeButtonOrLabel.addClass('is-hidden')
     $storeInput.removeClass('is-hidden')
 
     $storeInput.keyup (e) ->
@@ -77,10 +83,10 @@ class @ShowReceiptPage
     $storeInput.select()
 
   initiateDateInput: ->
-    $addDateButton = $('.add-date-button')
+    $dateButtonOrSpan = $('.add-date-button, .date-title-span')
     $dateInput = $('input.date-input')
 
-    $addDateButton.addClass('is-hidden')
+    $dateButtonOrSpan.addClass('is-hidden')
     $dateInput.removeClass('is-hidden')
 
     $dateInput.keyup (e) ->

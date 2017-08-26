@@ -34,7 +34,7 @@ gem 'carrierwave' # attachments
 
 gem 'ruby-units' # measurements and weights
 gem 'money-rails' # money
-gem 'openfoodfacts' #FOOOOOD
+gem 'chronic'
 
 # gem 'capistrano-rails', group: :development
 
