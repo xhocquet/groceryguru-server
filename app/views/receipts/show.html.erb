@@ -5,7 +5,6 @@
         <%= store_or_add_store(@receipt) %> - <%= date_or_add_date(@receipt) %>
         <div class="field is-grouped is-pulled-right">
           <%= link_to "Show Receipt", '#', class: 'button is-info is-pulled-right control show-receipt-button' %>
-          <%= link_to "Download PDF", @receipt.pdf_url, class: 'button is-info is-pulled-right control' %>
           <div class="dropdown">
             <div class="dropdown-trigger">
               <button class="button is-danger" aria-haspopup="true" aria-controls="dropdown-menu3">
@@ -14,6 +13,10 @@
             </div>
             <div class="dropdown-menu" id="dropdown-menu3" role="menu">
               <div class="dropdown-content">
+                <% if @receipt.pdf_url.present? %>
+                  <%= link_to "Download PDF", @receipt.pdf_url, class: 'dropdown-item' %>
+                  <hr class="dropdown-divider"></hr>
+                <% end %>
                 <%= link_to 'Delete Receipt', receipt_path(@receipt), method: :delete, class: 'dropdown-item' %>
               </div>
             </div>
