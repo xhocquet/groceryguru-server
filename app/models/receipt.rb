@@ -18,33 +18,18 @@ class Receipt < ApplicationRecord
   scope :incomplete, -> { where(completed: false) }
 
   def lines
-    text.present? ? text.split("\n") : []
+    self.text.present? ? self.text.split("\n") : []
   end
 
   private
 
   def process_text
-    return if self.processed
-    return if self.image.blank?
+    return if self.processed || self.image.blank?
 
     tesseract_image = RTesseract.new(self.image.path, psm: 4)
     self.pdf = File.open(tesseract_image.to_pdf)
     self.text = tesseract_image.to_s.downcase
-
     self.line_count = self.text.split("\n").size
-
-    self.text.split("\n").each_with_index do |line, index|
-      next if line.strip.blank?
-
-      # Check first 6 lines for store name
-      if index < 6 && self.store.blank? && line.downcase.match(/([\w\']{2,})/)
-        line.downcase.match(/([\w\']{2,})/).captures.each do |string|
-          self.store = Store.find_by_name(string)
-        end
-      end
-
-      break if index > 5 || self.store.present?
-    end
 
     if self.store.present? && "Parsers::#{self.store.name.titleize}".safe_constantize
       "Parsers::#{self.store.name.titleize}".constantize.new(self).process

@@ -9,6 +9,12 @@ module Parsers
           next
         end
 
+        if index < 5
+          line.downcase.match(/([\w\']{2,})/).captures.each do |string|
+            @receipt.store = Store.find_by_name(string)
+          end
+        end
+
         double_line_buffer << line
         # Match for price/tax: 12.39 t F
         if line.match(/(\d+\.\d+) (\w)? ?(\w)?$/)
