@@ -25,7 +25,8 @@ class @ShowReceiptPage
       $(e.currentTarget).parents('.dropdown').toggleClass('is-active')
 
     # Populate input on item click
-    $('div.data').click @populateDataInput
+    $('div.data').click (e) =>
+      @insertInputIntoCell($(e.currentTarget))
 
     # Save transaction row
     $('a.save-button').click (e) ->
@@ -129,26 +130,30 @@ class @ShowReceiptPage
     @setupItemAutocompleteCell(@$newTransactionForm.find('.table-cell.data').first())
     @$newTransactionForm.find('.input').first().select()
 
-  selectNextInput: ($currentTarget) =>
-    $currentCell = $currentTarget.parents('.table-cell')
+    $('html, body').animate
+      scrollTop: Math.floor(@$newTransactionForm.offset().top - (window.innerHeight / 2), 0)
 
-    $cellsInCurrentRow = $currentCell.parents('form').find('.table-cell.data')
-
-    indexOfCurrentCell = $cellsInCurrentRow.index($currentCell)
+  selectPreviousInput: ($currentTarget) =>
+    $currentCell = $currentTarget.parents('.table-cell.data')
     $currentRow = $currentCell.parents('form.table-row')
-    $nextCell = null
 
-    if indexOfCurrentCell == $cellsInCurrentRow.length - 1
-      $currentRow = $currentRow.next('form.table-row')
-      $nextCell = $($currentRow.find('.table-cell.data')[0])
+    if $currentCell.prev('.table-cell.data').length > 0
+      $previousCell = $currentCell.prev('.table-cell.data')
     else
-      indexOfNextCell = indexOfCurrentCell += 1
-      $nextCell = $($cellsInCurrentRow[indexOfNextCell])
+      $previousCell = $currentRow.prev('form.table-row').find('.table-cell.data').last()
 
-    @insertInputIntoCell($nextCell)
+    @insertInputIntoCell($previousCell) if $previousCell.length > 0
 
-  populateDataInput: (e) =>
-    @insertInputIntoCell($(e.currentTarget))
+  selectNextInput: ($currentTarget) =>
+    $currentCell = $currentTarget.parents('.table-cell.data')
+    $currentRow = $currentCell.parents('form.table-row')
+
+    if $currentCell.next('.table-cell.data').length > 0
+      $nextCell = $currentCell.next('.table-cell.data').first()
+    else
+      $nextCell = $currentRow.next('form.table-row').find('.table-cell.data').first()
+
+    @insertInputIntoCell($nextCell) if $nextCell.length > 0
 
   insertInputIntoCell: ($tableCell) =>
     # Prevent duplicating inputs
@@ -183,11 +188,14 @@ class @ShowReceiptPage
     $(newInput).keypress (e) =>
       @clickNearestSaveButton(e) if (e.which == 13)
 
-    # Cycle inputs tab
+    # Cycle inputs on tab keypress
     $(newInput).keydown (e) =>
       if e.which == 9
         e.preventDefault()
-        @selectNextInput($(e.currentTarget))
+        if e.shiftKey
+          @selectPreviousInput($(e.currentTarget))
+        else
+          @selectNextInput($(e.currentTarget))
 
     $tableCell.parents('.table-row').find('.save-button').removeAttr('disabled')
     $(newInput).select()
