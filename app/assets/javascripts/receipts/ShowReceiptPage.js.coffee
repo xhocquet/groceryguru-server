@@ -193,10 +193,10 @@ class @ShowReceiptPage
     $(newInput).select()
 
   validateAutocompleteKeypress: (e) ->
-    true if e.currentTarget.value.size < 3
-    true if e.key.match(/Arrow/)
-    true if e.key.match(/Enter/)
-    false
+    return true if e.currentTarget.value.length < 3
+    return true if e.key.match(/Arrow/)
+    return true if e.key.match(/Enter/)
+    return false
 
   # Setup for autocomplete input
   setupItemAutocompleteCell: ($tableCell) ->
