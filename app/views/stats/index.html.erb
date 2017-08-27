@@ -29,10 +29,10 @@
           <div class="transactions-list worst-transactions-list is-hidden">
           <% @transaction_groups['worst-transactions'].each do |item_id, transactions| %>
             <% next if item_id.blank? %>
-            <% next if transactions.pluck(:price_per_unit).compact.uniq.size < 2 %>
-            <% best_ppu = transactions.pluck(:price_per_unit).compact.min %>
-            <% worst_ppu = transactions.pluck(:price_per_unit).compact.max %>
-            <% most_recent_transaction = transactions.sort_by{|t| t.receipt.date}.reverse.first %>
+            <% next if transactions.map(&:price_per_unit).compact.uniq.size < 2 %>
+            <% best_ppu = transactions.map(&:price_per_unit).compact.min %>
+            <% worst_ppu = transactions.map(&:price_per_unit).compact.max %>
+            <% most_recent_transaction = transactions.sort_by{|t| t.receipt.created_at}.reverse.first %>
 
             <div class="box item-card <%= transaction_class(most_recent_transaction, worst_ppu, best_ppu) %>" data-item-id="<%=item_id%>">
               <button class="button is-large toggle-card-button">
@@ -73,10 +73,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <% transactions.sort_by{|t| t.receipt.date}.reverse.each do |transaction| %>
+                    <% transactions.sort_by{|t| t.receipt.created_at}.reverse.each do |transaction| %>
                       <tr data-transaction-id="<%= transaction.id %>" class="<%= transaction_row_class(transaction, best_ppu, worst_ppu) %>">
                         <td>
-                          <%= transaction.receipt.date.to_date.try(:to_formatted_s, :long) %>
+                          <%= transaction.receipt.created_at.to_date.to_formatted_s(:long) %>
                         </td>
                         <td>
                           <%= transaction.receipt.store.try(:name).try(:titleize) %>
@@ -102,7 +102,7 @@
           </div>
         <% end %>
 
-        <% if @transaction_groups['unknown-transactions'].present? %>
+        <% if @transaction_groups['improvable-transactions'].present? %>
           <div class="transactions-list-button-container box">
             <button class="button is-large toggle-transaction-group">
               <div class="field is-grouped">
@@ -112,17 +112,17 @@
                 </span>
               </div>
               <div class="field is-grouped">
-                <%= @transaction_groups['unknown-transactions'].size %>
+                <%= @transaction_groups['improvable-transactions'].size %>
               </div>
             </button>
           </div>
-          <div class="transactions-list unknown-transactions-list is-hidden">
-          <% @transaction_groups['unknown-transactions'].each do |item_id, transactions| %>
+          <div class="transactions-list improvable-transactions-list is-hidden">
+          <% @transaction_groups['improvable-transactions'].each do |item_id, transactions| %>
             <% next if item_id.blank? %>
-            <% next if transactions.pluck(:price_per_unit).compact.uniq.size < 2 %>
-            <% best_ppu = transactions.pluck(:price_per_unit).compact.min %>
-            <% worst_ppu = transactions.pluck(:price_per_unit).compact.max %>
-            <% most_recent_transaction = transactions.sort_by{|t| t.receipt.date}.reverse.first %>
+            <% next if transactions.map(&:price_per_unit).compact.uniq.size < 2 %>
+            <% best_ppu = transactions.map(&:price_per_unit).compact.min %>
+            <% worst_ppu = transactions.map(&:price_per_unit).compact.max %>
+            <% most_recent_transaction = transactions.sort_by{|t| t.receipt.created_at}.reverse.first %>
 
             <div class="box item-card <%= transaction_class(most_recent_transaction, worst_ppu, best_ppu) %>" data-item-id="<%=item_id%>">
               <button class="button is-large toggle-card-button">
@@ -163,10 +163,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <% transactions.sort_by{|t| t.receipt.date}.reverse.each do |transaction| %>
+                    <% transactions.sort_by{|t| t.receipt.created_at}.reverse.each do |transaction| %>
                       <tr data-transaction-id="<%= transaction.id %>" class="<%= transaction_row_class(transaction, best_ppu, worst_ppu) %>">
                         <td>
-                          <%= transaction.receipt.date.to_date.try(:to_formatted_s, :long) %>
+                          <%= transaction.receipt.created_at.to_date.to_formatted_s(:long) %>
                         </td>
                         <td>
                           <%= transaction.receipt.store.try(:name).try(:titleize) %>
@@ -209,10 +209,10 @@
           <div class="transactions-list best-transactions-list is-hidden">
           <% @transaction_groups['best-transactions'].each do |item_id, transactions| %>
             <% next if item_id.blank? %>
-            <% next if transactions.pluck(:price_per_unit).compact.uniq.size < 2 %>
-            <% best_ppu = transactions.pluck(:price_per_unit).compact.min %>
-            <% worst_ppu = transactions.pluck(:price_per_unit).compact.max %>
-            <% most_recent_transaction = transactions.sort_by{|t| t.receipt.date}.reverse.first %>
+            <% next if transactions.map(&:price_per_unit).compact.uniq.size < 2 %>
+            <% best_ppu = transactions.map(&:price_per_unit).compact.min %>
+            <% worst_ppu = transactions.map(&:price_per_unit).compact.max %>
+            <% most_recent_transaction = transactions.sort_by{|t| t.receipt.created_at}.reverse.first %>
 
             <div class="box item-card <%= transaction_class(most_recent_transaction, worst_ppu, best_ppu) %>" data-item-id="<%=item_id%>">
               <button class="button is-large toggle-card-button">
@@ -253,10 +253,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <% transactions.sort_by{|t| t.receipt.date}.reverse.each do |transaction| %>
+                    <% transactions.sort_by{|t| t.receipt.created_at}.reverse.each do |transaction| %>
                       <tr data-transaction-id="<%= transaction.id %>" class="<%= transaction_row_class(transaction, best_ppu, worst_ppu) %>">
                         <td>
-                          <%= transaction.receipt.date.to_date.try(:to_formatted_s, :long) %>
+                          <%= transaction.receipt.created_at.to_date.to_formatted_s(:long) %>
                         </td>
                         <td>
                           <%= transaction.receipt.store.try(:name).try(:titleize) %>

@@ -69,6 +69,19 @@ GEM
       responders
       warden (~> 1.2.3)
     docile (1.1.5)
+    elasticsearch (5.0.4)
+      elasticsearch-api (= 5.0.4)
+      elasticsearch-transport (= 5.0.4)
+    elasticsearch-api (5.0.4)
+      multi_json
+    elasticsearch-model (5.0.1)
+      activesupport (> 3)
+      elasticsearch (~> 5)
+      hashie
+    elasticsearch-rails (5.0.1)
+    elasticsearch-transport (5.0.4)
+      faraday
+      multi_json
     erubi (1.6.1)
     execjs (2.7.0)
     faker (1.8.4)
@@ -234,6 +247,8 @@ DEPENDENCIES
   chronic
   coffee-rails (~> 4.2)
   devise
+  elasticsearch-model
+  elasticsearch-rails
   faker
   faster_require
   jbuilder (~> 2.5)

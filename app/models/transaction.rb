@@ -19,7 +19,6 @@ class Transaction < ApplicationRecord
   end
 
   def price_per_unit
-    return self[:price_per_unit] if self[:price_per_unit].present?
     return nil if self.price.blank?
     if self.weight.present?
       unit = Unit.new(self.weight)
@@ -47,6 +46,5 @@ class Transaction < ApplicationRecord
 
   def update_metadata
     self.update_column(:name, self.item.name) if self.item.present?
-    self.update_column(:price_per_unit, self.price_per_unit) if self.price_per_unit.present?
   end
 end

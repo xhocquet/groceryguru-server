@@ -35,7 +35,6 @@
     transition-delay: 100ms; }
   [class*="hint--"]:before {
     content: '';
-    position: absolute;
     background: transparent;
     border: 6px solid transparent;
     z-index: 1000001; }

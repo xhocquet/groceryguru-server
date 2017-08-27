@@ -36,6 +36,9 @@ gem 'ruby-units' # measurements and weights
 gem 'money-rails' # money
 gem 'chronic'
 
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 # gem 'capistrano-rails', group: :development
 
 group :test do

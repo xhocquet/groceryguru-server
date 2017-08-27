@@ -69,7 +69,8 @@ class @ShowReceiptPage
     $storeInput.keyup (e) ->
       $storeInput.parents('form').submit() if e.which == 13
 
-    autoComplete = new Awesomplete($storeInput[0], {autoFirst: true})
+    autoComplete = new Awesomplete $storeInput[0],
+      autoFirst: true
 
     $storeInput.on 'awesomplete-selectcomplete', (e) ->
       $hiddenIDInput.attr('value', e.originalEvent.text.value)
@@ -179,6 +180,7 @@ class @ShowReceiptPage
       newInput.value = currentValue
     newInput.name = 'transaction['+currentFieldName+']'
 
+    $tableCell.addClass 'active'
     $tableCell.html(newInput)
 
     # Special autocomplete stuff for name
@@ -210,7 +212,11 @@ class @ShowReceiptPage
   setupItemAutocompleteCell: ($tableCell) ->
     newInput = $tableCell.find('input')[0]
     hiddenInput = document.createElement("input")
-    autoComplete = new Awesomplete(newInput, {autoFirst: true})
+    autoComplete = new Awesomplete newInput,
+      autoFirst: true,
+      filter: (text, input) ->
+        return true
+      sort: false
 
     hiddenInput.type = "hidden"
     hiddenInput.name = 'transaction[item_id]'

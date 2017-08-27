@@ -49,7 +49,7 @@
             <div class="table-cell select-transaction-cell">
               <i class="material-icons <%= 'is-hidden' unless transaction.line_number.present? %>">search</i>
             </div>
-            <div class="table-cell <%= 'missing' unless transaction.name.present? %> data" data-field-name="name"><%= transaction.name.try(:humanize) || '-' %></div>
+            <div class="table-cell <%= 'missing' unless transaction.name.present? %> data name" data-field-name="name" title="<%= transaction.item.try(:name_and_mode).try(:humanize) || '-' %>"><%= transaction.item.try(:name_and_mode).try(:humanize) || '-' %></div>
             <div class="table-cell <%= 'missing' unless transaction.price %> data" data-field-name="price"><%= humanized_money_with_symbol(transaction.price)  %></div>
             <div class="table-cell <%= 'missing' unless transaction.weight %> data" data-field-name="weight"><%= weight_text(transaction) %></div>
             <div class="table-cell <%= 'missing' unless transaction.count %> data" data-field-name="count"><%= transaction.count || '-' %></div>

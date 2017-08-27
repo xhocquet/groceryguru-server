@@ -53,6 +53,17 @@ body.receipts {
         cursor: pointer;
       }
 
+      &.data.name {
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &.active {
+          overflow: visible;
+        }
+      }
+
       .awesomplete {
         display: inline-flex;
       }

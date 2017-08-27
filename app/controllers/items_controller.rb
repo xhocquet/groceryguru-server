@@ -29,6 +29,6 @@ class ItemsController < ApplicationController
   end
 
   def search
-    render json: Item.search(params[:query]).to_json(:include => :mode)
+    render json: Item.fuzzy_search(params[:query]).records.to_json(:include => :mode)
   end
 end
