@@ -28,6 +28,10 @@ class StoresController < ApplicationController
     redirect_to admin_stores_path(options)
   end
 
+  def create_submission
+    redirect_to community_new_store_path
+  end
+
   def search
     render json: Store.search(params[:query]).to_json
   end

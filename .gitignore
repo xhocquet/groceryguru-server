@@ -1,7 +1,7 @@
 # Ignore bundler config.
 /.bundle
 
-secrets.yml
+config/secrets.yml
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

@@ -180,6 +180,8 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    recaptcha (4.3.1)
+      json
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -259,6 +261,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.2)
   rake-progressbar
+  recaptcha
   rmagick
   rtesseract
   ruby-units

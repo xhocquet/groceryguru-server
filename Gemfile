@@ -24,6 +24,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem "recaptcha", require: "recaptcha/rails"
 
 gem 'active_link_to'
 

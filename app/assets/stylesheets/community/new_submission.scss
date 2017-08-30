@@ -1,0 +1,16 @@
+body.stores.new_submission {
+  article.message {
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+  .captcha-submit {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      margin: auto;
+    }
+  }
+}

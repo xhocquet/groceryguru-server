@@ -13,12 +13,18 @@ module ReceiptHelper
       (form_for receipt, html: { class: 'store-date-form store-form' } do
         (hidden_field 'receipt', :store_id, class: 'input') +
         (content_tag :input, '', class: 'input store-input is-hidden' )
+      end) +
+      (content_tag :a, class: 'button submit-new-store-button hint--bottom is-hidden', 'aria-label': 'Submit a new store', href: community_new_store_path do
+        content_tag :i, 'add', class: 'material-icons'
       end)
     else
       link_to('Add Store', '#', class: 'button is-warning add-store-button') +
       (form_for receipt, html: { class: 'store-date-form store-form' } do
         (hidden_field 'receipt', :store_id, class: 'input') +
         (content_tag :input, '', class: 'input store-input is-hidden' )
+      end) +
+      (content_tag :a, class: 'button submit-new-store-button hint--bottom is-hidden', 'aria-label': 'Submit a new store', href: community_new_store_path do
+        content_tag :i, 'add', class: 'material-icons'
       end)
     end
   end

@@ -79,10 +79,21 @@ class @ShowReceiptPage
     # Trigger search on debounced text input
     $storeInput.keyup(_.debounce((e) =>
       return if @validateAutocompleteKeypress(e)
-      @populateAutocomplete(e.currentTarget.value, @options.storeSearchPath, autoComplete, @storeSearchJSONMap)
+      @populateAutocomplete(e.currentTarget.value,
+                            @options.storeSearchPath,
+                            autoComplete,
+                            @storeSearchJSONMap,
+                            @handleStoreMissing,
+                            @handleStorePresent)
     , 300))
 
     $storeInput.select()
+
+  handleStoreMissing: (autoComplete) =>
+    $(autoComplete.container).parents('form').siblings('.submit-new-store-button').removeClass 'is-hidden'
+
+  handleStorePresent: (autoComplete) =>
+    $(autoComplete.container).parents('form').siblings('.submit-new-store-button').addClass 'is-hidden'
 
   initiateDateInput: ->
     $dateButtonOrSpan = $('.add-date-button, .date-title-span')
@@ -96,12 +107,16 @@ class @ShowReceiptPage
 
     $dateInput.select()
 
-  populateAutocomplete: (value, path, autoComplete, JSONparseMethod) ->
+  populateAutocomplete: (value, path, autoComplete, JSONparseMethod, handleMissingMethod = nil, handlePresentMethod = nil) ->
     ajax = new XMLHttpRequest()
     ajax.open("GET", path+'/'+value, true)
     ajax.onload = () ->
       currentList = JSON.parse(ajax.responseText).map(JSONparseMethod)
-      autoComplete.list = currentList
+      if currentList.length == 0 and handleMissingMethod?
+        handleMissingMethod(autoComplete)
+      else
+        autoComplete.list = currentList
+        handlePresentMethod?(autoComplete)
     ajax.send()
 
   storeSearchJSONMap: (i) ->
