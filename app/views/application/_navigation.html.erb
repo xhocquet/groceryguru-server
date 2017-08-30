@@ -14,7 +14,7 @@
           <i class="material-icons">home</i>Home
         <% end %>
         <%= active_link_to receipts_path, class: 'navbar-item' do %>
-          <i class="material-icons">receipt</i>My Receipts <span class="receipt-count-badge hint--bottom" aria-label="Some receipts need filling"><%= current_user.receipts.incomplete.count == 0 ? '' : current_user.receipts.incomplete.count %></span>
+          <i class="material-icons">receipt</i>My Receipts
         <% end %>
         <%= active_link_to stats_path, class: 'navbar-item' do %>
           <i class="material-icons">attach_money</i>My Stats
