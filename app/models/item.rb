@@ -11,15 +11,6 @@ class Item < ApplicationRecord
     [self.name, self.mode.try(:name).gsub(/\,/,'').gsub(/\s{2}/,' ')].compact.join(' ')
   end
 
-  def self.basic_search(query = nil)
-    if query
-      items = Item.arel_table
-      Item.where(items[:name].matches("%#{query}%")).order("LENGTH(items.name) ASC").limit(6)
-    else
-      Item.limit(6)
-    end
-  end
-
   def self.fuzzy_search(query = nil)
     if query
       Item.search(fuzzy_query(query))

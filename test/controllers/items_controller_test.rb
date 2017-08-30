@@ -16,6 +16,11 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy item as admin" do
+    Item.__elasticsearch__.index_name = 'items_test'
+    Item.__elasticsearch__.create_index!
+    Item.__elasticsearch__.import
+    Item.__elasticsearch__.refresh_index!
+
     banana = items(:banana)
     assert_difference('Item.count', -1) do
       delete admin_item_path(banana)
@@ -24,6 +29,11 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "search should return results" do
+    Item.__elasticsearch__.index_name = 'items_test'
+    Item.__elasticsearch__.create_index!
+    Item.__elasticsearch__.import
+    Item.__elasticsearch__.refresh_index!
+
     get api_item_search_path(query: 'banana')
     assert_response :success
     assert_match 'banana', @response.body
