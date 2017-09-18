@@ -6,9 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.1.2'
-
 gem 'sqlite3'
-
 gem 'puma', '~> 3.7'
 
 gem 'sass-rails', '~> 5.0'
@@ -40,7 +38,7 @@ gem 'chronic'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
-# gem 'capistrano-rails', group: :development
+gem 'figaro'
 
 group :test do
   gem 'simplecov'
@@ -49,14 +47,17 @@ end
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker'
-  gem 'faster_require' # caching for significant windows speed increase
-  # gem 'capybara', '~> 2.13'
-  # gem 'selenium-webdriver'
+  gem 'faster_require'
 end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'rake-progressbar'
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rvm'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
