@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :health_check
   protect_from_forgery with: :exception
 
   default_form_builder AppFormBuilder

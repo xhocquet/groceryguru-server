@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-  match "_ah/health", controller: :application, action: :health_check
+  get "_ah/health", controller: :application, action: :health_check
   root to: "application#index"
 
   resources :receipts, except: [:new, :edit] do
