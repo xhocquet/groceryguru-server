@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     @receipt = Receipt.new
   end
 
+  def health_check
+    head :ok
+  end
+
   private
 
   def render_404

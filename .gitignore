@@ -4,6 +4,7 @@
 config/secrets.yml
 config.database.yml
 config/application.yml
+app.yaml
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -25,6 +26,7 @@ config/application.yml
 
 .byebug_history
 /public/packs
+/public/assets
 /node_modules
 
 .jshintrc
