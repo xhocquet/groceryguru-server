@@ -28,6 +28,10 @@ class ItemsController < ApplicationController
     redirect_to admin_items_path(options)
   end
 
+  def submissions
+    @submissions = Submission.where(model_type: :item)
+  end
+
   def search
     render json: Item.fuzzy_search(params[:query]).records.to_json(:include => :mode)
   end

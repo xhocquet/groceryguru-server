@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', controller: "/admin", action: :index
     resources :items, controller: "/items", only: [:index, :destroy]
+    get 'items/submissions', controller: "/items", action: :submissions
     resources :stores, controller: "/stores", only: [:index, :destroy]
+    get 'stores/submissions', controller: "/stores", action: :submissions
   end
 
   namespace :api do

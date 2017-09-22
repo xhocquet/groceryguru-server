@@ -32,6 +32,7 @@
         <div class="navbar-item has-dropdown is-hoverable">
           <%= link_to current_user.email.capitalize, root_path, class: "navbar-link is-active" %>
           <div class="navbar-dropdown ">
+            <%= link_to "Community Submissions - #{current_user.submissions.count}", '#', class: "navbar-item" %>
             <%= link_to "Account Settings", edit_user_registration_path, class: "navbar-item" %>
             <hr class="navbar-divider">
             <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-item" %>

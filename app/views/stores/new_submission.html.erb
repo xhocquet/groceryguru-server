@@ -10,7 +10,7 @@
       </article>
 
       <%= form_for community_create_store_path do %>
-        <input id="pac-input" class="controls input" type="text" placeholder="Search Box">
+        <input id="pac-input" class="controls input" name="submission[value]" type="text" placeholder="Search Box">
         <div class="section captcha-submit">
           <div class="g-recaptcha" data-sitekey="<%= Rails.application.secrets.RECAPTCHA_SITE_KEY %>" data-callback="showInput"></div>
           <button class="button is-large is-success is-hidden" type="submit">Submit</button>

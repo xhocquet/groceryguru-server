@@ -28,11 +28,29 @@ class StoresController < ApplicationController
     redirect_to admin_stores_path(options)
   end
 
+  def submissions
+    @submissions = Submission.where(model_type: :store)
+  end
+
   def create_submission
-    redirect_to community_new_store_path
+    @submission = Submission.new submission_params
+    if @submission.save
+      # TODO: Logic for users with direct permission
+      flash[:notice] = "You submission will be reviewed and accepted shortly"
+      redirect_to community_new_store_path
+    else
+      flash[:error] = "Could not create the submission, please try again"
+      redirect_to community_new_store_path
+    end
   end
 
   def search
     render json: Store.search(params[:query]).to_json
+  end
+
+  private
+
+  def submission_params
+    params.require(:submission).permit(:value).merge({ model_type: :store, user: current_user })
   end
 end

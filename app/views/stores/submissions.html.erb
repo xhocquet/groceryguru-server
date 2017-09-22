@@ -1,0 +1,28 @@
+<hr>
+<div class="columns">
+  <div class="column is-one-quarter">
+    <%= render 'admin/nav' %>
+  </div>
+  <div class="column content-area">
+    <table class="table admin-data-table">
+    <thead>
+      <tr>
+        <th>Value</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @submissions.each do |submission| %>
+        <tr>
+          <td>
+            <%= submission.value %>
+          </td>
+          <td><i class="material-icons">check</i></td>
+          <td><i class="material-icons">delete</i></td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+  </div>
+</div>

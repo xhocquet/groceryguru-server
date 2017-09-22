@@ -9,7 +9,9 @@
     Administration
   </p>
   <ul class="menu-list">
-    <%= active_link_to 'Stores', admin_stores_path, active: :exclusive, wrap_tag: :li %>
-    <%= active_link_to 'Items', admin_items_path(alpha: 'a'), active: :exclusive, wrap_tag: :li %>
+    <%= active_link_to "Stores", admin_stores_path, active: :exclusive, wrap_tag: :li %>
+    <%= active_link_to "Validate #{Submission.where(model_type: :store).count} stores", admin_stores_submissions_path, active: :exclusive, wrap_tag: :li %>
+    <%= active_link_to "Items", admin_items_path(alpha: 'a'), active: :exclusive %>
+    <%= active_link_to "Validate #{Submission.where(model_type: :item).count} items", admin_items_submissions_path, active: :exclusive %>
   </ul>
 </aside>
