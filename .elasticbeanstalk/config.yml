@@ -1,12 +1,12 @@
 branch-defaults:
   master:
-    environment: production
+    environment: GroceryGuruServer2-dev
     group_suffix: null
 global:
-  application_name: GroceryGuruServer
+  application_name: GroceryGuruServer2
   branch: null
   default_ec2_keyname: null
-  default_platform: Docker 17.03.1-ce
+  default_platform: Ruby 2.3 (Puma)
   default_region: us-west-2
   include_git_submodules: true
   instance_profile: null
