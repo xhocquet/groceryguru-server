@@ -29,4 +29,8 @@ app.yaml
 /public/assets
 /node_modules
 
-.jshintrc
+.jshintrc
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
