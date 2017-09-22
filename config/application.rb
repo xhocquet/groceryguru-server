@@ -1,5 +1,3 @@
-
-
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
