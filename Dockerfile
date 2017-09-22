@@ -8,4 +8,3 @@ ADD Gemfile.lock /GroceryGuruServer/Gemfile.lock
 RUN bundle install
 ADD . /GroceryGuruServer
 EXPOSE 3000
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
