@@ -18,7 +18,8 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  host: db
-  database: grocery_guru_prod_db
-  username: postgres
-  password:
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
