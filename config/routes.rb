@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     get 'items/submissions', controller: "/items", action: :submissions
     resources :stores, controller: "/stores", only: [:index, :destroy]
     get 'stores/submissions', controller: "/stores", action: :submissions
+    resources :submissions, only: [:destroy] do
+      post :validate
+    end
   end
 
   namespace :api do

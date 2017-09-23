@@ -18,8 +18,16 @@
           <td>
             <%= submission.value %>
           </td>
-          <td><i class="material-icons">check</i></td>
-          <td><i class="material-icons">delete</i></td>
+          <td>
+            <%= link_to admin_submission_validate_path(submission) do %>
+              <i class="material-icons">check</i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to admin_submission_path(submission), method: :delete do %>
+              <i class="material-icons">delete</i>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
