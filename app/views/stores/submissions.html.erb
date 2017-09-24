@@ -15,17 +15,20 @@
     <tbody>
       <% @submissions.each do |submission| %>
         <tr>
-          <td>
-            <%= submission.value %>
-          </td>
-          <td>
-            <%= link_to admin_submission_validate_path(submission) do %>
-              <i class="material-icons">check</i>
+          <td class="value-cell">
+            <%= form_for submission, url: admin_submission_validate_path(submission), method: :post do |f| %>
+              <span class="invalid-name-text"><%= submission.value %></span>
             <% end %>
           </td>
           <td>
-            <%= link_to admin_submission_path(submission), method: :delete do %>
-              <i class="material-icons">delete</i>
+            <i class="material-icons validate-info-icon hint--top" aria-label="Edit name to validate">info</i>
+            <a class='validate-link is-hidden' href="#">
+              <i class="material-icons hint--top" aria-label="Validate new store">check</i>
+            </a>
+          </td>
+          <td>
+            <%= link_to '#' do %>
+              <i class="material-icons hint--top" aria-label="Delete submission">delete</i>
             <% end %>
           </td>
         </tr>
@@ -34,3 +37,10 @@
     </table>
   </div>
 </div>
+
+<script>
+  var options = {
+    itemSearchPath: "<%= api_item_search_path %>"
+  }
+  var page = new AdminSubmissionsPage(options);
+</script>
