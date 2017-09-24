@@ -107,7 +107,7 @@ class @ShowReceiptPage
 
     $dateInput.select()
 
-  populateAutocomplete: (value, path, autoComplete, JSONparseMethod, handleMissingMethod = nil, handlePresentMethod = nil) ->
+  populateAutocomplete: (value, path, autoComplete, JSONparseMethod, handleMissingMethod = null, handlePresentMethod = null) ->
     ajax = new XMLHttpRequest()
     ajax.open("GET", path+'/'+value, true)
     ajax.onload = () ->

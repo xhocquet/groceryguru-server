@@ -14,26 +14,29 @@ body.receipts {
     width: 100%;
   }
 
-  .store-title-span, .date-title-span {
-    padding: 4px 6px;
+  .title {
+    .store-title-span, .date-title-span {
+      padding: 4px 6px;
 
-    &:hover {
-      cursor: pointer;
-      outline: 1px solid #dbdbdb;
+      &:hover {
+        cursor: pointer;
+        outline: 1px solid #dbdbdb;
+      }
     }
-  }
 
-  .store-date-form {
-    display: inline;
+    .store-date-form {
+      display: inline;
 
-    input.date-input, input.store-input {
-      width: 200px;
+      input.date-input, input.store-input {
+        width: 200px;
+      }
     }
-  }
 
-  .submit-new-store-button {
-    margin-left: 4px;
-    vertical-align: bottom;
+    .submit-new-store-button {
+      line-height: 18px;
+      margin-left: 4px;
+      vertical-align: bottom;
+    }
   }
 
   div.transaction-table {
