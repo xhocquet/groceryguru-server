@@ -1,4 +1,4 @@
-body.admin.index, body.stores.index, body.items.index, body.stores.submissions {
+body.admin.index, body.stores.index, body.items.index, body.stores.submissions, body.items.submissions {
   hr {
     margin: 0;
   }
@@ -26,18 +26,6 @@ body.admin.index, body.stores.index, body.items.index, body.stores.submissions {
         position: relative;
         top: -240px;
         visibility: hidden;
-      }
-    }
-  }
-
-  aside.admin-nav {
-    border-right: 1px solid #dbdbdb;
-    padding: 24px;
-
-    li.active {
-      a {
-        background-color: #00d1b2;
-        color: #fff;
       }
     }
   }

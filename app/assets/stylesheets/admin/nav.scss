@@ -1,0 +1,16 @@
+aside.admin-nav {
+  border-right: 1px solid #dbdbdb;
+  padding: 24px;
+
+  i.material-icons {
+    vertical-align: bottom;
+    line-height: 18px;
+  }
+
+  li.active {
+    a {
+      background-color: #00d1b2;
+      color: #fff;
+    }
+  }
+}

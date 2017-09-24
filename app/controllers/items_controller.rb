@@ -30,6 +30,7 @@ class ItemsController < ApplicationController
 
   def submissions
     @submissions = Submission.where(model_type: :item)
+    render 'admin/submissions'
   end
 
   def search

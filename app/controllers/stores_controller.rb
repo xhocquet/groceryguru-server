@@ -30,6 +30,7 @@ class StoresController < ApplicationController
 
   def submissions
     @submissions = Submission.where(model_type: :store)
+    render 'admin/submissions'
   end
 
   def create_submission
