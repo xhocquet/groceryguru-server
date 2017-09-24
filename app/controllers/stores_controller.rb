@@ -1,5 +1,5 @@
 class StoresController < ApplicationController
-  before_action :validate_admin, except: :search
+  before_action :validate_admin, except: [:search, :create_submission]
 
   def index
     if params[:alpha].present?
@@ -31,6 +31,10 @@ class StoresController < ApplicationController
   def submissions
     @submissions = Submission.where(model_type: :store)
     render 'admin/submissions'
+  end
+
+  def new_submission
+    render 'community/submit_store'
   end
 
   def create_submission

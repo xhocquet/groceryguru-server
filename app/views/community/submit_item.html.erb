@@ -1,0 +1,36 @@
+<section class="section">
+  <div class="container">
+    <div class="column is-6 is-offset-3">
+
+      <article class="message is-warning">
+        <div class="message-header">
+          Community item submission
+        </div>
+        <div class="message-body">
+          <p>Please provide a main item and additional identifiers below. If you are able to match anything existing on Grocery Guru, this will speed up the process greatly.</p><br />
+          <p>This item will be available for use shortly after being approved. Users with a history of valid suggestions will gain the ability to submit directly to Grocery Guru.</p>
+        </div>
+      </article>
+
+      <%= form_for community_create_item_path do %>
+        <div class="section">
+          <input id="item_input" class="controls input" name="item_submission[value]" type="text" placeholder="Search or type an item name">
+          <input id="mode_input" class="controls input" name="mode_submission[value]" type="text" placeholder="Search or type a mode">
+        </div>
+        <div class="section captcha-submit">
+          <div class="g-recaptcha" data-sitekey="<%= Rails.application.secrets.RECAPTCHA_SITE_KEY %>" data-callback="showInput"></div>
+          <button class="button is-large is-success is-hidden" type="submit">Submit</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<script>
+  function showInput() {
+    if (grecaptcha.getResponse() !== '') {
+      $('.captcha-submit').find('button').removeClass('is-hidden');
+    }
+  }
+</script>
+<script src='https://www.google.com/recaptcha/api.js'></script>

@@ -95,6 +95,12 @@ class @ShowReceiptPage
   handleStorePresent: (autoComplete) =>
     $(autoComplete.container).parents('form').siblings('.submit-new-store-button').addClass 'is-hidden'
 
+  handleItemMissing: (autoComplete) =>
+    $(autoComplete.container).siblings('.submit-new-item-button').removeClass('is-hidden')
+
+  handleItemPresent: (autoComplete) =>
+    $(autoComplete.container).siblings('.submit-new-item-button').addClass('is-hidden')
+
   initiateDateInput: ->
     $dateButtonOrSpan = $('.add-date-button, .date-title-span')
     $dateInput = $('input.date-input')
@@ -113,6 +119,7 @@ class @ShowReceiptPage
     ajax.onload = () ->
       currentList = JSON.parse(ajax.responseText).map(JSONparseMethod)
       if currentList.length == 0 and handleMissingMethod?
+        autoComplete.list = []
         handleMissingMethod(autoComplete)
       else
         autoComplete.list = currentList
@@ -143,7 +150,7 @@ class @ShowReceiptPage
         item.style.maxWidth = $lastRow.find('.table-cell')[index].offsetWidth+"px"
 
     @$newTransactionForm.removeClass('is-hidden')
-    @setupItemAutocompleteCell(@$newTransactionForm.find('.table-cell.data').first())
+    @setupItemNameField(@$newTransactionForm.find('.table-cell.data').first())
     @$newTransactionForm.find('.input').first().select()
 
     $('html, body').animate
@@ -200,7 +207,7 @@ class @ShowReceiptPage
 
     # Special autocomplete stuff for name
     if currentFieldName == 'name'
-      @setupItemAutocompleteCell($tableCell)
+      @setupItemNameField($tableCell)
 
     $(newInput).keypress (e) =>
       @clickNearestSaveButton(e) if (e.which == 13)
@@ -224,8 +231,11 @@ class @ShowReceiptPage
     return false
 
   # Setup for autocomplete input
-  setupItemAutocompleteCell: ($tableCell) ->
+  setupItemNameField: ($tableCell) ->
     newInput = $tableCell.find('input')[0]
+
+    $tableCell.attr('title','')
+
     hiddenInput = document.createElement("input")
     autoComplete = new Awesomplete newInput,
       autoFirst: true,
@@ -237,6 +247,16 @@ class @ShowReceiptPage
     hiddenInput.name = 'transaction[item_id]'
     $(hiddenInput).appendTo($tableCell)
 
+    newItemLink = document.createElement("a")
+    newItemLink.className = "button submit-new-item-button hint--bottom is-hidden"
+    $(newItemLink).attr("aria-label","Submit new item")
+    $(newItemLink).attr("href", @options.submitNewItemPath)
+    newItemIcon = document.createElement("i")
+    newItemIcon.className = "material-icons"
+    newItemIcon.innerHTML = "add"
+    $(newItemIcon).appendTo($(newItemLink))
+    $(newItemLink).appendTo($tableCell)
+
     $(newInput).on 'awesomplete-selectcomplete', (e) ->
       $(this).parents('.table-cell').find("input[name='transaction[item_id]']").attr('value', e.originalEvent.text.value)
       this.value = e.originalEvent.text.label
@@ -244,10 +264,10 @@ class @ShowReceiptPage
     # Trigger search on debounced text input
     $(newInput).keyup(_.debounce (e) =>
       return if @validateAutocompleteKeypress(e)
-      @populateAutocomplete(e.currentTarget.value, @options.itemSearchPath, autoComplete, @itemSearchJSONMap)
+      @populateAutocomplete(e.currentTarget.value, @options.itemSearchPath, autoComplete, @itemSearchJSONMap, @handleItemMissing, @handleItemPresent)
     , 300)
 
-    @populateAutocomplete(newInput.value, @options.itemSearchPath, autoComplete, @itemSearchJSONMap)
+    @populateAutocomplete(newInput.value, @options.itemSearchPath, autoComplete, @itemSearchJSONMap, @handleItemMissing, @handleItemPresent)
 
   # Autoscroll to transaction line
   goToTransaction: (e) ->

@@ -3,14 +3,16 @@
     <div class="column is-6 is-offset-3">
 
       <article class="message is-warning">
+        <div class="message-header">
+          Community store submission
+        </div>
         <div class="message-body">
-          <h1>Community store submission</h1>
           <p>Please locate your store with the google search below. The store will be available to use shortly after being approved. Users with a history of valid suggestions will gain the ability to submit directly to Grocery Guru.</p>
         </div>
       </article>
 
       <%= form_for community_create_store_path do %>
-        <input id="pac-input" class="controls input" name="submission[value]" type="text" placeholder="Search Box">
+        <input id="autocomplete_store_input" class="controls input" name="submission[value]" type="text" placeholder="Search for your store...">
         <div class="section captcha-submit">
           <div class="g-recaptcha" data-sitekey="<%= Rails.application.secrets.RECAPTCHA_SITE_KEY %>" data-callback="showInput"></div>
           <button class="button is-large is-success is-hidden" type="submit">Submit</button>
@@ -22,7 +24,7 @@
 
 <script>
   function initAutocomplete() {
-    var input = document.getElementById('pac-input');
+    var input = document.getElementById('autocomplete_store_input');
     var searchBox = new google.maps.places.SearchBox(input);
 
     searchBox.addListener('places_changed', function() {

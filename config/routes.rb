@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   namespace :community do
     get '/submit-new-store', controller: "/stores", action: :new_submission, as: :new_store
     post '/submit-new-store', controller: "/stores", action: :create_submission, as: :create_store
+    get '/submit-new-item', controller: "/items", action: :new_submission, as: :new_item
+    post '/submit-new-item', controller: "/items", action: :create_submission, as: :create_item
   end
 
   namespace :admin do

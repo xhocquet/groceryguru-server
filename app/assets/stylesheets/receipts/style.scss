@@ -76,6 +76,16 @@ body.receipts {
         display: inline-flex;
       }
 
+      .submit-new-item-button {
+        padding: 0 4px;
+
+        i {
+          font-size: 20px;
+          line-height: 14px;
+          vertical-align: bottom;
+        }
+      }
+
       a {
         i {
           font-size: 24px;

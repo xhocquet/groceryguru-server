@@ -1,10 +1,21 @@
 body.stores.new_submission {
-  article.message {
-    h1 {
-      font-size: 24px;
-      font-weight: bold;
+  .captcha-submit {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      margin: auto;
     }
   }
+}
+
+body.items.new_submission {
+  input {
+    float: left;
+    width: 40%;
+    margin: 0 2.5%;
+  }
+
   .captcha-submit {
     display: flex;
     justify-content: space-between;
