@@ -6,7 +6,6 @@ class Admin::SubmissionsController < ApplicationController
     new_record = klass.new validated_submission_value_param
     if new_record.save
       flash[:notice] = "Submission successfully persisted"
-      @submission.destroy
     else
       flash[:error] = "Submission count not be persisted, please try again"
     end
@@ -29,6 +28,6 @@ class Admin::SubmissionsController < ApplicationController
   end
 
   def validated_submission_value_param
-    params.require(:submission).permit(:name)
+    params.require(:submission).permit(:name).merge({ status: :accepted })
   end
 end

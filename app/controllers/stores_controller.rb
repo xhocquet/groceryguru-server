@@ -29,7 +29,7 @@ class StoresController < ApplicationController
   end
 
   def submissions
-    @submissions = Submission.where(model_type: :store)
+    @submissions = Submission.where(model_type: :store).needs_sorting
     render 'admin/submissions'
   end
 

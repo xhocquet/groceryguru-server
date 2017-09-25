@@ -1,0 +1,43 @@
+body.community.index {
+  .content-area {
+    .notification {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      bottom: auto;
+      padding: 24px;
+    }
+
+    button {
+      width: 100%;
+      text-align: center;
+      justify-content: space-between;
+
+      .field:first-child {
+        margin: 0 12px 0 0;
+        overflow: hidden;
+
+        .item-name {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        i {
+          font-size: 36px;
+          margin-left: -8px;
+        }
+      }
+    }
+
+    .submission-list {
+      width: 100%;
+      margin-top: 24px;
+
+      table {
+        width: 100%;
+      }
+    }
+  }
+}

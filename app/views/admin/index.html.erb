@@ -7,19 +7,19 @@
     <div class="tile is-ancestor">
       <div class="tile is-parent">
         <article class="tile is-child notification is-primary">
-          <h1 class="title"><%= User.all.count %></h1>
+          <h1 class="title"><%= User.all.size %></h1>
           <span>users</span>
         </article>
       </div>
       <div class="tile is-parent">
         <article class="tile is-child notification is-danger">
-          <h1 class="title"><%= Receipt.all.count %></h1>
+          <h1 class="title"><%= Receipt.all.size %></h1>
           <span>receipts</span>
         </article>
       </div>
       <div class="tile is-parent">
         <article class="tile is-child notification is-success">
-          <h1 class="title"><%= Transaction.all.count %></h1>
+          <h1 class="title"><%= Transaction.all.size %></h1>
           <span>transactions</span>
         </article>
       </div>
@@ -28,19 +28,19 @@
     <div class="tile is-ancestor">
       <div class="tile is-parent">
         <article class="tile is-child notification is-info">
-          <h1 class="title"><%= Item.all.count %></h1>
+          <h1 class="title"><%= Item.all.size %></h1>
           <span>items</span>
         </article>
       </div>
       <div class="tile is-parent">
         <article class="tile is-child notification is-success">
-          <h1 class="title"><%= Item::Group.all.count %></h1>
+          <h1 class="title"><%= Item::Group.all.size %></h1>
           <span>item groups</span>
         </article>
       </div>
       <div class="tile is-parent">
         <article class="tile is-child notification is-warning">
-          <h1 class="title"><%= Item::Mode.all.count %></h1>
+          <h1 class="title"><%= Item::Mode.all.size %></h1>
           <span>item modes</span>
         </article>
       </div>

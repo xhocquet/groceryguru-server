@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
 
   def submissions
     @items_controller = true
-    @submissions = Submission.where(model_type: [:item, :mode])
+    @submissions = Submission.where(model_type: [:item, :mode]).needs_sorting
     render 'admin/submissions'
   end
 

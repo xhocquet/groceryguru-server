@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   namespace :community do
+    get '/', controller: "/community", action: :index
     get '/submit-new-store', controller: "/stores", action: :new_submission, as: :new_store
     post '/submit-new-store', controller: "/stores", action: :create_submission, as: :create_store
     get '/submit-new-item', controller: "/items", action: :new_submission, as: :new_item

@@ -8,8 +8,6 @@ class @RootPage
     $('.close-modal-button').click (e) => @handleCloseModal(e)
     $('.save-crop-button').click (e) => @handleSaveCrop(e)
 
-    $('.footer').addClass 'is-hidden'
-
   handleFileUploadClick: (e) =>
     $('.modal-loader').removeClass 'is-hidden'
     $('.crop-modal').addClass 'is-active'
