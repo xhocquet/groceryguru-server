@@ -17,7 +17,6 @@ app.yaml
 /vendor/.keep
 !/log/.keep
 !/tmp/.keep
-/bin/*
 /lib/*
 /public/uploads/*
 
@@ -29,8 +28,13 @@ app.yaml
 /public/assets
 /node_modules
 
-.jshintrc
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+.jshintrc
+
+# Elastic Beanstalk Files
+
+.elasticbeanstalk/*
+
+!.elasticbeanstalk/*.cfg.yml
+
+!.elasticbeanstalk/*.global.yml
+
