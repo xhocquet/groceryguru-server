@@ -30,3 +30,14 @@ Simply upload your receipts, fill in the missing data, and Grocery Guru will tel
 ### Major Dependencies
 - [Tesseract](https://github.com/tesseract-ocr/) (Text recognition)
 - [RMagick](https://rmagick.github.io/) (Image modifications)
+
+# Ubuntu server setup commands
+```
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+\curl -sSL https://get.rvm.io | bash -s stable
+rvm install 2.4.2
+rvm default 2.4.2
+gem install bundler
+sudo apt-get install -y imagemagick
+sudo apt-get install -yi tesseract-ocr
+```
