@@ -33,12 +33,26 @@ Simply upload your receipts, fill in the missing data, and Grocery Guru will tel
 
 # Ubuntu server setup commands
 ```
+sudo add-apt-repository -y ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install -y imagemagick libmagickwand-dev
+sudo apt-get install -y tesseract-ocr
+sudo apt-get install -y libpq-dev
+sudo apt-get install -y nodejs
+sudo apt-get install -y openjdk-7-jre
+sudo apt-get install -y oracle-java8-installer
+
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 \curl -sSL https://get.rvm.io | bash -s stable
 rvm install 2.4.2
 rvm default 2.4.2
 gem install bundler
-sudo apt-get install -y imagemagick libmagickwand-dev
-sudo apt-get install -y tesseract-ocr
-sudo apt-get install -y libpq-dev
+
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+sudo apt-get install apt-transport-https
+echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list
+sudo apt-get update && sudo apt-get install elasticsearch
+sudo -i service elasticsearch start
+
+# Clone repo and bundle install
 ```
