@@ -38,6 +38,7 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB8
 rvm install 2.4.2
 rvm default 2.4.2
 gem install bundler
-sudo apt-get install -y imagemagick
-sudo apt-get install -yi tesseract-ocr
+sudo apt-get install -y imagemagick libmagickwand-dev
+sudo apt-get install -y tesseract-ocr
+sudo apt-get install -y libpq-dev
 ```
