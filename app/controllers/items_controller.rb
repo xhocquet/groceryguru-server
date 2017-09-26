@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :validate_admin, except: [:search, :create_submission]
+  before_action :validate_admin, except: [:search, :new_submission, :create_submission]
 
   def index
     if params[:alpha].present?

@@ -1,5 +1,5 @@
 class StoresController < ApplicationController
-  before_action :validate_admin, except: [:search, :create_submission]
+  before_action :validate_admin, except: [:search, :create_submission, :new_submission]
 
   def index
     if params[:alpha].present?

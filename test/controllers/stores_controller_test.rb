@@ -28,4 +28,9 @@ class StoresControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_match 'Soopers', @response.body
   end
+
+  test "store submissions should render for admin" do
+    get admin_stores_submissions_path
+    assert_response :success
+  end
 end
