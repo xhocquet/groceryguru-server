@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-  get "_ah/health", controller: :application, action: :health_check
   root to: "application#index"
 
   resources :receipts, except: [:new, :edit] do
@@ -13,18 +12,18 @@ Rails.application.routes.draw do
 
   namespace :community do
     get '/', controller: "/community", action: :index
-    get '/submit-new-store', controller: "/stores", action: :new_submission, as: :new_store
-    post '/submit-new-store', controller: "/stores", action: :create_submission, as: :create_store
-    get '/submit-new-item', controller: "/items", action: :new_submission, as: :new_item
-    post '/submit-new-item', controller: "/items", action: :create_submission, as: :create_item
+    get '/submit-new-store', action: :new_store_submission, as: :new_store
+    post '/submit-new-store', action: :create_store_submission, as: :create_store
+    get '/submit-new-item', action: :new_item_submission, as: :new_item
+    post '/submit-new-item', action: :create_item_submission, as: :create_item
   end
 
   namespace :admin do
     get '/', controller: "/admin", action: :index
     resources :items, controller: "/items", only: [:index, :destroy]
-    get 'items/submissions', controller: "/items", action: :submissions
+    get 'items/submissions', controller: "/admin", action: :item_submissions
     resources :stores, controller: "/stores", only: [:index, :destroy]
-    get 'stores/submissions', controller: "/stores", action: :submissions
+    get 'stores/submissions', controller: "/admin", action: :store_submissions
 
     resources :submissions, only: [:destroy] do
       post :validate

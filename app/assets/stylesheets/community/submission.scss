@@ -1,4 +1,4 @@
-body.stores.new_submission {
+body.community.new_store_submission {
   .captcha-submit {
     display: flex;
     justify-content: space-between;
@@ -9,7 +9,7 @@ body.stores.new_submission {
   }
 }
 
-body.items.new_submission {
+body.community.new_item_submission {
   input {
     float: left;
     width: 40%;

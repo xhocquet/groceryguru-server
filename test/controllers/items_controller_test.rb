@@ -38,9 +38,4 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_match 'banana', @response.body
   end
-
-  test "item submissions should render for admin" do
-    get admin_items_submissions_path
-    assert_response :success
-  end
 end

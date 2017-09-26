@@ -1,4 +1,4 @@
-body.admin.index, body.stores.index, body.items.index, body.stores.submissions, body.items.submissions {
+body.admin, body.stores.index, body.items.index {
   hr {
     margin: 0;
   }
@@ -19,8 +19,17 @@ body.admin.index, body.stores.index, body.items.index, body.stores.submissions, 
       padding: 24px;
     }
 
+    .no-submission-alert {
+      display: block;
+
+      i {
+        font-size: 72px;
+      }
+    }
+
     .admin-data-table {
       margin: 24px auto 0;
+      width: 100%;
 
       .long-list-anchor {
         position: relative;

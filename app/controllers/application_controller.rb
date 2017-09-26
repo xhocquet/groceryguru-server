@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def validate_admin
-    render_404 unless current_user.admin?
+    redirect_to new_user_session_url unless current_user.admin?
   end
 end
