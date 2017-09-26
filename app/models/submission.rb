@@ -4,4 +4,13 @@ class Submission < ApplicationRecord
   enum status: [:pending, :rejected, :accepted]
 
   scope :needs_sorting, -> { where(status: 0) }
+
+  after_save :send_email_notifications, on: :update
+
+  private
+
+  def send_email_notifications
+    return unless status_before_last_save == "pending"
+    UserMailer.submission_notification_email(self).deliver_later
+  end
 end

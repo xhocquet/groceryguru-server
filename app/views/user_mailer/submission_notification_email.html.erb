@@ -1,0 +1,43 @@
+<% if @submission.accepted? %>
+  <article class="message is-success">
+    <div class="message-header">
+      <p><strong>Submission Accepted!</strong></p>
+    </div>
+    <div class="content message-body">
+      <p><strong><%= @user.email %></strong> submitted the following to be added to Grocery Guru</p>
+      <p><strong>Name: </strong><%= @submission.value %><br>
+      <strong>Type: </strong><%= @submission.model_type.titleize %></p>
+      <p>We are happy to inform you that your submission has been accepted! You will be able to review your submissions and they will be used for more features in the future. Thank you for your contribution, we look forward to receiving more from you!</p>
+      <div class="button-container">
+        <a class="button is-info" href="<%= community_new_store_url %>">Submit a Store</a> <a class="button is-info" href="<%= community_new_item_url %>">Submit an Item</a>
+      </div>
+    </div>
+    <div class="message-footer">
+      <p>Grocery Guru</p>
+    </div>
+  </article>
+<% elsif @submission.rejected? %>
+  <article class="message is-danger">
+    <div class="message-header">
+      <p><strong>Submission Rejected</strong></p>
+    </div>
+    <div class="content message-body">
+      <p><strong><%= @user.email %></strong> submitted the following to be added to Grocery Guru</p>
+      <p><strong>Name: </strong><%= @submission.value %><br>
+      <strong>Type: </strong><%= @submission.model_type.titleize %></p>
+      <p>Unfortunately, your submission was rejected. This could be due to:</p>
+      <ul>
+        <li>Item already exists</li>
+        <li>Item is not specific enough</li>
+        <li>Item is not appropriate</li>
+      </ul>
+      <p>While this submission has been rejected, only you can help us complete the food database. Please continue to submit new information!</p>
+      <div class="button-container">
+        <a class="button is-info" href="<%= community_new_store_url %>">Submit a Store</a> <a class="button is-info" href="<%= community_new_item_url %>">Submit an Item</a>
+      </div>
+    </div>
+    <div class="message-footer">
+      <p>Grocery Guru</p>
+    </div>
+  </article>
+<% end %>

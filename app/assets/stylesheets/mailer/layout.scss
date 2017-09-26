@@ -1,0 +1,31 @@
+body.email-layout {
+  article.message {
+    margin: 48px auto;
+    max-width: 600px;
+
+    .message-body {
+      border-radius: 0;
+      margin-bottom: 0;
+
+      .button-container {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+
+    .message-footer {
+      background-color: #23d160;
+      border-radius: 0 0 3px 3px;
+      color: #fff;
+      line-height: 1.25;
+      padding: 0.5em 0.75em;
+      position: relative;
+    }
+  }
+
+  article.message.is-danger {
+    .message-footer {
+      background-color: #ff3860;
+    }
+  }
+}
