@@ -1,9 +1,14 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+accepted:
+  model_type: :store
+  value: Amazon from the neighborhood
+  user: admin
 
-one:
-  type: 
-  value: MyString
+pending:
+  model_type: :mode
+  value: A la mode
+  user: admin
 
-two:
-  type: 
-  value: MyString
+rejected:
+  model_type: :item
+  value: Not food
+  user: admin

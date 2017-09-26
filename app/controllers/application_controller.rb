@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   private
 
   def render_404
-    render 'shared/404'
+    render 'shared/404' and return
   end
 
   def validate_admin
