@@ -2,7 +2,7 @@
   <div class="container">
     <div class="column is-6 is-offset-3">
 
-      <article class="message is-warning">
+      <article class="message is-info">
         <div class="message-header">
           Community item submission
         </div>
@@ -19,18 +19,20 @@
         </div>
         <div class="section captcha-submit">
           <div class="g-recaptcha" data-sitekey="<%= Rails.application.secrets.RECAPTCHA_SITE_KEY %>" data-callback="showInput"></div>
-          <button class="button is-large is-success is-hidden" type="submit">Submit</button>
+          <button disabled=true class="button is-large is-success" type="submit">Submit</button>
         </div>
       <% end %>
     </div>
   </div>
 </section>
 
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
+  var modeInput = $('#mode_input');
+  var itemInput = $('#item_input');
+
   function showInput() {
-    if (grecaptcha.getResponse() !== '') {
-      $('.captcha-submit').find('button').removeClass('is-hidden');
-    }
+    if (grecaptcha.getResponse() !== '' && modeInput.val() !== '' && itemInput.val() != '')
+      $('.captcha-submit').find('button').prop("disabled", false)
   }
 </script>
-<script src='https://www.google.com/recaptcha/api.js'></script>

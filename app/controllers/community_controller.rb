@@ -3,10 +3,6 @@ class CommunityController < ApplicationController
     @submissions = current_user.submissions
   end
 
-  def new_item_submission
-    render 'community/submit_item'
-  end
-
   def create_item_submission
     @item_submission = Submission.new item_submission_params
     @mode_submission = Submission.new mode_submission_params
@@ -19,10 +15,6 @@ class CommunityController < ApplicationController
       flash[:error] = "Could not create the submission, please try again"
       redirect_to community_new_item_path
     end
-  end
-
-  def new_store_submission
-    render 'community/submit_store'
   end
 
   def create_store_submission

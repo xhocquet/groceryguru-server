@@ -2,7 +2,7 @@
   <div class="container">
     <div class="column is-6 is-offset-3">
 
-      <article class="message is-warning">
+      <article class="message is-info">
         <div class="message-header">
           Community store submission
         </div>
@@ -15,14 +15,25 @@
         <input id="autocomplete_store_input" class="controls input" name="submission[value]" type="text" placeholder="Search for your store...">
         <div class="section captcha-submit">
           <div class="g-recaptcha" data-sitekey="<%= Rails.application.secrets.RECAPTCHA_SITE_KEY %>" data-callback="showInput"></div>
-          <button class="button is-large is-success is-hidden" type="submit">Submit</button>
+          <button disabled=true class="button is-large is-success" type="submit">Submit</button>
         </div>
       <% end %>
     </div>
   </div>
 </section>
 
+
 <script>
+  // Necessary due to google callbacks not working well with the backbone pages
+  // Creating pass-through functions resulted in inconsistent page states
+  function showInput() {
+    if ($('#autocomplete_store_input').val() !== '' && grecaptcha.getResponse() !== '') {
+      $('.captcha-submit').find('button').prop("disabled", false);
+    } else {
+      $('.captcha-submit').find('button').prop("disabled", true);
+    }
+  }
+
   function initAutocomplete() {
     var input = document.getElementById('autocomplete_store_input');
     var searchBox = new google.maps.places.SearchBox(input);
@@ -31,21 +42,11 @@
       showInput();
     });
 
-    $('#pac-input').keydown(function(e) {
-      if (event.keyCode == 13) {
-        e.preventDefault();
-      }
-    })
+    $('#pacinput').keydown(function(e) {
+      showInput();
+    });
   }
-
-  function showInput() {
-    if (($('#pac-input').val() !== '') && (grecaptcha.getResponse() !== '')) {
-      $('.captcha-submit').find('button').removeClass('is-hidden');
-    }
-  }
-
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.GOOGLE_MAPS_API_KEY %>&libraries=places&callback=initAutocomplete"
      async defer></script>
-
 <script src='https://www.google.com/recaptcha/api.js'></script>

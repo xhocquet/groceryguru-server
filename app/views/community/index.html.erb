@@ -1,7 +1,12 @@
 <section class="section">
   <div class="container">
     <div class="column content-area">
-      <h1 class="title">My Community Submissions</h1>
+      <h1 class="title">My Community Submissions
+        <div class="field is-grouped is-pulled-right">
+          <%= link_to "Submit new Store", community_new_store_path, class: 'button is-info is-pulled-right control' %>
+          <%= link_to "Submit new Item", community_new_item_path, class: 'button is-info is-pulled-right control' %>
+        </div>
+      </h1>
       <hr>
       <div class="tile is-ancestor">
         <div class="tile is-parent">
