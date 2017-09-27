@@ -1,9 +1,9 @@
 module TransactionHelper
   def display_price_per_unit(transaction)
     return "N/A" if transaction.price.blank?
-    if transaction.weight.present?
+    if transaction.weight.present? && transaction.price_per_unit.present?
       "$#{'%.2f' % transaction.price_per_unit}/kg"
-    elsif transaction.count.present?
+    elsif transaction.count.present? && transaction.price_per_unit.present?
       "$#{'%.2f' % transaction.price_per_unit}"
     else
       "N/A"
@@ -19,6 +19,8 @@ module TransactionHelper
   end
 
   def transaction_loss(recent_transaction, best_ppu)
+    return nil unless recent_transaction.price_per_unit.present?
+
     diff = recent_transaction.price_per_unit - best_ppu
     if recent_transaction.count.present?
       (diff * recent_transaction.count).round(2)

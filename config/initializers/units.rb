@@ -5,5 +5,5 @@ Unit.redefine!('short-ton') do |unit|
 end
 
 Unit.redefine!('fluid-ounce') do |floz|
-  floz.aliases    = ['floz', 'fluid-ounce', 'fluid-ounces', 'fluid ounces']
+  floz.aliases    = ['floz', 'fluid-ounce', 'fluid-ounces', 'fluid ounces', 'fluid ounce']
 end
