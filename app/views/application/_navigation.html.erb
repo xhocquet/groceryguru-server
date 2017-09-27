@@ -34,8 +34,7 @@
             <hr class="navbar-divider">
             <% if current_user.admin? %>
               <%= active_link_to admin_path, class: 'navbar-item' do %>
-                Admin
-                <span class="tag is-warning"><%= Submission.where(status: :pending).size %></span>
+                Admin <span class="tag is-warning admin-notification-count"><%= Submission.where(status: :pending).size %></span>
               <% end %>
               <hr class="navbar-divider">
             <% end %>

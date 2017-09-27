@@ -1,0 +1,22 @@
+<% if @submissions.where(status: status).size > 0 %>
+  <table class="table">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @submissions.where(status: status).each do |submission| %>
+      <tr>
+        <td>
+          <%= submission.model_type.titleize %>
+        </td>
+        <td class="value-cell">
+          <%= submission.value %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+<% end %>

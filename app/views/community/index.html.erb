@@ -9,110 +9,38 @@
       </h1>
       <hr>
       <div class="tile is-ancestor">
+
         <div class="tile is-parent">
           <article class="tile is-child notification is-warning">
             <h1 class="title"><%= @submissions.where(status: :pending).size %></h1>
             <span>pending submissions</span>
-
             <div class="field submission-list">
-              <% if @submissions.where(status: :pending).size > 0 %>
-                <table class="table">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @submissions.where(status: :pending).each do |submission| %>
-                    <tr>
-                      <td>
-                        <%= submission.model_type.titleize %>
-                      </td>
-                      <td class="value-cell">
-                        <%= form_for submission, url: admin_submission_validate_path(submission), method: :post do |f| %>
-                          <span class="invalid-name-text"><%= submission.value %></span>
-                        <% end %>
-                      </td>
-                    </tr>
-                  <% end %>
-                </tbody>
-                </table>
-              <% end %>
+              <%= render 'submission_list', status: :pending %>
             </div>
-
           </article>
         </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-danger">
-            <h1 class="title"><%= @submissions.where(status: :rejected).size %></h1>
-            <span>rejected submissions</span>
 
-            <div class="field submission-list">
-              <% if @submissions.where(status: :rejected).size > 0 %>
-                <table class="table">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @submissions.where(status: :rejected).each do |submission| %>
-                    <tr>
-                      <td>
-                        <%= submission.model_type.titleize %>
-                      </td>
-                      <td class="value-cell">
-                        <%= form_for submission, url: admin_submission_validate_path(submission), method: :post do |f| %>
-                          <span class="invalid-name-text"><%= submission.value %></span>
-                        <% end %>
-                      </td>
-                    </tr>
-                  <% end %>
-                </tbody>
-                </table>
-              <% end %>
-            </div>
-
-          </article>
-        </div>
         <div class="tile is-parent">
           <article class="tile is-child notification is-success">
             <h1 class="title"><%= @submissions.where(status: :accepted).size %></h1>
             <span>accepted submissions</span>
-
             <div class="field submission-list">
-              <% if @submissions.where(status: :accepted).size > 0 %>
-                <table class="table">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @submissions.where(status: :accepted).each do |submission| %>
-                    <tr>
-                      <td>
-                        <%= submission.model_type.titleize %>
-                      </td>
-                      <td class="value-cell">
-                        <%= form_for submission, url: admin_submission_validate_path(submission), method: :post do |f| %>
-                          <span class="invalid-name-text"><%= submission.value %></span>
-                        <% end %>
-                      </td>
-                    </tr>
-                  <% end %>
-                </tbody>
-                </table>
-              <% end %>
+              <%= render 'submission_list', status: :accepted %>
             </div>
-
           </article>
         </div>
-      </div>
 
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-danger">
+            <h1 class="title"><%= @submissions.where(status: :rejected).size %></h1>
+            <span>rejected submissions</span>
+            <div class="field submission-list">
+              <%= render 'submission_list', status: :rejected %>
+            </div>
+          </article>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
