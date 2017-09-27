@@ -1,6 +1,6 @@
 # Grocery Guru - Server
 
-<img src="https://hakiri.io/github/xhocquet/groceryguru-server/master.svg">
+<img src="https://hakiri.io/github/xhocquet/groceryguru-server/master.svg"> [![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/codeclimate/codeclimate) [![Test Coverage](https://codeclimate.com/github/codeclimate/codeclimate/badges/coverage.svg)](https://codeclimate.com/github/codeclimate/codeclimate/coverage)
 
 Grocery Guru is a tool to maximize your grocery spending.
 
