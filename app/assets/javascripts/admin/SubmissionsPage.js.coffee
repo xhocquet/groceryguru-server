@@ -7,7 +7,7 @@ class @AdminSubmissionsPage
     $('td.value-cell').click (e) =>
       @insertInputIntoCell($(e.currentTarget))
 
-    $('.validate-link').click (e) =>
+    $('.validate-link').click (e) ->
       e.preventDefault()
       $(e.currentTarget).parents('tr').find('form').submit()
 
@@ -23,7 +23,7 @@ class @AdminSubmissionsPage
     newInput.type = "text"
     newInput.classList.add('input')
     newInput.classList.add('validated-name-input')
-    newInput.style.verticalAlign = 'baseline';
+    newInput.style.verticalAlign = 'baseline'
 
     $tableCell[0].style.maxWidth = curWidth+'px'
     $tableCell[0].style.width = curWidth+'px'

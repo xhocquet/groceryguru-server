@@ -8,12 +8,11 @@ class @RootPage
     $('.close-modal-button').click (e) => @handleCloseModal(e)
     $('.save-crop-button').click (e) => @handleSaveCrop(e)
 
-  handleFileUploadClick: (e) =>
+  handleFileUploadClick: (e) ->
     $('.modal-loader').removeClass 'is-hidden'
     $('.crop-modal').addClass 'is-active'
 
   handleFileUpload: (e) ->
-
     reader = new FileReader()
     reader.onload = @onLoadImage
     reader.readAsDataURL(e.currentTarget.files[0])

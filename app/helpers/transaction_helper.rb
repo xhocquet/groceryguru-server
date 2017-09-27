@@ -25,12 +25,7 @@ module TransactionHelper
     if recent_transaction.count.present?
       (diff * recent_transaction.count).round(2)
     elsif recent_transaction.weight.present?
-      case Unit.new(recent_transaction.weight).kind
-      when :volume
-        (diff * (Unit.new(recent_transaction.weight).convert_to('l').scalar.to_f.round(2))).round(2)
-      when :mass
-        (diff * (Unit.new(recent_transaction.weight).convert_to('kg').scalar.to_f.round(2))).round(2)
-      end
+      weight_diff_math(recent_transaction.weight, diff)
     else
       nil
     end
@@ -41,14 +36,18 @@ module TransactionHelper
     if recent_transaction.count.present?
       (diff * recent_transaction.count).round(2)
     elsif recent_transaction.weight.present?
-      case Unit.new(recent_transaction.weight).kind
-      when :volume
-        (diff * (Unit.new(recent_transaction.weight).convert_to('l').scalar.to_f.round(2))).round(2)
-      when :mass
-        (diff * (Unit.new(recent_transaction.weight).convert_to('kg').scalar.to_f.round(2))).round(2)
-      end
+      weight_diff_math(recent_transaction.weight, diff)
     else
       nil
+    end
+  end
+
+  def weight_diff_math(weight, diff)
+    case Unit.new(weight).kind
+    when :volume
+      (diff * (Unit.new(weight).convert_to('l').scalar.to_f.round(2))).round(2)
+    when :mass
+      (diff * (Unit.new(weight).convert_to('kg').scalar.to_f.round(2))).round(2)
     end
   end
 

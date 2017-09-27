@@ -6,7 +6,7 @@ class StatsController < ApplicationController
                           .group_by(&:item_id)
                           .reject { |item_id, transactions|
                             (transactions.map(&:price_per_unit).compact.uniq.size < 2) || item_id.blank?
-                          }.group_by { |item_id, transactions|
+                          }.group_by { |_, transactions|
                             best_ppu = transactions.map(&:price_per_unit).compact.min
                             worst_ppu = transactions.map(&:price_per_unit).compact.max
                             most_recent_transaction = transactions.sort_by{|t| t.receipt.created_at}.reverse.first

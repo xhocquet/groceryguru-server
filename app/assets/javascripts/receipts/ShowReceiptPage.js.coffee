@@ -1,6 +1,7 @@
 class @ShowReceiptPage
   constructor: (@options = {}) ->
     @$newTransactionForm = $('.new-transaction-form')
+    @submitNewStoreButton = $('.submit-new-store-button')
 
     $(document).on 'turbolinks:load', =>
       @setupEventListeners()
@@ -90,16 +91,20 @@ class @ShowReceiptPage
     $storeInput.select()
 
   handleStoreMissing: (autoComplete) =>
-    $(autoComplete.container).parents('form').siblings('.submit-new-store-button').removeClass 'is-hidden'
+    @submitNewStoreButton.removeClass 'is-hidden'
 
   handleStorePresent: (autoComplete) =>
-    $(autoComplete.container).parents('form').siblings('.submit-new-store-button').addClass 'is-hidden'
+    @submitNewStoreButton.addClass 'is-hidden'
 
-  handleItemMissing: (autoComplete) =>
-    $(autoComplete.container).siblings('.submit-new-item-button').removeClass('is-hidden')
+  handleItemMissing: (autoComplete) ->
+    $(autoComplete.container)
+      .siblings('.submit-new-item-button')
+      .removeClass 'is-hidden'
 
-  handleItemPresent: (autoComplete) =>
-    $(autoComplete.container).siblings('.submit-new-item-button').addClass('is-hidden')
+  handleItemPresent: (autoComplete) ->
+    $(autoComplete.container)
+      .siblings('.submit-new-item-button')
+      .addClass 'is-hidden'
 
   initiateDateInput: ->
     $dateButtonOrSpan = $('.add-date-button, .date-title-span')
