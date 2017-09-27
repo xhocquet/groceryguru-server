@@ -1,5 +1,7 @@
 # Grocery Guru - Server
 
+<img src="https://hakiri.io/github/xhocquet/groceryguru-server/master.svg">
+
 Grocery Guru is a tool to maximize your grocery spending.
 
 Simply upload your receipts, fill in the missing data, and Grocery Guru will tell you where you could be saving!
