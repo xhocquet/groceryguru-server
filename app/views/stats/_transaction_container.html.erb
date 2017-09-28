@@ -1,0 +1,80 @@
+<% if @transaction_groups[transaction_group].present? %>
+  <div class="transactions-list-button-container box <%= container_class(transaction_group) %>">
+    <button class="button is-large toggle-transaction-group">
+      <div class="field is-grouped">
+        <i class="material-icons">keyboard_arrow_right</i>
+        <span class="item-name">
+          <%= transaction_group_label(transaction_group) %>
+        </span>
+      </div>
+      <div class="field is-grouped">
+        <%= @transaction_groups[transaction_group].size %>
+      </div>
+    </button>
+  </div>
+  <div class="transactions-list <%= transaction_group %>-list is-hidden">
+  <% @transaction_groups[transaction_group].each do |item_id, transactions| %>
+    <% next if item_id.blank? %>
+    <% next if transactions.map(&:price_per_unit).compact.uniq.size < 2 %>
+    <% best_ppu = transactions.map(&:price_per_unit).compact.min %>
+    <% worst_ppu = transactions.map(&:price_per_unit).compact.max %>
+    <% most_recent_transaction = transactions.sort_by{|t| t.receipt.created_at}.reverse.first %>
+
+    <div class="box item-card <%= transaction_row_class(most_recent_transaction, best_ppu, worst_ppu) %>" data-item-id="<%=item_id%>">
+      <button class="button is-large toggle-card-button">
+        <div class="field is-grouped">
+          <i class="material-icons">keyboard_arrow_right</i>
+          <span class="item-name">
+            <%= most_recent_transaction.item.name.titleize %>
+          </span>
+        </div>
+        <div class="field is-grouped">
+          <%= n_days_ago(most_recent_transaction) %>
+        </div>
+      </button>
+
+      <div class="transaction-list is-hidden">
+        <div class="fluid-container transaction-summary">
+          <%= transaction_summary(most_recent_transaction, best_ppu, worst_ppu) %>
+        </div>
+
+        <div class="box">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Store</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th><abbr title="Price per Unit">PPU</abbr></th>
+              </tr>
+            </thead>
+            <tbody>
+            <% transactions.sort_by{|t| t.receipt.created_at}.reverse.each do |transaction| %>
+              <tr data-transaction-id="<%= transaction.id %>" class="<%= transaction_row_class(transaction, best_ppu, worst_ppu) %>">
+                <td>
+                  <%= transaction.receipt.created_at.to_date.to_formatted_s(:long) %>
+                </td>
+                <td>
+                  <%= transaction.receipt.store.try(:name).try(:titleize) %>
+                </td>
+                <td>
+                  <%= "$#{transaction.price}" %>
+                </td>
+                <td>
+                  <%= transaction.weight.to_s.presence || transaction.count %>
+                </td>
+                <td>
+                  <%= display_price_per_unit(transaction) %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  <% end %>
+  </div>
+<% end %>
