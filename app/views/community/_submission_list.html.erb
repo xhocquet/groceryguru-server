@@ -7,7 +7,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @submissions.where(status: status).each do |submission| %>
+    <% @submissions.where(status: status).page(params["#{status}_page"].to_i).each do |submission| %>
       <tr>
         <td>
           <%= submission.model_type.titleize %>
@@ -19,4 +19,5 @@
     <% end %>
   </tbody>
   </table>
+  <%= paginate(@submissions.where(status: status).page(params["#{status}_page"].to_i), param_name: "#{status}_page", window: 1) %>
 <% end %>

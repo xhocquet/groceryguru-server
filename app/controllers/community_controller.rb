@@ -1,6 +1,6 @@
 class CommunityController < ApplicationController
   def index
-    @submissions = current_user.submissions
+    @submissions = current_user.submissions.order(:created_at)
   end
 
   def create_item_submission
