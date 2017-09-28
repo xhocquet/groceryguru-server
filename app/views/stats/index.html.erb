@@ -34,7 +34,7 @@
             <% worst_ppu = transactions.map(&:price_per_unit).compact.max %>
             <% most_recent_transaction = transactions.sort_by{|t| t.receipt.created_at}.reverse.first %>
 
-            <div class="box item-card <%= transaction_row_class(most_recent_transaction, worst_ppu, best_ppu) %>" data-item-id="<%=item_id%>">
+            <div class="box item-card <%= transaction_row_class(most_recent_transaction, best_ppu, worst_ppu) %>" data-item-id="<%=item_id%>">
               <button class="button is-large toggle-card-button">
                 <div class="field is-grouped">
                   <i class="material-icons">keyboard_arrow_right</i>
@@ -124,7 +124,7 @@
             <% worst_ppu = transactions.map(&:price_per_unit).compact.max %>
             <% most_recent_transaction = transactions.sort_by{|t| t.receipt.created_at}.reverse.first %>
 
-            <div class="box item-card <%= transaction_row_class(most_recent_transaction, worst_ppu, best_ppu) %>" data-item-id="<%=item_id%>">
+            <div class="box item-card <%= transaction_row_class(most_recent_transaction, best_ppu, worst_ppu) %>" data-item-id="<%=item_id%>">
               <button class="button is-large toggle-card-button">
                 <div class="field is-grouped">
                   <i class="material-icons">keyboard_arrow_right</i>
@@ -214,7 +214,7 @@
             <% worst_ppu = transactions.map(&:price_per_unit).compact.max %>
             <% most_recent_transaction = transactions.sort_by{|t| t.receipt.created_at}.reverse.first %>
 
-            <div class="box item-card <%= transaction_row_class(most_recent_transaction, worst_ppu, best_ppu) %>" data-item-id="<%=item_id%>">
+            <div class="box item-card <%= transaction_row_class(most_recent_transaction, best_ppu, worst_ppu) %>" data-item-id="<%=item_id%>">
               <button class="button is-large toggle-card-button">
                 <div class="field is-grouped">
                   <i class="material-icons">keyboard_arrow_right</i>

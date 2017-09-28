@@ -31,6 +31,7 @@
               <p class="is-centered"><a href="<%= root_path %>">Add more receipts</a>.</p>
             </div>
           </article>
+          <%= paginate(@receipts) %>
         <% end %>
       </h2>
     </div>

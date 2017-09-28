@@ -1,6 +1,6 @@
 class ReceiptsController < ApplicationController
   def index
-    @receipts = current_user.receipts.includes(:store).all
+    @receipts = current_user.receipts.includes(:store).order(created_at: :desc).page(params[:page])
   end
 
   def create

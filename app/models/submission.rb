@@ -7,8 +7,6 @@ class Submission < ApplicationRecord
 
   after_save :send_email_notifications, on: :update
 
-  paginates_per 10
-
   private
 
   def send_email_notifications
