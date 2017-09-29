@@ -1,5 +1,3 @@
-require 'faker'
-
 namespace :faker do
   desc "Generates fake submissions"
   task :submissions, [:count] => :environment do |t, args|
