@@ -1,19 +1,14 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, except: :health_check
+  before_action :authenticate_user!
   protect_from_forgery with: :exception
 
   default_form_builder AppFormBuilder
-
   layout 'application'
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
   def index
     @receipt = Receipt.new
-  end
-
-  def health_check
-    head :ok
   end
 
   private

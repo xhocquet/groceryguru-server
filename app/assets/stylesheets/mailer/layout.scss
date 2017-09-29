@@ -28,4 +28,10 @@ body.email-layout {
       background-color: #ff3860;
     }
   }
+
+  article.message.is-info {
+    .message-footer {
+      background-color: #3273dc;
+    }
+  }
 }

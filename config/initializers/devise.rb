@@ -6,17 +6,7 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   config.secret_key = 'ebb371fdf2de06bf933addedba5cbea013e38a98d2a3710be9ca7f942c73161a0dd35f91e41f47a1834634815933e2b68499d8e5c11c1fb5b2407bd77f3c6a1d'
 
-  # ==> Mailer Configuration
-  # Configure the e-mail address which will be shown in Devise::Mailer,
-  # note that it will be overwritten if you use your own mailer class
-  # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-
-  # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
-
-  # Configure the parent class responsible to send e-mails.
-  # config.parent_mailer = 'ActionMailer::Base'
+  config.mailer_sender = 'notifications@groceryguru.info'
 
   require 'devise/orm/active_record'
 

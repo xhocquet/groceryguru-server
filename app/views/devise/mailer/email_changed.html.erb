@@ -1,7 +1,17 @@
-<p>Hello <%= @email %>!</p>
+<article class="message is-info">
+  <div class="message-header">
+    <p><strong>Your email was changed</strong></p>
+  </div>
+  <div class="content message-body">
+    <p>Hello!</p>
 
-<% if @resource.try(:unconfirmed_email?) %>
-  <p>We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</p>
-<% else %>
-  <p>We're contacting you to notify you that your email has been changed to <%= @resource.email %>.</p>
-<% end %>
+    <% if @resource.try(:unconfirmed_email?) %>
+      <p>We're contacting you to notify you that your email is being changed to <b><%= @resource.unconfirmed_email %></b>.</p>
+    <% else %>
+      <p>We're contacting you to notify you that your email has been changed to <b><%= @resource.email %></b>.</p>
+    <% end %>
+  </div>
+  <div class="message-footer has-text-centered">
+    <%= link_to 'Grocery Guru', root_url, class: 'has-text-light' %>
+  </div>
+</article>

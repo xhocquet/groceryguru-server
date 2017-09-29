@@ -55,6 +55,7 @@ end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'rake-progressbar'
+  gem "letter_opener"
   gem 'capistrano'
   gem 'capistrano3-puma'
   gem 'capistrano-rails', require: false
