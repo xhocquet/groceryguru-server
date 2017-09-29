@@ -62,6 +62,10 @@ group :development do
   gem 'capistrano-rvm'
 end
 
+group :production do
+  gem 'newrelic_rpm'
+end
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 ruby "2.4.1"
