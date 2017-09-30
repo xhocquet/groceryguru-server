@@ -1,5 +1,9 @@
-w
-
+<section class="section">
+  <div class="container">
+    <div class="column is-4 is-offset-4">
+      <h1 class="title">Reset Password</h1>
+      <hr>
+      <h2 class="subtitle">
         <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
           <%= devise_error_messages! %>
 

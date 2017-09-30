@@ -27,7 +27,7 @@ class Receipt < ApplicationRecord
     return if self.processed || self.image.blank?
 
     tesseract_image = RTesseract.new(self.image.path, psm: 4)
-    self.pdf = File.open(tesseract_image.to_pdf)
+    self.pdf = File.open(tesseract_image.to_pdf) if File.exist?(tesseract_image.to_pdf)
     self.text = tesseract_image.to_s.downcase
     self.line_count = self.text.split("\n").size
 
