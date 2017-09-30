@@ -48,6 +48,7 @@ GEM
     arel (8.0.0)
     bcrypt (3.1.11-x64-mingw32)
     bindex (0.5.0)
+    bonsai-elasticsearch-rails (0.0.4)
     builder (3.2.3)
     byebug (9.1.0)
     capistrano (3.9.1)
@@ -293,6 +294,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   bcrypt (~> 3.1.11)
+  bonsai-elasticsearch-rails
   byebug
   capistrano
   capistrano-bundler

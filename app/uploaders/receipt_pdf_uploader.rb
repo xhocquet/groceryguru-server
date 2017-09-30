@@ -2,7 +2,11 @@ class ReceiptPDFUploader < CarrierWave::Uploader::Base
   storage :file
 
   def store_dir
-    "public/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    if Rails.env.production?
+      "public/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    else
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    end
   end
 
   def extension_whitelist
