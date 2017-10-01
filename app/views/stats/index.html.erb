@@ -2,9 +2,19 @@
   <section class="section">
     <div class="container">
       <div class="content column is-8 is-offset-2">
-        <%= render 'transaction_container', transaction_group: 'worst-transactions' %>
-        <%= render 'transaction_container', transaction_group: 'improvable-transactions' %>
-        <%= render 'transaction_container', transaction_group: 'best-transactions' %>
+        <% if @transaction_groups.present? %>
+          <%= render 'transaction_container', transaction_group: 'worst-transactions' %>
+          <%= render 'transaction_container', transaction_group: 'improvable-transactions' %>
+          <%= render 'transaction_container', transaction_group: 'best-transactions' %>
+        <% else %>
+          <article class="message is-warning">
+            <div class="message-body">
+              <p>You do not have stats to display.</p>
+              <p>In order to create suggestions, you must have at least one item from two different stores.</p>
+              <p>Please <a href="<%= root_path %>">add a receipt</a> or <a href="<%= receipts_path %>">fill in some data</a> to get started!</p>
+            </div>
+          </article>
+        <% end %>
       </div>
     </div>
   </section>
