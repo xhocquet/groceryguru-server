@@ -186,6 +186,7 @@ class @ShowReceiptPage
   insertInputIntoCell: ($tableCell) =>
     # Prevent duplicating inputs
     if $tableCell.find('input').length > 0
+      $tableCell.find('input').focus()
       return
 
     currentFieldName = $tableCell.data('field-name')
