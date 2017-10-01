@@ -140,7 +140,7 @@
 
 .cropper-line {
   background-color: #39f;
-  opacity: 1;
+  opacity: 0.5;
 }
 
 .cropper-line.line-e {
@@ -181,53 +181,53 @@
 
 .cropper-point.point-e {
   top: 50%;
-  right: -10.5px;
-  margin-top: -10.5px;
+  right: -8.5px;
+  margin-top: -8.5px;
   cursor: e-resize
 }
 
 .cropper-point.point-n {
-  top: -10.5px;
+  top: -8.5px;
   left: 50%;
-  margin-left: -10.5px;
+  margin-left: -8.5px;
   cursor: n-resize
 }
 
 .cropper-point.point-w {
   top: 50%;
-  left: -10.5px;
-  margin-top: -10.5px;
+  left: -8.5px;
+  margin-top: -8.5px;
   cursor: w-resize
 }
 
 .cropper-point.point-s {
-  bottom: -10.5px;
+  bottom: -8.5px;
   left: 50%;
-  margin-left: -10.5px;
+  margin-left: -8.5px;
   cursor: s-resize
 }
 
 .cropper-point.point-ne {
-  top: -10.5px;
-  right: -10.5px;
+  top: -8.5px;
+  right: -8.5px;
   cursor: ne-resize
 }
 
 .cropper-point.point-nw {
-  top: -10.5px;
-  left: -10.5px;
+  top: -8.5px;
+  left: -8.5px;
   cursor: nw-resize
 }
 
 .cropper-point.point-sw {
-  bottom: -10.5px;
-  left: -10.5px;
+  bottom: -8.5px;
+  left: -8.5px;
   cursor: sw-resize
 }
 
 .cropper-point.point-se {
-  right: -10.5px;
-  bottom: -10.5px;
+  right: -8.5px;
+  bottom: -8.5px;
   cursor: se-resize;
   opacity: 1
 }
