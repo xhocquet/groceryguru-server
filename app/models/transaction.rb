@@ -5,7 +5,7 @@ class Transaction < ApplicationRecord
 
   monetize :price_cents , allow_nil: true
 
-  default_scope { order(line_number: :desc, created_at: :desc) }
+  default_scope { order(line_number: :asc, created_at: :desc) }
   scope :completed, -> { where.not(name: nil).where.not(price_cents: nil).where('weight IS NOT NULL OR count IS NOT NULL') }
   scope :incomplete, -> { where("name IS NULL OR price_cents IS NULL OR (weight IS NULL AND count IS NULL)") }
 
