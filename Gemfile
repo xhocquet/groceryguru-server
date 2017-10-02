@@ -18,7 +18,7 @@ gem 'turbolinks', '~> 5'
 gem 'kaminari'
 
 gem 'jbuilder', '~> 2.5'
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.0'
 gem 'bcrypt', '~> 3.1.11'
 
 gem 'devise'
@@ -41,7 +41,7 @@ gem 'chronic'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
-gem 'figaro'
+gem 'airbrake'
 
 group :test do
   gem 'simplecov'
