@@ -34,9 +34,8 @@ sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install -y imagemagick libmagickwand-dev
 sudo apt-get install -y tesseract-ocr
-sudo apt-get install -y libpq-dev
+sudo apt-get install -y libpq-dev postgresql postgresql-contrib
 sudo apt-get install -y nodejs
-sudo apt-get install -y openjdk-7-jre
 sudo apt-get install -y oracle-java8-installer
 
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
