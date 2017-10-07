@@ -1,6 +1,6 @@
 # Grocery Guru - Server
 
-[![Hakiri Security](https://hakiri.io/github/xhocquet/groceryguru-server/master.svg)](https://hakiri.io/github/xhocquet/groceryguru-server/master) [![Code Climate](https://codeclimate.com/github/xhocquet/groceryguru-server/badges/gpa.svg)](https://codeclimate.com/github/xhocquet/groceryguru-server) [![Test Coverage](https://codeclimate.com/github/xhocquet/groceryguru-server/badges/coverage.svg)](https://codeclimate.com/github/xhocquet/groceryguru-server/coverage)
+[![Hakiri Security](https://hakiri.io/github/xhocquet/groceryguru-server/master.svg)](https://hakiri.io/github/xhocquet/groceryguru-server/master) [![Code Climate](https://codeclimate.com/github/xhocquet/groceryguru-server/badges/gpa.svg)](https://codeclimate.com/github/xhocquet/groceryguru-server)
 
 Grocery Guru is a tool to maximize your grocery spending.
 
@@ -21,12 +21,7 @@ Simply upload your receipts, fill in the missing data, and Grocery Guru will tel
 
 ### Current Stack
 - Ruby on Rails
-- SQLite3
-
-###Goal Stack
-- Ruby on Rails
-- PostgreSQL
-- Redis
+- SQLite3 (dev) / PSQL (prod)
 - ElasticSearch
 
 ### Major Dependencies
