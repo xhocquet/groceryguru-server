@@ -16,7 +16,9 @@ test:
 
 production:
   adapter: postgresql
-  encoding: unicode
+  host: localhost
+  port: 5432
+  encoding: utf8
   database: grocery_guru_prod
-  username: groceryguru
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASS'] %>
