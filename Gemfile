@@ -22,6 +22,7 @@ gem 'redis', '~> 3.0'
 gem 'bcrypt', '~> 3.1.11'
 
 gem 'devise'
+gem 'simple_token_authentication'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'

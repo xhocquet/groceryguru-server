@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }
+  before_action :authenticate_user!, if: lambda { |controller| controller.request.format.html? }
   protect_from_forgery with: :exception
 
   default_form_builder AppFormBuilder
