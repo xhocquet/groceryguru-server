@@ -1,4 +1,6 @@
 class StatsController < ApplicationController
+  acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }
+
   def index
     @transaction_groups = current_user.transactions
                           .includes(:item, receipt: [:store])
@@ -19,5 +21,10 @@ class StatsController < ApplicationController
                               'improvable-transactions'
                             end
                           }
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @transaction_groups.to_json }
+    end
   end
 end
