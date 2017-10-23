@@ -103,6 +103,5 @@ Devise.setup do |config|
 
   config.sign_out_via = :delete
 
-  # config.omniauth :google_oauth2,
-  # config.omniauth :facebook,
+  config.omniauth :google_oauth2, Rails.application.secrets.GOOGLE_OAUTH_CLIENT_ID, Rails.application.secrets.GOOGLE_OAUTH_CLIENT_SECRET, {}
 end
