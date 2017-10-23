@@ -1,3 +1,5 @@
+@import 'groceryguru_variables';
+
 body.email-layout {
   article.message {
     margin: 48px auto;
@@ -14,7 +16,7 @@ body.email-layout {
     }
 
     .message-footer {
-      background-color: #23d160;
+      background-color: #primary;
       border-radius: 0 0 3px 3px;
       color: #fff;
       line-height: 1.25;
@@ -25,13 +27,13 @@ body.email-layout {
 
   article.message.is-danger {
     .message-footer {
-      background-color: #ff3860;
+      background-color: $red;
     }
   }
 
   article.message.is-info {
     .message-footer {
-      background-color: #3273dc;
+      background-color: $blue;
     }
   }
 }

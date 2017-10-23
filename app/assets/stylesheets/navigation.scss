@@ -1,3 +1,5 @@
+@import 'groceryguru_variables';
+
 nav.navbar {
   .navbar-start {
     .navbar-item {
@@ -8,7 +10,7 @@ nav.navbar {
     }
 
     .navbar-item.active {
-      background-color: #18587A;
+      background-color: $blue;
       color: white;
     }
   }

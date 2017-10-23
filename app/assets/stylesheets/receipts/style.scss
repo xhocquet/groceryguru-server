@@ -1,3 +1,5 @@
+@import 'groceryguru_variables';
+
 body.receipts {
   .progress-label {
     top: 1.5rem;
@@ -20,7 +22,8 @@ body.receipts {
 
       &:hover {
         cursor: pointer;
-        outline: 1px solid #dbdbdb;
+        box-shadow:0px 0px 0px 2px $primary inset;
+        border-radius: 4px;
       }
     }
 
@@ -106,7 +109,7 @@ body.receipts {
       font-weight: bold;
 
       div {
-        border-bottom: 1px solid #bbb;
+        border-bottom: 1px solid $blue;
       }
     }
 
@@ -114,18 +117,19 @@ body.receipts {
       input {
         padding: 0;
       }
-    }
 
-    div.data:hover {
-      box-shadow:0px 0px 0px 2px #ccc inset;
-      border-radius: 4px;
+      &:hover {
+        box-shadow:0px 0px 0px 2px $primary inset;
+        border-radius: 4px;
+        cursor: pointer;
+      }
     }
 
     form.incomplete {
-      background-color: #f9e7c5;
+      background-color: $yellow;
 
       div.missing {
-        background-color: #ff9393;
+        background-color: $red;
       }
     }
 
@@ -150,25 +154,28 @@ body.receipts {
     font-size: 18px;
     line-height: 0;
     overflow: hidden;
-  }
+    padding: 18px;
+    background-color: #ccc;
 
-  pre span {
-    display: block;
-    height: 26px;
-    line-height: 28px;
+    span {
+      display: block;
+      height: 26px;
+      line-height: 28px;
 
-    &.focused {
-      background-color: #f9e7c5;
-    }
+      &.focused {
+        background-color: $yellow;
+      }
 
-    &:before {
-      border-right: 3px solid #ddd;
-      color: #aaa;
-      content: counter(line);
-      counter-increment: line;
-      display: inline-block;
-      margin-right: 12px;
-      width: 40px;
+      &:before {
+        border-right: 3px solid $primary;
+        color: $primary;
+        content: counter(line);
+        counter-increment: line;
+        display: inline-block;
+        margin-right: 12px;
+        padding-left: 8px;
+        width: 40px;
+      }
     }
   }
 }

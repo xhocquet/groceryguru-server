@@ -1,5 +1,7 @@
+@import 'groceryguru_variables';
+
 section.hero.is-info {
-  background-color: #18587A;
+  background-color: $blue;
 }
 
 .notification {
@@ -58,10 +60,10 @@ section.hero.is-info {
 
 progress {
   &.progress::-moz-progress-bar {
-    background-color: #D96459;
+    background-color: $red;
   }
   &.progress::-webkit-progress-bar {
-    background-color: #D96459;
+    background-color: $red;
   }
 }
 

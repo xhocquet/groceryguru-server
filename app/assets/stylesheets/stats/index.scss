@@ -1,13 +1,15 @@
+@import 'groceryguru_variables';
+
 body.stats.index {
   .transactions-list-button-container {
-    background-color: #F2AE72;
+    background-color: $yellow;
 
     &.is-worst {
-      background-color: #D96459;
+      background-color: $red;
     }
 
     &.is-best {
-      background-color: #588C73
+      background-color: $green
     }
   }
 
@@ -33,28 +35,28 @@ body.stats.index {
   }
 
   .transactions-list {
-    border-left: 5px solid #F2AE72;
+    border-left: 5px solid $yellow;
     border-radius: 5px;
     padding-left: 24px;
     margin-bottom: 24px;
 
     &.worst-transactions-list {
-      border-color: #D96459;
+      border-color: $red;
     }
 
     &.best-transactions-list {
-      border-color: #588C73;
+      border-color: $green;
     }
 
     .item-card {
-      background-color: #F2AE72;
+      background-color: $yellow;
 
       &.is-worst {
-        background-color: #D96459;
+        background-color: $red;
       }
 
       &.is-best {
-        background-color: #588C73
+        background-color: $green
       }
 
       .transaction-list {
@@ -80,15 +82,15 @@ body.stats.index {
 
       tbody {
         tr {
-          background-color: #F2AE72;
+          background-color: $yellow;
         }
 
         tr.is-worst {
-          background-color: #D96459;
+          background-color: $red;
         }
 
         tr.is-best {
-          background-color: #588C73;
+          background-color: $green;
         }
       }
     }
