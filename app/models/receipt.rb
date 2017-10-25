@@ -5,6 +5,7 @@ class Receipt < ApplicationRecord
   mount_uploader :image, ReceiptUploader
   mount_uploader :pdf, ReceiptPDFUploader
   attr_accessor :image_cache, :image_crop_x, :image_crop_y, :image_crop_h, :image_crop_w
+  serialize :box_data, Array
 
   belongs_to :user, inverse_of: :receipts
   belongs_to :store, required: false, inverse_of: :receipts
@@ -27,6 +28,7 @@ class Receipt < ApplicationRecord
     return if self.processed || self.image.blank?
 
     tesseract_image = RTesseract.new(self.image.path, psm: 4)
+    self.box_data = RTesseract::Box.new(self.image.path, psm: 4).words
     self.pdf = File.open(tesseract_image.to_pdf) if File.exist?(tesseract_image.to_pdf)
     self.text = tesseract_image.to_s.downcase
     self.line_count = self.text.split("\n").size
