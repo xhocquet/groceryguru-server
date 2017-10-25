@@ -27,3 +27,10 @@ body.community.index {
     }
   }
 }
+
+@media screen and (max-width: 1007px) {
+  .community-actions-container {
+    float: none !important;
+    margin-top: 24px;
+  }
+}

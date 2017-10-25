@@ -1,6 +1,14 @@
 @import 'groceryguru_variables';
 
 nav.navbar {
+  i.mobile-toggle-icon {
+    font-size: 24px;
+    height: 100%;
+    line-height: 48px;
+    text-align: center;
+    width: 100%;
+  }
+
   .navbar-start {
     .navbar-item {
       i {
@@ -17,5 +25,11 @@ nav.navbar {
 
   .admin-notification-count {
     margin-left: 8px;
+  }
+}
+
+@media screen and (max-width: 1007px) {
+  .navbar-menu {
+    padding: 0;
   }
 }
