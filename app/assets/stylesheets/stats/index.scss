@@ -3,14 +3,8 @@
 body.stats.index {
   .transactions-list-button-container {
     background-color: $yellow;
-
-    &.is-worst {
-      background-color: $red;
-    }
-
-    &.is-best {
-      background-color: $green
-    }
+    &.is-worst { background-color: $red; }
+    &.is-best { background-color: $green; }
   }
 
   .stats-search-bar {
@@ -49,28 +43,15 @@ body.stats.index {
     border-radius: 5px;
     padding-left: 24px;
     margin-bottom: 24px;
-
-    &.worst-transactions-list {
-      border-color: $red;
-    }
-
-    &.best-transactions-list {
-      border-color: $green;
-    }
+    &.worst-transactions-list { border-color: $red; }
+    &.best-transactions-list { border-color: $green; }
 
     .item-card {
       background-color: $yellow;
-
-      &.is-worst {
-        background-color: $red;
-      }
-
-      &.is-best {
-        background-color: $green
-      }
+      &.is-worst { background-color: $red; }
+      &.is-best { background-color: $green }
 
       .transaction-list {
-
         .transaction-summary {
           margin: 24px 0;
 
@@ -91,20 +72,10 @@ body.stats.index {
       }
 
       tbody {
-        tr {
-          background-color: $yellow;
-        }
-
-        tr.is-worst {
-          background-color: $red;
-        }
-
-        tr.is-best {
-          background-color: $green;
-        }
+        tr { background-color: $yellow; }
+        tr.is-worst { background-color: $red; }
+        tr.is-best { background-color: $green; }
       }
     }
   }
-
-
 }

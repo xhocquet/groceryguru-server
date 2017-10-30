@@ -1,17 +1,6 @@
 @import 'groceryguru_variables';
 
 body.receipts {
-  .progress-label {
-    top: 1.5rem;
-    font-weight: bold;
-    font-size: 1.3rem;
-    line-height: 1.5rem;
-    margin: 0;
-    text-align: center;
-    position: relative;
-    color: white;
-  }
-
   .title {
     .store-title-span, .date-title-span {
       padding: 4px 6px;
@@ -38,16 +27,23 @@ body.receipts {
     }
   }
 
+  .progress-label {
+    top: 1.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    margin: 0;
+    text-align: center;
+    position: relative;
+    color: white;
+  }
+
   div.transaction-table {
     width: 100%;
     display: table;
 
     div.table-row, form.table-row {
       display: table-row;
-
-      .save-button {
-        height: 28px;
-      }
     }
 
     div.table-cell {
@@ -85,20 +81,14 @@ body.receipts {
         }
       }
 
-      a {
-        i {
-          font-size: 24px;
-          vertical-align: middle;
-        }
+      a i {
+        font-size: 24px;
+        vertical-align: middle;
       }
     }
 
-    .select-transaction-cell {
-      cursor: pointer;
-
-      &:hover {
-        font-weight: bold;
-      }
+    .select-transaction-cell:hover {
+      font-weight: bold;
     }
 
     div.table-header {
@@ -109,16 +99,10 @@ body.receipts {
       }
     }
 
-    div.data {
-      input {
-        padding: 0;
-      }
-
-      &:hover {
-        box-shadow:0px 0px 0px 2px $primary inset;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+    div.data:hover {
+      box-shadow:0px 0px 0px 2px $primary inset;
+      border-radius: 4px;
+      cursor: pointer;
     }
 
     form.incomplete {

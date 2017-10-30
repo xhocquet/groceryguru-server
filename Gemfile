@@ -26,7 +26,7 @@ gem 'simple_token_authentication'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
-gem "recaptcha", require: "recaptcha/rails"
+gem 'recaptcha', require: 'recaptcha/rails'
 
 gem 'active_link_to'
 
@@ -57,12 +57,7 @@ end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'rake-progressbar'
-  gem "letter_opener"
-  gem 'capistrano'
-  gem 'capistrano3-puma'
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano-rvm'
+  gem 'letter_opener'
 end
 
 group :production do

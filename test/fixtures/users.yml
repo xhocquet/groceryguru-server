@@ -3,9 +3,12 @@ admin:
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
   admin: true
   confirmed_at: <%= Time.zone.now %>
+  authentication_token: setTokenForTestingLalala
 
 user:
   email: xavier@gmail.com
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
   admin: false
   confirmed_at: <%= Time.zone.now %>
+  authentication_token: setTokenForTestingLalalalala
+
