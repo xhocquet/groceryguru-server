@@ -1,6 +1,8 @@
 class Receipt < ApplicationRecord
   include Parsers
 
+  paginates_per 15
+
   # Attachments
   mount_uploader :image, ReceiptUploader
   mount_uploader :pdf, ReceiptPDFUploader

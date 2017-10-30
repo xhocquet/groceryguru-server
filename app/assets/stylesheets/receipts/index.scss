@@ -1,5 +1,28 @@
 body.receipts.index {
-  .progress {
-    margin: 4px 0;
+  table {
+    width: 100%;
+    font-size: 18px;
+
+    tr.receipt-row {
+      cursor: pointer;
+      height: 48px;
+      line-height: 48px;
+
+      &:hover {
+        text-shadow: 1px 0px 0px black;
+      }
+
+      td {
+        .progress-label {
+          line-height: 0;
+          font-size: 16px;
+        }
+
+        .progress {
+          height: 24px;
+          margin: 12px 0;
+        }
+      }
+    }
   }
 }

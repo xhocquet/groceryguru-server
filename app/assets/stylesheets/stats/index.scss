@@ -13,6 +13,16 @@ body.stats.index {
     }
   }
 
+  .stats-search-bar {
+    width: 100%;
+    height: 68px;
+    padding: 8px;
+    margin-bottom: 24px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-size: 36px;
+  }
+
   button {
     width: 100%;
     justify-content: space-between;

@@ -3,6 +3,8 @@
     <div class="container">
       <div class="content column is-8 is-offset-2">
         <% if @transaction_groups.present? %>
+          <input type="text" class="stats-search-bar" placeholder="Search..." />
+
           <%= render 'transaction_container', transaction_group: 'worst-transactions' %>
           <%= render 'transaction_container', transaction_group: 'improvable-transactions' %>
           <%= render 'transaction_container', transaction_group: 'best-transactions' %>

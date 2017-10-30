@@ -1,6 +1,6 @@
 <section class="section">
   <div class="container">
-    <div class="column is-6 is-offset-3">
+    <div class="column is-8 is-offset-2">
         <% if @receipts.size == 0 %>
           <article class="message is-warning">
             <div class="message-body">
@@ -18,10 +18,13 @@
             </thead>
             <tbody>
               <% @receipts.each_with_index do |receipt,index| %>
-                <tr>
-                 <td><%= link_to receipt.store.try(:name).try(:titleize) || 'Store Missing', receipt_path(receipt) %></td>
-                 <td><%= receipt.created_at.to_date.to_formatted_s(:long) %></td>
-                 <td><progress class="progress is-success" value="<%= completed_transactions_count(receipt) %>" max="<%= transactions_count(receipt) %>"></progress></td>
+                <tr class="receipt-row" data-receipt-path="<%= receipt_path(receipt) %>" >
+                  <td><%= link_to receipt.store.try(:name).try(:titleize) || 'Store Missing', receipt_path(receipt) %></td>
+                  <td><%= receipt.created_at.to_date.to_formatted_s(:long) %></td>
+                  <td width="40%">
+                    <h2 class="progress-label"><%= completion_percentage(receipt) %></h2>
+                    <progress class="progress is-success" value="<%= completed_transactions_count(receipt) %>" max="<%= transactions_count(receipt) %>"></progress>
+                  </td>
                 </tr>
               <% end %>
             </tbody>
@@ -37,3 +40,9 @@
     </div>
   </div>
 </section>
+
+<script type="text/javascript">
+  $('.receipt-row').click(function(e) {
+    window.location.href = $(e.currentTarget).data('receipt-path');
+  })
+</script>
