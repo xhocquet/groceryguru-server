@@ -1,6 +1,4 @@
 class ReceiptsController < ApplicationController
-  acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }
-
   def index
     @receipts = current_user.receipts.includes(:store).order(created_at: :desc).page(params[:page])
   end

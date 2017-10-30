@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   namespace :api do
     resource :session, only: [:create, :destroy]
     resource :registration, only: [:create]
+    resources :receipts, only: [:index, :create]
     get 'store/(:query)', controller: "/stores", action: :search, as: :store_search
     get 'item/(:query)', controller: "/items", action: :search, as: :item_search
   end
