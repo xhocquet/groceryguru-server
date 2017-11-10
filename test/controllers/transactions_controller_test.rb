@@ -6,19 +6,20 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create transaction" do
-    post receipt_transactions_path(Receipt.first), params: { transaction: { count: 2, name: "Apples" } }
-    assert flash[:notice], 'Transaction created'
+    assert_difference("Transaction.count", 1) do
+      post receipt_transactions_path(Receipt.first), params: { transaction: { count: 2, name: "Apples" } }
+    end
   end
 
   test "should update transaction" do
-    patch transaction_path(Transaction.first), params: { transaction: { name: "Apple" } }
-    assert flash[:notice], 'Transaction updated'
+    transaction = users(:admin).transactions.first
+    patch transaction_path(transaction), params: { transaction: { name: "Apple" } }
+    assert_equal "Apple", transaction.reload.name
   end
 
   test "should destroy transaction" do
-    assert_difference('Transaction.count', -1) do
-      delete transaction_path(Transaction.first)
-      assert flash[:notice], 'Transaction destroyed'
-      end
+    assert_difference("Transaction.count", -1) do
+      delete transaction_path(users(:admin).transactions.first)
+    end
   end
 end

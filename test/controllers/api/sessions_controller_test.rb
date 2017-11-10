@@ -18,7 +18,6 @@ class Api::SessionsControllerTest < ActionDispatch::IntegrationTest
   test "should create session for valid request" do
     post api_session_path params: { user_login: { email: @user.email, password: 'password' }}, format: :json
     assert_response :success
-    debugger
     assert_equal JSON.parse(response.body)['auth_token'], @user.authentication_token
   end
 end

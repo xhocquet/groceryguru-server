@@ -1,3 +1,15 @@
 soopers:
   postal_code: 80205
   name: King Soopers
+
+walmart:
+  postal_code: 12345
+  name: Walmart
+
+albertsons:
+  postal_code: 75025
+  name: Albertsons
+
+target:
+  postal_code: 13215
+  name: Target

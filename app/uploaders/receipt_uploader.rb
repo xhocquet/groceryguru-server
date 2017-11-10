@@ -26,6 +26,7 @@ class ReceiptUploader < CarrierWave::Uploader::Base
 
   def clean_image
     manipulate! do |img|
+      img.auto_orient!
       img.format = "png"
       img.crop!(model.image_crop_x.to_i,model.image_crop_y.to_i,model.image_crop_w.to_i,model.image_crop_h.to_i) if model.image_crop_y.present?
     end

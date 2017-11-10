@@ -1,3 +1,23 @@
-receipt:
+one:
   text: MyString
   user: admin
+  created_at: <%= Time.now.to_s(:db) %>
+  store: soopers
+
+two:
+  text: Receipt Text Lalalala
+  user: admin
+  created_at: <%= (Time.now - 1.days).to_s(:db) %>
+  store: walmart
+
+three:
+  text: receiptttttt
+  user: admin
+  created_at: <%= (Time.now - 2.days).to_s(:db) %>
+  store: albertsons
+
+four:
+  text: receipt four
+  user: admin
+  created_at: <%= (Time.now - 3.days).to_s(:db) %>
+  store: target

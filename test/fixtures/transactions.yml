@@ -4,7 +4,7 @@ one:
   weight: null
   price_cents: 288
   count: 1
-  receipt: receipt
+  receipt: one
   user: admin
 
 two:
@@ -13,7 +13,7 @@ two:
   weight: null
   price_cents: null
   count: 1
-  receipt: receipt
+  receipt: one
   user: admin
 
 three:
@@ -22,7 +22,7 @@ three:
   price_cents: 498
   weight: '16 oz'
   count: null
-  receipt: receipt
+  receipt: one
   user: admin
 
 four:
@@ -31,7 +31,7 @@ four:
   price_cents: 498
   weight: '16 oz'
   count: null
-  receipt: receipt
+  receipt: one
   user: admin
 
 five:
@@ -40,5 +40,29 @@ five:
   price_cents: 498
   weight: null
   count: null
-  receipt: receipt
+  receipt: one
   user: admin
+
+six:
+  name: oatmeal
+  item: oatmeal
+  raw: OATMEAL TEST DATA BAD BUY
+  price_cents: 200
+  count: 1
+  receipt: one
+
+seven:
+  name: oatmeal
+  item: oatmeal
+  raw: OATMEAL TEST DATA BAD BUY
+  price_cents: 150
+  count: 1
+  receipt: two
+
+eight:
+  name: oatmeal
+  item: oatmeal
+  raw: OATMEAL TEST DATA BAD BUY
+  price_cents: 100
+  count: 1
+  receipt: three

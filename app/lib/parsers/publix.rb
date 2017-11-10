@@ -10,7 +10,9 @@ module Parsers
         end
 
         if index < 5
-          line.downcase.match(/([\w\']{2,})/).captures.each do |string|
+          matches = line.downcase.match(/([\w\']{2,})/)
+
+          matches && matches.captures.each do |string|
             @receipt.store = Store.find_by_name(string)
           end
         end
