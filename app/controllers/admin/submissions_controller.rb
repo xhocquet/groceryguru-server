@@ -3,7 +3,8 @@ class Admin::SubmissionsController < ApplicationController
 
   def validate
     klass = submission_model_class
-    new_record = klass.new validated_submission_value_param
+    new_record = klass.new name: @submission.value.downcase
+
     if new_record.save
       @submission.accepted!
       flash[:notice] = "Submission successfully persisted"
@@ -29,8 +30,6 @@ class Admin::SubmissionsController < ApplicationController
       return ::Store
     elsif @submission.model_type == 'item'
       return ::Item
-    elsif @submission.model_type == 'mode'
-      return ::Item::Mode
     end
   end
 
@@ -44,9 +43,5 @@ class Admin::SubmissionsController < ApplicationController
 
   def load_submission
     @submission = Submission.find(params[:id] || params[:submission_id])
-  end
-
-  def validated_submission_value_param
-    params.require(:submission).permit(:name)
   end
 end

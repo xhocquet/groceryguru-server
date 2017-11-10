@@ -1,15 +1,11 @@
 banana:
   name: banana
-  mode: general
 
 yogurt:
   name: yogurt
-  mode: general
 
 oatmeal:
   name: oatmeal
-  mode: general
 
 cereal:
   name: cereal
-  mode: general

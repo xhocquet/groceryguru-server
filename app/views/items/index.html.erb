@@ -18,7 +18,6 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Mode</th>
         <th></th>
       </tr>
     </thead>
@@ -29,7 +28,6 @@
             <%= item.name.titleize %>
             <div id="item-anchor-<%= item.id %>" class="long-list-anchor"></div>
           </td>
-          <td><%= item.mode.try(:name).try(:titleize) %></td>
           <td>
             <%= link_to admin_item_path(item, alpha: params[:alpha]), method: :delete do %>
               <i class="material-icons">delete</i>

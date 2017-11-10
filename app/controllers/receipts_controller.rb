@@ -16,7 +16,7 @@ class ReceiptsController < ApplicationController
   end
 
   def show
-    @receipt = current_user.receipts.includes(transactions: [item: [:mode]]).find(params[:id])
+    @receipt = current_user.receipts.includes(transactions: :item).find(params[:id])
   end
 
   def update

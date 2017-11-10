@@ -145,10 +145,8 @@ puts "2/3 finished creating item groups"
 File.foreach(File.join(Rails.root, 'db', 'food_data', 'sr28asc', 'FOOD_DES.txt')) do |line|
   id, group_id, name_mode = line.scrub.strip.gsub(/~/,'').split("^")
   item_name, *mode = name_mode.split(", ")
-  mode_name = mode.join(", ")
   group = Item::Group.find_by(usda_id: group_id)
-  mode = Item::Mode.find_or_create_by!(name: mode_name.strip.downcase)
-  Item.find_or_create_by!(name: item_name.strip.downcase, mode_id: mode.id, usda_id: id, group: group)
+  Item.find_or_create_by!(name: item_name.strip.downcase, usda_id: id, group: group)
   puts "Created #{item_name.strip.downcase}"
 end
-puts "3/3 finished creating items and modes"
+puts "3/3 finished creating items"

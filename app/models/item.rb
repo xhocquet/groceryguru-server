@@ -4,12 +4,7 @@ class Item < ApplicationRecord
 
   has_many :receipts
   has_one :receipt_transaction, class_name: "Transaction"
-  belongs_to :mode
-  belongs_to :group
-
-  def name_and_mode
-    [self.name, self.mode.try(:name).gsub(/\,/,'').gsub(/\s{2}/,' ')].compact.join(' ')
-  end
+  belongs_to :group, required: false
 
   def self.fuzzy_search(query = nil)
     if query
@@ -23,7 +18,7 @@ class Item < ApplicationRecord
     {
       query: {
         match_phrase_prefix: {
-          name_and_mode: {
+          name: {
             query: query,
             slop: 3,
             max_expansions: 30
@@ -34,6 +29,6 @@ class Item < ApplicationRecord
   end
 
   def as_indexed_json(options={})
-    self.as_json(methods: [:name_and_mode], only: [:name_and_mode])
+    self.as_json(methods: [:name], only: [:name])
   end
 end

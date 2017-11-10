@@ -4,9 +4,9 @@ class ItemsController < ApplicationController
   def index
     if params[:alpha].present?
       items = Item.arel_table
-      @items = Item.where(items[:name].matches("#{params[:alpha]}%")).includes(:mode).order(:name)
+      @items = Item.where(items[:name].matches("#{params[:alpha]}%")).order(:name)
     else
-      @items = Item.all.includes(:mode).order(:name)
+      @items = Item.all.order(:name)
     end
   end
 
@@ -29,6 +29,6 @@ class ItemsController < ApplicationController
   end
 
   def search
-    render json: Item.fuzzy_search(params[:query]).records.to_json(:include => :mode)
+    render json: Item.fuzzy_search(params[:query]).records.to_json
   end
 end

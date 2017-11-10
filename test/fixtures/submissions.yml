@@ -4,8 +4,8 @@ accepted:
   user: admin
 
 pending:
-  model_type: :mode
-  value: A la mode
+  model_type: :item
+  value: Food
   user: admin
 
 rejected:

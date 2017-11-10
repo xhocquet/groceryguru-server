@@ -15,7 +15,6 @@
       <%= form_for community_create_item_path do %>
         <div class="section">
           <input id="item_input" class="controls input" name="item_submission[value]" type="text" placeholder="Search or type an item name">
-          <input id="mode_input" class="controls input" name="mode_submission[value]" type="text" placeholder="Search or type a mode">
         </div>
         <div class="section captcha-submit">
           <div class="g-recaptcha" data-sitekey="<%= Rails.application.secrets.RECAPTCHA_SITE_KEY %>" data-callback="showInput"></div>
@@ -28,11 +27,10 @@
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
-  var modeInput = $('#mode_input');
   var itemInput = $('#item_input');
 
   function showInput() {
-    if (grecaptcha.getResponse() !== '' && modeInput.val() !== '' && itemInput.val() != '')
+    if (grecaptcha.getResponse() !== '' && itemInput.val() != '')
       $('.captcha-submit').find('button').prop("disabled", false)
   }
 </script>

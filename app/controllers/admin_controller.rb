@@ -11,7 +11,7 @@ class AdminController < ApplicationController
 
   def item_submissions
     @items_controller = true
-    @submissions = Submission.where(model_type: [:item, :mode]).needs_sorting.order(:created_at).page(params[:page])
+    @submissions = Submission.where(model_type: :item).needs_sorting.order(:created_at).page(params[:page])
     render 'submissions'
   end
 end

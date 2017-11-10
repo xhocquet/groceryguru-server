@@ -8,9 +8,6 @@
       <table class="table admin-data-table">
       <thead>
         <tr>
-          <% if @items_controller %>
-            <th>Type</th>
-          <% end %>
           <th>Value</th>
           <th></th>
           <th></th>
@@ -19,11 +16,6 @@
       <tbody>
         <% @submissions.each do |submission| %>
           <tr>
-            <% if @items_controller %>
-              <td>
-                <%= submission.model_type.titleize %>
-              </td>
-            <% end %>
             <td class="value-cell">
               <%= form_for submission, url: admin_submission_validate_path(submission), method: :post do |f| %>
                 <span class="invalid-name-text"><%= submission.value %></span>

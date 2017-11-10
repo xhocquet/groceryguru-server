@@ -4,10 +4,10 @@ class Admin::SubmissionControllerTest < ActionDispatch::IntegrationTest
   test "should validate submission and create record" do
     sign_in users(:admin)
     @submission = submissions(:pending)
-    assert_difference "::Item::Mode.all.size", 1 do
-      post admin_submission_validate_path(submission_id: @submission.id), params: { submission: { name: 'alamode' } }
+    assert_difference "::Item.all.size", 1 do
+      post admin_submission_validate_path(submission_id: @submission.id)
     end
-    assert_equal ::Item::Mode.last.name, 'alamode'
+    assert_equal @submission.value, ::Item.last.name
     assert_redirected_to admin_items_submissions_path
   end
 

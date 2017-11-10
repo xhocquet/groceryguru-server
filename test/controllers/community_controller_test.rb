@@ -17,7 +17,7 @@ class CommunityControllerTest < ActionDispatch::IntegrationTest
 
   test 'creates item submission' do
     assert_difference 'Submission.count', 2 do
-      post community_create_item_path params: { item_submission: { value: 'TestItem' }, mode_submission: { value: 'TestMode' } }
+      post community_create_item_path params: { item_submission: { value: 'TestItem' } }
       assert_redirected_to community_new_item_path
     end
   end
