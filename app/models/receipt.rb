@@ -24,6 +24,10 @@ class Receipt < ApplicationRecord
     self.text.present? ? self.text.split("\n") : []
   end
 
+  def display_date
+    self.date.present? ? self.date : self.created_at
+  end
+
   private
 
   def process_text

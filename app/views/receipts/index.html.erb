@@ -20,7 +20,7 @@
               <% @receipts.each_with_index do |receipt,index| %>
                 <tr class="receipt-row" data-receipt-path="<%= receipt_path(receipt) %>" >
                   <td><%= link_to receipt.store.try(:name).try(:titleize) || 'Store Missing', receipt_path(receipt) %></td>
-                  <td><%= receipt.created_at.to_date.to_formatted_s(:long) %></td>
+                  <td><%= receipt.display_date.to_date.to_formatted_s(:long) %></td>
                   <td width="40%">
                     <h2 class="progress-label"><%= completion_percentage(receipt) %></h2>
                     <progress class="progress is-success" value="<%= completed_transactions_count(receipt) %>" max="<%= transactions_count(receipt) %>"></progress>
