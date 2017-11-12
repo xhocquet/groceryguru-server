@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112212024) do
+ActiveRecord::Schema.define(version: 20171112220629) do
 
   create_table "item_groups", force: :cascade do |t|
     t.string "name"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20171112212024) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "submission_id"
-    t.index ["name"], name: "index_stores_on_name", unique: true
+    t.index ["name", "postal_code"], name: "index_stores_on_name_and_postal_code", unique: true
     t.index ["submission_id"], name: "index_stores_on_submission_id"
   end
 
