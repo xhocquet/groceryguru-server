@@ -8,33 +8,37 @@
       <table class="table admin-data-table">
       <thead>
         <tr>
-          <th>Value</th>
-          <th></th>
-          <th></th>
+          <th>Name</th>
+          <th width="5%"></th>
+          <th width="5%"></th>
         </tr>
       </thead>
-      <tbody>
-        <% @submissions.each do |submission| %>
-          <tr>
-            <td class="value-cell">
-              <%= form_for submission, url: admin_submission_validate_path(submission), method: :post do |f| %>
-                <span class="invalid-name-text"><%= submission.value %></span>
-              <% end %>
-            </td>
-            <td>
-              <a class='validate-link' href="#">
-                <i class="material-icons hint--top" aria-label="Validate new store">check</i>
-              </a>
-            </td>
-            <td>
-              <%= link_to admin_submission_path(submission), method: :delete do %>
-                <i class="material-icons hint--top" aria-label="Delete submission">delete</i>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
       </table>
+
+      <% @submissions.each do |submission| %>
+        <%= form_for Item.new, url: admin_items_path(Item.new) do |f| %>
+        <table class="table admin-data-table">
+        <tbody>
+            <tr>
+              <td>
+                <input type="hidden" name="item[submission_id]" value="<%= submission.id %>" />
+                <input name="item[name]" class="item-name-input" value="<%= submission.value %>" />
+              </td>
+              <td width="5%">
+                <a class='validate-link' href="#">
+                  <i class="material-icons hint--top" aria-label="Validate new item">check</i>
+                </a>
+              </td>
+              <td width="5%">
+                <%= link_to admin_submission_path(submission), method: :delete do %>
+                  <i class="material-icons hint--top" aria-label="Delete submission">delete</i>
+                <% end %>
+              </td>
+            </tr>
+        </tbody>
+        </table>
+        <% end %>
+      <% end %>
       <%= paginate @submissions %>
     <% else %>
       <article class="notification is-success tile is-8 no-submission-alert">

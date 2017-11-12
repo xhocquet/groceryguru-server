@@ -31,6 +31,10 @@ body.admin, body.stores, body.items {
       margin: 24px auto 0;
       width: 100%;
 
+      .item-name-input {
+        width: 50%;
+      }
+
       .long-list-anchor {
         position: relative;
         top: -240px;

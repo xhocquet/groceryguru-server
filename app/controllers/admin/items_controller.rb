@@ -8,6 +8,18 @@ class Admin::ItemsController < AdminController
     end
   end
 
+  def create
+    new_item = Item.new item_params
+
+    if new_item.save
+      new_item.submission.accepted!
+      flash[:notice] = "Store created"
+    else
+      flash[:error] = "Store could not be created"
+    end
+    redirect_to admin_items_path
+  end
+
   def submissions
     @submissions = Submission.where(model_type: :item).needs_sorting.order(:created_at).page(params[:page])
   end
@@ -28,5 +40,11 @@ class Admin::ItemsController < AdminController
       flash[:error] = "Could not destroy item"
     end
     redirect_to admin_items_path(options)
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:name, :group_id, :submission_id)
   end
 end

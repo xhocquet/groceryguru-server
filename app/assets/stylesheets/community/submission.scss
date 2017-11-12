@@ -10,12 +10,6 @@ body.community.new_store_submission {
 }
 
 body.community.new_item_submission {
-  input {
-    float: left;
-    width: 40%;
-    margin: 0 2.5%;
-  }
-
   .captcha-submit {
     display: flex;
     justify-content: space-between;
