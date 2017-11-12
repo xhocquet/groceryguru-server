@@ -1,5 +1,5 @@
 class Store < ApplicationRecord
-  has_many :receipts, inverse_of: :store
+  has_many :receipts, inverse_of: :store, dependent: :nullify
   belongs_to :submission, required: false
 
   def self.search(query = nil)
