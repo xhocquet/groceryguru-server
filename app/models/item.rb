@@ -9,7 +9,7 @@ class Item < ApplicationRecord
 
   def self.fuzzy_search(query = nil)
     if query
-      Item.search(fuzzy_query(query))
+      Item.search(fuzzy_query(query)).records
     else
       Item.limit(6)
     end
@@ -30,6 +30,6 @@ class Item < ApplicationRecord
   end
 
   def as_indexed_json(options={})
-    self.as_json(methods: [:name], only: [:name])
+    self.as_json(only: [:name])
   end
 end
