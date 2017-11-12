@@ -40,6 +40,9 @@
 
     searchBox.addListener('places_changed', function() {
       showInput();
+      var formattedAddress = this.getPlaces()[0].formatted_address;
+      var name = this.getPlaces()[0].name;
+      $('#autocomplete_store_input').val(name + ' - ' + formattedAddress);
     });
 
     $('#pacinput').keydown(function(e) {

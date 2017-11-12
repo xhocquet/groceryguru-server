@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   has_many :receipts
   has_one :receipt_transaction, class_name: "Transaction"
   belongs_to :group, required: false
+  belongs_to :submission, required: false
 
   def self.fuzzy_search(query = nil)
     if query

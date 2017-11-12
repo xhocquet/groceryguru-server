@@ -9,7 +9,7 @@ class @AdminSubmissionsPage
 
     $('.validate-link').click (e) ->
       e.preventDefault()
-      $(e.currentTarget).parents('tr').find('form').submit()
+      $(e.currentTarget).parents('form').submit()
 
   insertInputIntoCell: ($tableCell) =>
     # Prevent duplicating inputs

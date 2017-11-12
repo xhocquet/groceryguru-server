@@ -20,10 +20,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/', controller: "/admin", action: :index
-    resources :items, controller: "/items", only: [:index, :destroy]
-    get 'items/submissions', controller: "/admin", action: :item_submissions
-    resources :stores, controller: "/stores", only: [:index, :destroy]
-    get 'stores/submissions', controller: "/admin", action: :store_submissions
+
+    resources :items, only: [:index, :create, :destroy]
+    get 'items/submissions'
+    resources :stores, only: [:index, :create, :destroy]
+    get 'stores/submissions'
 
     resources :submissions, only: [:destroy] do
       post :validate
