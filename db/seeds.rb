@@ -146,7 +146,7 @@ File.foreach(File.join(Rails.root, 'db', 'food_data', 'sr28asc', 'FOOD_DES.txt')
   id, group_id, name_mode = line.scrub.strip.gsub(/~/,'').split("^")
   item_name, *mode = name_mode.split(", ")
   group = Item::Group.find_by(usda_id: group_id)
-  Item.find_or_create_by!(name: item_name.strip.downcase, usda_id: id, group: group)
+  Item.find_or_create_by!(name: item_name.strip.downcase, group: group)
   puts "Created #{item_name.strip.downcase}"
 end
 puts "3/3 finished creating items"
