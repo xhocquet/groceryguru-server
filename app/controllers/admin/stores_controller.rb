@@ -17,7 +17,7 @@ class Admin::StoresController < AdminController
     else
       flash[:error] = "Store could not be created"
     end
-    redirect_to admin_stores_path
+    redirect_to admin_stores_submissions_path
   end
 
   def submissions
