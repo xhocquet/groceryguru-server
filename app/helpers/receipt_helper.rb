@@ -50,7 +50,11 @@ module ReceiptHelper
 
   def weight_text(transaction)
     if transaction.weight.present?
-      Unit.new(transaction.weight).to_s
+      begin
+        Unit.new(transaction.weight).to_s
+      rescue StandardError => e
+        return '-'
+      end
     else
       '-'
     end
