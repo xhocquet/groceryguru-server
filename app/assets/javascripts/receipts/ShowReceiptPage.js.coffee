@@ -34,7 +34,7 @@ class @ShowReceiptPage
       return if $(e.currentTarget).attr('disabled')
       $(e.currentTarget).parents('form').submit()
 
-    $('.select-transaction-cell').click @goToTransaction
+    $('.view-transaction-cell').click @goToTransaction
 
     # Add row for new transaction
     $('.add-new-transaction-button').click @onClickNewTransaction
@@ -58,6 +58,34 @@ class @ShowReceiptPage
 
     $('.date-title-span').click (e) =>
       @initiateDateInput()
+
+    $('.select-transaction-checkbox').change (e) =>
+      @deleteButtonValidity()
+
+    $('.delete-transactions-button').click (e) =>
+      e.preventDefault()
+      @deleteTransactions()
+
+  deleteButtonValidity: =>
+    if $('.select-transaction-checkbox').map((a,b) -> b.checked).get().indexOf(true) > -1
+      $('.delete-transactions-button').attr('disabled', false)
+    else
+      $('.delete-transactions-button').attr('disabled', true)
+
+  deleteTransactions: =>
+    deletionDataHash = $('.select-transaction-checkbox').map((a, b) -> return { "transaction_id": b.dataset.transactionId, "transaction_delete": b.checked } ).get()
+
+    deletionDataHash = deletionDataHash.filter (element) -> element.transaction_delete
+    deletionTransactionIds = Array.from(deletionDataHash, (elem) -> elem.transaction_id)
+
+    $.ajax
+      method: "DELETE",
+      url: @options.deleteTransactionsPath,
+      data: { transaction_ids: deletionTransactionIds }
+    .done( (msg) ->
+      location.reload()
+    )
+
 
   initiateStoreSearch: ->
     $storeButtonOrLabel = $('.add-store-button, .store-title-span')
@@ -148,7 +176,7 @@ class @ShowReceiptPage
     @$newTransactionForm.find('input').keypress (e) =>
       @clickNearestSaveButton(e) if e.which == 13
 
-    $lastRow = $('.select-transaction-cell').last().parents('.table-row')
+    $lastRow = $('.view-transaction-cell').last().parents('.table-row')
 
     if $lastRow.length > 0
       @$newTransactionForm.find('.table-cell').each (index, item) ->

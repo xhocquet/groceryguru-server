@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resource :registration, only: [:create]
     resources :receipts, only: [:index, :create]
+    delete 'transactions', controller: "transactions", action: :delete_transactions
     get 'store/(:query)', controller: "/stores", action: :search, as: :store_search
     get 'item/(:query)', controller: "/items", action: :search, as: :item_search
   end

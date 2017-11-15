@@ -27,14 +27,13 @@
       <progress class="progress is-large is-success" value="<%= completed_transactions_count(@receipt) %>" max="<%= transactions_count(@receipt) %>" ></progress>
       <h3>Transactions
       <div class="field is-grouped is-pulled-right">
+        <%= link_to "Delete Transactions", '#', class: 'button is-info is-pulled-right control delete-transactions-button', disabled: true %>
         <%= link_to "Add Missing Transaction", '#', class: 'button is-info is-pulled-right control add-new-transaction-button' %>
       </div>
       </h3>
       <div class="transaction-table">
         <div class="table-row table-header">
-          <div class="table-cell select-transaction-cell-title">
-            <i class="material-icons hint--bottom hint--info hint--no-animate" aria-label="Click on a lense to go to a line">info</i>
-          </div>
+          <div class="table-cell"></div>
           <div class="table-cell">Name</div>
           <div class="table-cell">Price</div>
           <div class="table-cell">Weight</div>
@@ -46,8 +45,8 @@
 
         <% @receipt.transactions.each do |transaction| %>
           <%= form_for transaction, html: { class: "table-row #{'incomplete' unless transaction.complete?}" }, data: { 'line-number': transaction.line_number} do |f| %>
-            <div class="table-cell select-transaction-cell">
-              <i class="material-icons <%= 'is-hidden' unless transaction.line_number.present? %>">search</i>
+            <div class="table-cell ">
+              <input type="checkbox" class="select-transaction-checkbox" data-transaction-id="<%= transaction.id %>">
             </div>
             <div class="table-cell <%= 'missing' unless transaction.name.present? %> data name" data-field-name="name" title="<%= transaction.item.try(:name).try(:humanize) || '-' %>"><%= transaction.item.try(:name).try(:humanize) || '-' %></div>
             <div class="table-cell <%= 'missing' unless transaction.price %> data" data-field-name="price"><%= humanized_money_with_symbol(transaction.price)  %></div>
@@ -102,7 +101,8 @@
   var options = {
     itemSearchPath: "<%= api_item_search_path %>",
     storeSearchPath: "<%= api_store_search_path %>",
-    submitNewItemPath: "<%= community_new_item_path %>"
+    submitNewItemPath: "<%= community_new_item_path %>",
+    deleteTransactionsPath: "<%= api_transactions_path %>",
   }
   var page = new ShowReceiptPage(options);
 </script>

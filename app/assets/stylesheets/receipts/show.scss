@@ -50,12 +50,6 @@ body.receipts {
       display: table-cell;
       padding: 4px;
 
-      &.select-transaction-cell, &.select-transaction-cell-title {
-        padding: 0;
-        text-align: center;
-        cursor: pointer;
-      }
-
       &.data.name {
         max-width: 200px;
         overflow: hidden;
@@ -85,10 +79,6 @@ body.receipts {
         font-size: 24px;
         vertical-align: middle;
       }
-    }
-
-    .select-transaction-cell:hover {
-      font-weight: bold;
     }
 
     div.table-header {
