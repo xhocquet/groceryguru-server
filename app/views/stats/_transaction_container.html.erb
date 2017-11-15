@@ -53,7 +53,7 @@
             <% transactions.sort_by{|t| t.receipt.created_at}.reverse.each do |transaction| %>
               <tr data-transaction-id="<%= transaction.id %>" class="<%= transaction_row_class(transaction, best_ppu, worst_ppu) %>">
                 <td>
-                  <%= transaction.receipt.created_at.to_date.to_formatted_s(:long) %>
+                  <%= transaction.receipt.display_date.to_date.to_formatted_s(:long) %>
                 </td>
                 <td>
                   <%= transaction.receipt.store.try(:name).try(:titleize) %>
