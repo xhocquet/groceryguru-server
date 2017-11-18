@@ -12,7 +12,6 @@ class Admin::StoresController < AdminController
     new_store = Store.new store_params
 
     if new_store.save
-      new_store.submission.accepted!
       flash[:notice] = "Store created"
     else
       flash[:error] = "Store could not be created"
@@ -22,6 +21,24 @@ class Admin::StoresController < AdminController
 
   def submissions
     @submissions = Submission.where(model_type: :store).needs_sorting.order(:created_at).page(params[:page])
+  end
+
+  def validate_all_submissions
+    @submissions = Submission.where(model_type: :store).needs_sorting
+
+    Submission.transaction do
+      @submissions.each do |submission|
+        store = Store.new(
+          name: submission.value.split(' - ').first,
+          postal_code: submission.value.split(' - ').last.match(/\d{5}(-\d{4})?/)[0],
+          submission: submission,
+        )
+        store.save!
+      end
+    end
+
+    flash[:notice] = "#{@submissions.size} stores created"
+    redirect_to admin_stores_submissions_path
   end
 
   def destroy

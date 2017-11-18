@@ -4,6 +4,7 @@
     <%= render 'admin/nav' %>
   </div>
   <div class="column content-area">
+    <%= link_to "Validate All", admin_stores_validate_all_submissions_path, method: :post %>
     <% if @submissions.size > 0 %>
       <table class="table admin-data-table">
       <thead>
@@ -26,7 +27,7 @@
               <input name="store[name]" value="<%= submission.value.split(' - ').first %>" />
             </td>
             <td class="10%">
-              <input name="store[postal_code]" value="<%= submission.value.split(' - ').last.match(/\d{5}(-\d{4})?/)[0] %>" />
+              <input name="store[postal_code]" value="<%= submission.value.split(' - ').last.match(/\d{5}(-\d{4})?/) %>" />
             </td>
             <td width="5%">
               <a class='validate-link' href="#">

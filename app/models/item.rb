@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   has_one :receipt_transaction, class_name: "Transaction"
   belongs_to :group, required: false
   belongs_to :submission, required: false
+  after_create :accept_submission
 
   def self.fuzzy_search(query = nil)
     if query
@@ -31,5 +32,9 @@ class Item < ApplicationRecord
 
   def as_indexed_json(options={})
     self.as_json(only: [:name])
+  end
+
+  def accept_submission
+    self.submission && self.submission.accepted!
   end
 end

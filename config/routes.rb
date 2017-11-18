@@ -23,8 +23,10 @@ Rails.application.routes.draw do
 
     resources :items, only: [:index, :create, :destroy]
     get 'items/submissions'
+    post 'items/validate-all-submissions'
     resources :stores, only: [:index, :create, :destroy]
     get 'stores/submissions'
+    post 'stores/validate-all-submissions'
 
     resources :submissions, only: [:destroy] do
       post :validate
