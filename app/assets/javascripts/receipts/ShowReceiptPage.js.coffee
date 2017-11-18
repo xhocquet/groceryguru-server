@@ -2,6 +2,7 @@ class @ShowReceiptPage
   constructor: (@options = {}) ->
     @$newTransactionForm = $('.new-transaction-form')
     @submitNewStoreButton = $('.submit-new-store-button')
+    @lastPressedCheckbox = null
 
     $(document).on 'turbolinks:load', =>
       @setupEventListeners()
@@ -59,12 +60,26 @@ class @ShowReceiptPage
     $('.date-title-span').click (e) =>
       @initiateDateInput()
 
+    $('.select-transaction-checkbox').click (e) =>
+      @handleMultipleSelectCheckbox(e)
+
     $('.select-transaction-checkbox').change (e) =>
       @deleteButtonValidity()
 
     $('.delete-transactions-button').click (e) =>
       e.preventDefault()
       @deleteTransactions()
+
+  handleMultipleSelectCheckbox: (e) =>
+    if @lastPressedCheckbox? and e.shiftKey
+      lastIndex = $('.select-transaction-checkbox').index(@lastPressedCheckbox)
+      curIndex = $('.select-transaction-checkbox').index($(e.currentTarget))
+      curValue = $(e.currentTarget).prop('checked')
+
+      for i in [lastIndex...curIndex]
+        $($('.select-transaction-checkbox').get(i)).prop('checked', curValue)
+
+    @lastPressedCheckbox = $(e.currentTarget)
 
   deleteButtonValidity: =>
     if $('.select-transaction-checkbox').map((a,b) -> b.checked).get().indexOf(true) > -1
