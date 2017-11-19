@@ -88,6 +88,9 @@ class @ShowReceiptPage
       $('.delete-transactions-button').attr('disabled', true)
 
   deleteTransactions: =>
+    $('.delete-loader').removeClass 'is-hidden'
+    $('.delete-transactions-button').addClass 'is-hidden'
+
     deletionDataHash = $('.select-transaction-checkbox').map((a, b) -> return { "transaction_id": b.dataset.transactionId, "transaction_delete": b.checked } ).get()
 
     deletionDataHash = deletionDataHash.filter (element) -> element.transaction_delete
