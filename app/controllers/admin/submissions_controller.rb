@@ -7,7 +7,8 @@ class Admin::SubmissionsController < ApplicationController
     else
       flash[:error] = "Submission could not be destroyed"
     end
-    redirect_to :back
+
+    redirect_to admin_path
   end
 
   private
