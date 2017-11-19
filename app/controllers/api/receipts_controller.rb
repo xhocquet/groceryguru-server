@@ -3,7 +3,7 @@ class Api::ReceiptsController < Api::BaseController
   acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }
 
   def index
-    @receipts = current_user.receipts.includes(:store).order(created_at: :desc).page(params[:page])
+    @receipts = current_user.receipts.includes(:store).order(date: :desc, created_at: :desc).page(params[:page])
   end
 
   def create
