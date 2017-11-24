@@ -39,11 +39,7 @@ class Receipt < ApplicationRecord
     self.text = tesseract_image.to_s.downcase
     self.line_count = self.text.split("\n").size
 
-    if self.store.present? && "Parsers::#{self.store.name.titleize}".safe_constantize
-      "Parsers::#{self.store.name.titleize}".constantize.new(self).process
-    else
-      Parsers::Base.new(self).process
-    end
+    ReceiptParser.new(self).process
 
     self.processed = true
     self.save!

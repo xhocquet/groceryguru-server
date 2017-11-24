@@ -14,8 +14,13 @@ body.receipts.index {
 
       td {
         .progress-label {
+          color: white;
           line-height: 0;
           font-size: 16px;
+          text-align: center;
+          font-weight: bold;
+          position: relative;
+          top: 1.5em;
         }
 
         .progress {

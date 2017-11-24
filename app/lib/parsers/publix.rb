@@ -1,5 +1,5 @@
 module Parsers
-  class Publix < Base
+  class Publix < Generic
     def process
       double_line_buffer = []
 
@@ -7,14 +7,6 @@ module Parsers
         if line.strip.blank?
           double_line_buffer = []
           next
-        end
-
-        if index < 5
-          matches = line.downcase.match(/([\w\']{2,})/)
-
-          matches && matches.captures.each do |string|
-            @receipt.store = Store.find_by_name(string)
-          end
         end
 
         double_line_buffer << line
