@@ -1,6 +1,4 @@
 class Receipt < ApplicationRecord
-  include Parsers
-
   paginates_per 15
 
   # Attachments

@@ -9,6 +9,8 @@ gem 'rails', '~> 5.1.2'
 gem 'pg', :group => :production
 gem 'puma', '~> 3.7'
 
+gem 'bulk_insert' # bulk inserts
+
 gem 'sass-rails', '~> 5.0'
 gem 'roadie' # Styles for emails
 gem 'roadie-rails'

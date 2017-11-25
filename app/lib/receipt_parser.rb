@@ -6,7 +6,8 @@ class ReceiptParser
   def process
     @detected_store = detect_store
     @parser = detect_parser
-    @parser.new(@receipt).process
+    transaction_values = @parser.return_transactions(@receipt)
+    Transaction.bulk_insert values: transaction_values
     true
   end
 
