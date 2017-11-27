@@ -3,9 +3,12 @@ class Store::Location < ApplicationRecord
   include Elasticsearch::Model::Callbacks
 
   belongs_to :store, inverse_of: :locations
+  has_many :receipts, inverse_of: :store
+
+  delegate :name, to: :store
 
   def serialized_location
-    [self.store.name, self.postal_code.to_s].join(' - ')
+    [self.name, self.postal_code.to_s].join(' - ')
   end
 
   def self.fuzzy_search(query = nil)

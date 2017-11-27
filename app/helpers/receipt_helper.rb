@@ -9,7 +9,7 @@ module ReceiptHelper
 
   def store_or_add_store(receipt)
     if receipt.store.present?
-      content_tag(:span, @receipt.store.try(:name).try(:titleize), class: 'hint--top hint--warning store-title-span', 'aria-label': 'Click to change the store') +
+      content_tag(:span, store_display_with_zip(@receipt), class: 'hint--top hint--warning store-title-span', 'aria-label': 'Click to change the store') +
       (form_for receipt, html: { class: 'store-date-form store-form' } do
         (hidden_field 'receipt', :store_id, class: 'input') +
         (content_tag :input, '', class: 'input store-input is-hidden' )
@@ -27,6 +27,11 @@ module ReceiptHelper
         content_tag :i, 'add', class: 'material-icons'
       end)
     end
+  end
+
+  def store_display_with_zip(receipt)
+    store = receipt.store
+    return "#{store.name.titleize} (#{store.postal_code})"
   end
 
   def completion_percentage(receipt)

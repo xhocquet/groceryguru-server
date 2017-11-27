@@ -1,5 +1,5 @@
 class StoresController < ApplicationController
    def search
-    render json: Store.fuzzy_search(params[:query]).to_json
+    render json: Store::Location.fuzzy_search(params[:query]).records.to_json(methods: :name)
   end
 end

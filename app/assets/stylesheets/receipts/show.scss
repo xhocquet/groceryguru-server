@@ -18,6 +18,15 @@ body.receipts.show {
       input.date-input, input.store-input {
         width: 200px;
       }
+
+      .awesomplete {
+        ul {
+          width: 500px;
+          li {
+
+          }
+        }
+      }
     }
 
     .submit-new-store-button {

@@ -44,8 +44,6 @@ gem 'chronic'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
-gem 'airbrake'
-
 group :test do
   gem 'simplecov'
 end

@@ -25,7 +25,7 @@
         <div class="field is-grouped">
           <i class="material-icons">keyboard_arrow_right</i>
           <span class="item-name">
-            <%= most_recent_transaction.item.name.titleize %>
+            <%= most_recent_transaction.item.try(:name).try(:titleize) %>
           </span>
         </div>
         <div class="field is-grouped">

@@ -178,7 +178,7 @@ class @ShowReceiptPage
     ajax.send()
 
   storeSearchJSONMap: (i) ->
-    { label: i.name + ' - ' + i.postal_code, value: i.id}
+    { label: titleize(i.name) + ' (' + i.postal_code + ')', value: i.id}
 
   itemSearchJSONMap: (i) ->
     { label: i.name + (if i.mode != undefined then (' - ' + i.mode.name) else ''), value: i.id }
