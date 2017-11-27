@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112220629) do
+ActiveRecord::Schema.define(version: 20171127004623) do
 
   create_table "item_groups", force: :cascade do |t|
     t.string "name"
@@ -45,6 +45,12 @@ ActiveRecord::Schema.define(version: 20171112220629) do
     t.text "box_data"
     t.index ["store_id"], name: "index_receipts_on_store_id"
     t.index ["user_id"], name: "index_receipts_on_user_id"
+  end
+
+  create_table "store_locations", force: :cascade do |t|
+    t.string "postal_code"
+    t.integer "store_id"
+    t.index ["store_id"], name: "index_store_locations_on_store_id"
   end
 
   create_table "stores", force: :cascade do |t|

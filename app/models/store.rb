@@ -3,6 +3,7 @@ class Store < ApplicationRecord
   include Elasticsearch::Model::Callbacks
 
   has_many :receipts, inverse_of: :store, dependent: :nullify
+  has_many :locations, inverse_of: :store, dependent: :nullify
   belongs_to :submission, required: false
   after_create :accept_submission
 
