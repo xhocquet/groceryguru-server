@@ -8,7 +8,7 @@ class Receipt < ApplicationRecord
   serialize :box_data, Array
 
   belongs_to :user, inverse_of: :receipts
-  belongs_to :store, required: false, inverse_of: :receipts
+  belongs_to :store, required: false, inverse_of: :receipts, class_name: 'Store::Location'
   has_many :items
   has_many :transactions, inverse_of: :receipt, dependent: :destroy
 
