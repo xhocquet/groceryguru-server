@@ -21,7 +21,7 @@ class ReceiptParser
       matches = line.downcase.match(/([\w\']{2,})/)
 
       matches && matches.captures.each do |string|
-        results = Store.fuzzy_search(string)
+        results = Store::Location.fuzzy_search(string)
 
         if results.records.size > 0
           @receipt.store = results.records.first and return @receipt.store
