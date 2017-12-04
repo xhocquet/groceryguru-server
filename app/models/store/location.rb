@@ -4,6 +4,8 @@ class Store::Location < ApplicationRecord
 
   belongs_to :store, inverse_of: :locations
   has_many :receipts, inverse_of: :store
+  belongs_to :submission, required: false
+  after_create :accept_submission
 
   delegate :name, to: :store
 

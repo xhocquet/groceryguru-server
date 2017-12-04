@@ -9,9 +9,11 @@ class Admin::StoresController < AdminController
   end
 
   def create
-    new_store = Store.new store_params
+    store = Store.find_or_create_by(name: params[:store][:name])
+    new_location = Store::Location.new store_params.merge! store: store
+    debugger
 
-    if new_store.save
+    if new_location.save
       flash[:notice] = "Store created"
     else
       flash[:error] = "Store could not be created"
@@ -62,6 +64,6 @@ class Admin::StoresController < AdminController
   private
 
   def store_params
-    params.require(:store).permit(:name, :postal_code, :submission_id)
+    params.require(:store).permit(:postal_code, :submission_id)
   end
 end
