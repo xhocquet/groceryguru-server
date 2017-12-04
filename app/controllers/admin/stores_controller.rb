@@ -11,7 +11,6 @@ class Admin::StoresController < AdminController
   def create
     store = Store.find_or_create_by(name: params[:store][:name])
     new_location = Store::Location.new store_params.merge! store: store
-    debugger
 
     if new_location.save
       flash[:notice] = "Store created"
