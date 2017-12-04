@@ -28,6 +28,7 @@ class ReceiptParser
         end
       end
     end
+    nil
   end
 
   def detect_parser
