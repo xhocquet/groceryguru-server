@@ -39,6 +39,8 @@
         </div>
 
         <div class="box">
+          <canvas data-transaction-id="<%= most_recent_transaction.item.try(:id) %>" class="price-chart" height="200"></canvas>
+
           <table class="table">
             <thead>
               <tr>

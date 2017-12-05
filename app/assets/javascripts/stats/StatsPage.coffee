@@ -2,7 +2,7 @@ class @StatsPage
   constructor: (@options = {}) ->
     $(document).on 'turbolinks:load', =>
       @setupEventListeners()
-
+      @setupCharts()
       $('.stats-search-bar').focus()
 
   setupEventListeners: =>
@@ -17,6 +17,10 @@ class @StatsPage
       $('.stats-search-bar').focus()
 
     $('.stats-search-bar').keyup (e) =>
+      regex = new RegExp("^[a-zA-Z0-9 ]+$")
+      str = String.fromCharCode(e.which)
+      return unless regex.test(str)
+
       searchString = e.currentTarget.value.toLowerCase().trim()
 
       if searchString.length > 0
@@ -41,3 +45,67 @@ class @StatsPage
       $(target).find('i.material-icons').text('keyboard_arrow_down')
     else
       $(target).find('i.material-icons').text('keyboard_arrow_right')
+
+  setupCharts: =>
+    options = {
+      responsive: true,
+      legend: {
+        display: false
+      }
+      scales: {
+        yAxes: [{
+                  ticks: {
+                    min: 0
+                  },
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Price per Unit',
+                    fontSize: 14,
+                    fontColor: '#000'
+                  }
+                }],
+        xAxes: [{
+                  type: 'time',
+                  display: true,
+                }]
+      }
+    }
+
+    $('.price-chart').each (i, element) =>
+      data = []
+
+      $(element).siblings('table').find('tbody').find('tr').each (i, el) ->
+        cells = $(el).find('td')
+
+        price = undefined
+        price = $(cells[4]).text().trim().replace(/\/kg/,'').replace(/\$/,'')
+        price = undefined if price == 'N/A'
+
+        data.push {
+          t: $(cells[0]).text().trim(),
+          y: price,
+        }
+
+      data.sort (a, b) ->
+        keyA = new Date(a.t)
+        keyB = new Date(b.t)
+
+        # // Compare the 2 dates
+        return -1 if keyA < keyB
+        return 1 if keyA > keyB
+        return 0
+
+      config = {
+        type: 'line',
+        data: {
+          datasets: [{
+            data: data,
+            backgroundColor: 'transparent',
+            borderColor: $(element).parents('.transactions-list').css('border-color')
+          }]
+        },
+        options: options
+      }
+      # debugger if $(element).parents('.item-card').data('item-id') == 9019
+
+      new Chart element, config
