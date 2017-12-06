@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  has_many :transactions
+  has_many :transactions, dependent: :nullify
   has_many :receipts, through: :transactions
   belongs_to :group, required: false
   belongs_to :submission, required: false
