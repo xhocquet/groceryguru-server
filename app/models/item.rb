@@ -2,8 +2,8 @@ class Item < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  has_many :receipts
-  has_one :receipt_transaction, class_name: "Transaction"
+  has_many :transactions
+  has_many :receipts, through: :transactions
   belongs_to :group, required: false
   belongs_to :submission, required: false
   after_create :accept_submission
