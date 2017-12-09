@@ -6,6 +6,7 @@
     <div class="content message-body">
       <p><strong><%= @user.email %></strong> submitted the following to be added to Grocery Guru</p>
       <p><strong>Name: </strong><%= @submission.value %><br>
+      <p><strong>Accepted Name: </strong><%= @submission.accepted_value.name.titleize %></strong><br>
       <strong>Type: </strong><%= @submission.model_type.titleize %></p>
       <p>We are happy to inform you that your submission has been accepted! You will be able to review your submissions and they will be used for more features in the future. Thank you for your contribution, we look forward to receiving more from you!</p>
       <div class="button-container">

@@ -17,8 +17,10 @@
           <input id="item_input" class="controls input" name="item_submission[value]" type="text" placeholder="Search or type an item name">
         </div>
         <div class="section captcha-submit">
-          <div class="g-recaptcha" data-sitekey="<%= Rails.application.secrets.RECAPTCHA_SITE_KEY %>" data-callback="showInput"></div>
-          <button disabled=true class="button is-large is-success" type="submit">Submit</button>
+          <% unless current_user.admin %>
+            <div class="g-recaptcha" data-sitekey="<%= Rails.application.secrets.RECAPTCHA_SITE_KEY %>" data-callback="showInput"></div>
+          <% end %>
+          <button <%= !current_user.admin ? 'disabled' : nil %> class="button is-large is-success" type="submit">Submit</button>
         </div>
       <% end %>
     </div>

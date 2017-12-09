@@ -43,9 +43,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    airbrake (7.0.2)
-      airbrake-ruby (~> 2.4)
-    airbrake-ruby (2.4.0)
     arel (8.0.0)
     bcrypt (3.1.11-x64-mingw32)
     bindex (0.5.0)
@@ -275,7 +272,6 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
-  airbrake
   bcrypt (~> 3.1.11)
   bonsai-elasticsearch-rails
   bulk_insert

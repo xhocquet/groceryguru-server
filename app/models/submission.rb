@@ -7,6 +7,12 @@ class Submission < ApplicationRecord
 
   after_update :send_email_notifications
 
+  # TODO: This needs to be a polymorphic relationship, but then
+  # the key needs to be on submissions
+  def accepted_value
+    model_type.titleize.constantize.find_by(submission: self)
+  end
+
   private
 
   def send_email_notifications

@@ -14,8 +14,10 @@
       <%= form_for community_create_store_path do %>
         <input id="autocomplete_store_input" class="controls input" name="submission[value]" type="text" placeholder="Search for your store...">
         <div class="section captcha-submit">
-          <div class="g-recaptcha" data-sitekey="<%= Rails.application.secrets.RECAPTCHA_SITE_KEY %>" data-callback="showInput"></div>
-          <button disabled=true class="button is-large is-success" type="submit">Submit</button>
+          <% unless current_user.admin %>
+            <div class="g-recaptcha" data-sitekey="<%= Rails.application.secrets.RECAPTCHA_SITE_KEY %>" data-callback="showInput"></div>
+          <% end %>
+          <button <%= !current_user.admin ? 'disabled' : nil %> class="button is-large is-success" type="submit">Submit</button>
         </div>
       <% end %>
     </div>
