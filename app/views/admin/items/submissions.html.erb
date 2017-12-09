@@ -10,6 +10,7 @@
       <thead>
         <tr>
           <th>Name</th>
+          <th>Group</th>
           <th width="5%"></th>
           <th width="5%"></th>
         </tr>
@@ -24,6 +25,9 @@
               <td>
                 <input type="hidden" name="item[submission_id]" value="<%= submission.id %>" />
                 <input name="item[name]" class="item-name-input" value="<%= submission.value %>" />
+              </td>
+              <td>
+              <%= f.collection_select :group_id, Item::Group.all, :id, :name, {:include_blank => 'None'} %>
               </td>
               <td width="5%">
                 <a class='validate-link' href="#">
