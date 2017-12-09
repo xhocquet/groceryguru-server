@@ -9,12 +9,10 @@ class @StatsPage
     $('.toggle-card-button').click (e) =>
       @toggleDropdown(e.currentTarget)
       $(e.currentTarget).siblings('.transaction-list').toggleClass('is-hidden')
-      $('.stats-search-bar').focus()
 
     $('.toggle-transaction-group').click (e) =>
       @toggleDropdown(e.currentTarget)
       $(e.currentTarget).parents('.box').next('.transactions-list').toggleClass('is-hidden')
-      $('.stats-search-bar').focus()
 
     $('.stats-search-bar').keyup (e) =>
       regex = new RegExp("^[a-zA-Z0-9 ]+$")

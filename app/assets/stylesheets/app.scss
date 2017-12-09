@@ -1,7 +1,13 @@
 @import 'groceryguru_variables';
 
-section.hero.is-info {
-  background-color: $blue;
+body.application.index {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  section.hero.is-info {
+    background-color: $blue;
+  }
 }
 
 .notification {
