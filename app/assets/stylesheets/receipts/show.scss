@@ -132,6 +132,7 @@ body.receipts.show {
 
       .awesomplete {
         display: inline-flex;
+        width: 100%;
       }
 
       .submit-new-item-button {
@@ -214,6 +215,16 @@ body.receipts.show {
         margin-right: 12px;
         padding-left: 8px;
         width: 40px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 769px) {
+  body.receipts.show {
+    div.transaction-table {
+      div.hide-cell-mobile {
+        display: none;
       }
     }
   }
