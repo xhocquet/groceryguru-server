@@ -1,5 +1,18 @@
 @import 'groceryguru_variables';
 
+@font-face {
+  font-family: "Myriad Pro Regular" !important;
+  src: url ('/assets/Myriad Pro Regular') !important;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "Myriad Pro Regular", "sansserif", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
 body.application.index {
   height: 100vh;
   display: flex;
