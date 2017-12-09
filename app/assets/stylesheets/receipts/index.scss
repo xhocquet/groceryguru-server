@@ -13,6 +13,8 @@ body.receipts.index {
       }
 
       td {
+        white-space: nowrap;
+
         .progress-label {
           color: white;
           line-height: 0;
