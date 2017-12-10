@@ -3,17 +3,21 @@ body.receipts.index {
     width: 100%;
     font-size: 18px;
 
+    thead tr:hover {
+      background-color: white;
+    }
+
     tr.receipt-row {
       cursor: pointer;
       height: 48px;
       line-height: 48px;
 
-      &:hover {
-        text-shadow: 1px 0px 0px black;
-      }
-
       td {
         white-space: nowrap;
+
+        a:hover {
+          color: #567C65;
+        }
 
         .progress-label {
           color: white;
