@@ -174,3 +174,11 @@ progress {
     }
   }
 }
+
+@media screen and (max-width: 1067px) {
+  .navbar {
+    position: fixed;
+    z-index: 30;
+    right: 0;
+  }
+}
