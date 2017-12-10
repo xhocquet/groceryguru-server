@@ -13,6 +13,10 @@ textarea {
   font-family: "Myriad Pro Regular", "sansserif", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
+section {
+  display: block !important;
+}
+
 body.application.index {
   height: 100vh;
   display: flex;
@@ -161,8 +165,8 @@ progress {
 
 @media screen and (min-width: 1068px) {
   .container {
-    max-width: 1152px;
-    width: 1152px;
+    max-width: 100%;
+    width: 100%;
   }
 }
 
@@ -175,10 +179,14 @@ progress {
   }
 }
 
-@media screen and (max-width: 1067px) {
+@media screen and (max-width: 769px) {
   .navbar {
     position: fixed;
     z-index: 30;
     right: 0;
+  }
+
+  label.file-label {
+    width: 100%;
   }
 }
