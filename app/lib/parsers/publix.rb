@@ -15,7 +15,10 @@ module Parsers
         # Match for price/tax: 12.39 t F
         if line.match(/(\d+\.\d+) (\w)? ?(\w)?$/)
           current_line = double_line_buffer.join("\n")
-          item = Item.fuzzy_search(current_line.match(/(\w* \w*)/)[1]).records.first
+
+          if current_line.match(/(\w* \w*)/).to_s.presence
+            item = Item.fuzzy_search(current_line.match(/(\w* \w*)/).to_s.presence).records.first
+          end
 
           transactions << {
             raw: current_line,

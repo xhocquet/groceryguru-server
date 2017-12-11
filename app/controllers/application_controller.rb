@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }
-  before_action :authenticate_user!, if: lambda { |controller| controller.request.format.html? }
+  before_action :authenticate_user!, if: lambda { |controller| controller.request.format.html? }, except: :index
   protect_from_forgery with: :exception
 
   default_form_builder AppFormBuilder
@@ -9,7 +9,11 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
   def index
-    @receipt = Receipt.new
+    if @current_user
+      @receipt = Receipt.new
+    else
+      render "intro", layout: "simple"
+    end
   end
 
   def after_sign_in_path_for(resource)
