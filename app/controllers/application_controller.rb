@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
   def index
-    if @current_user
+    if current_user.present?
       @receipt = Receipt.new
     else
       render "intro", layout: "simple"
