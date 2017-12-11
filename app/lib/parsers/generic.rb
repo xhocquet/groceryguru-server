@@ -10,7 +10,7 @@ module Parsers
 
         price = line.match(/(\$?\d{1,2}\.\d{1,2})/).to_s.presence
 
-        if current_line.match(/(\w* \w*)/).to_s.presence
+        if line.match(/(\w* \w*)/).to_s.presence
           item = Item.fuzzy_search(line.match(/(\w* \w*)/).to_s.presence).records.first
         end
 

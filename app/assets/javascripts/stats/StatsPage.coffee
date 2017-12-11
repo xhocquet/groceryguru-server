@@ -104,6 +104,5 @@ class @StatsPage
         },
         options: options
       }
-      # debugger if $(element).parents('.item-card').data('item-id') == 9019
 
       new Chart element, config
