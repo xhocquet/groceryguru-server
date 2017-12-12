@@ -61,8 +61,9 @@ group :development do
 end
 
 group :production do
-  gem 'newrelic_rpm'
   gem 'bonsai-elasticsearch-rails'
+  gem 'newrelic_rpm'
+  gem 'sidekiq'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
