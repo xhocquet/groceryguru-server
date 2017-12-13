@@ -28,6 +28,7 @@ class Receipt < ApplicationRecord
 
   private
 
+  # Before can background, need external storage for images
   def process_text
     return if self.processed || self.image.blank?
 

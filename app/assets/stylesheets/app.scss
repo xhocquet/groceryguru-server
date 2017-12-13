@@ -30,7 +30,7 @@ body.application.index {
 .notification {
   position: fixed;
   margin: 0 auto;
-  z-index: 1;
+  z-index: 10;
   top: -100%;
   text-align: center;
   right: 35%;
@@ -170,6 +170,14 @@ progress {
   }
 }
 
+@media screen and (max-width: 1007px) {
+  .navbar {
+    position: fixed;
+    z-index: 30;
+    right: 0;
+  }
+}
+
 @media screen and (min-width: 769px) and (max-width: 1068px) {
   .container {
     .content {
@@ -180,11 +188,7 @@ progress {
 }
 
 @media screen and (max-width: 769px) {
-  .navbar {
-    position: fixed;
-    z-index: 30;
-    right: 0;
-  }
+
 
   label.file-label {
     width: 100%;
