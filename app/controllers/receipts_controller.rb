@@ -3,15 +3,31 @@ class ReceiptsController < ApplicationController
     @receipts = current_user.receipts.includes(:store, :transactions).order(date: :desc, created_at: :desc).page(params[:page])
   end
 
+  # Used for home page upload
   def create
     @receipt = current_user.receipts.build receipt_params
 
     if @receipt.save
-      redirect_to receipt_path(@receipt)
+      render json: {
+        receiptId: @receipt.id
+      }, status: 200
     else
-      @receipts = current_user.receipts
-      flash[:error] =  @receipt.errors.full_messages.first
-      redirect_to root_path
+      render json: {
+        error: @receipt.errors.full_messages.first,
+      }, status: 400
+    end
+  end
+
+  # Used for home page upload
+  def process_text
+    @receipt = current_user.receipts.find(params[:receipt_id])
+    if @receipt.present?
+      @receipt.process_text!
+      render json: { receiptUrl: receipt_url(@receipt)}, status: 200
+    else
+      render json: {
+        error: @receipt.errors.full_messages.first,
+      }, status: 400
     end
   end
 

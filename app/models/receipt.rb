@@ -12,7 +12,6 @@ class Receipt < ApplicationRecord
   has_many :items
   has_many :transactions, inverse_of: :receipt, dependent: :destroy
 
-  after_create :process_text
   after_commit :update_metadata
 
   scope :completed, -> { where(completed: true) }
@@ -26,10 +25,8 @@ class Receipt < ApplicationRecord
     self.date.present? ? self.date : self.created_at
   end
 
-  private
-
   # Before can background, need external storage for images
-  def process_text
+  def process_text!
     return if self.processed || self.image.blank?
 
     tesseract_image = RTesseract.new(self.image.path, psm: 4)
@@ -43,6 +40,8 @@ class Receipt < ApplicationRecord
     self.processed = true
     self.save!
   end
+
+  private
 
   def update_metadata
     self.user.update(last_stats_update: Time.now)

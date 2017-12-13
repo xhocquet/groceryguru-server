@@ -33,7 +33,7 @@
           </span>
         </label>
       </div>
-
+      <progress class="file-upload-progress is-hidden"></progress>
       <div class="sk-cube-grid is-hidden">
         <div class="sk-cube sk-cube1"></div>
         <div class="sk-cube sk-cube2"></div>
@@ -45,7 +45,7 @@
         <div class="sk-cube sk-cube8"></div>
         <div class="sk-cube sk-cube9"></div>
       </div>
-      <h2 class="title is-5 loading-title is-hidden">Your receipt is being processed, hang on!</h2>
+      <h2 class="title is-5 loading-title is-hidden">Your receipt is being uploaded, hang on!</h2>
     </div>
   </div>
 </section>
@@ -77,5 +77,10 @@
 </div>
 
 <script type="text/javascript">
-  var page = new RootPage();
+  var options = {
+    receiptUploadPath: "<%= receipts_path %>",
+    receiptProcessTextPath: "<%= process_text_receipts_path %>",
+  };
+
+  var page = new RootPage(options);
 </script>

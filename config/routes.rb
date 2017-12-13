@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :receipts, except: [:new, :edit] do
     resources :transactions, shallow: true, only: [:create, :update, :destroy]
   end
+  resource :receipts, only: [] do
+    post :process_text
+  end
 
   namespace :stats do
     get '/', controller: "/stats", action: :index

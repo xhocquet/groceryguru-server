@@ -87,6 +87,14 @@ progress {
   }
 }
 
+progress.file-upload-progress {
+  margin: 0 auto;
+  display: block;
+  width: 500px;
+  max-width: 90%;
+  height: 40px;
+}
+
 .loading-title {
   text-align: center;
 }
