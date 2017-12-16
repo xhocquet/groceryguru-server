@@ -99,11 +99,16 @@ progress.file-upload-progress {
   text-align: center;
 }
 
+.modal-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
 // LOADING ANIMATION
 .sk-cube-grid {
   width: 120px;
   height: 120px;
-  margin: 20px auto;
+  margin: 120px auto;
 }
 
 .sk-cube-grid .sk-cube {
