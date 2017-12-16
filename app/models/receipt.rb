@@ -44,6 +44,7 @@ class Receipt < ApplicationRecord
   private
 
   def update_metadata
+    return if self.user.destroyed?
     self.user.update(last_stats_update: Time.now)
     return if self.destroyed?
     complete = self.transactions.incomplete.size == 0
