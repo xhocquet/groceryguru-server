@@ -61,6 +61,7 @@ group :development do
 end
 
 group :production do
+  gem "sentry-raven"
   gem 'bonsai-elasticsearch-rails'
   gem 'newrelic_rpm'
   gem 'sidekiq'

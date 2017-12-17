@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }
   before_action :authenticate_user!, if: lambda { |controller| controller.request.format.html? }, except: :index
+  before_action :set_raven_context
   protect_from_forgery with: :exception
 
   default_form_builder AppFormBuilder
@@ -21,6 +22,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_raven_context
+    Raven.user_context(id: session[:current_user_id])
+    Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+  end
 
   def render_404
     render 'shared/404' and return
