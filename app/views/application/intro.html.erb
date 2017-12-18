@@ -1,3 +1,15 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="field is-grouped">
+        <p class="control">
+          <a class="button" href="<%= new_user_session_path %>">Sign up/Sign in</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</nav>
+
 <section class="hero is-info is-medium">
   <div class="hero-body">
     <h1 class="title highlight">G</h1><h1 class="title">rocery </h1><h1 class="title highlight">G</h1><h1 class="title">uru</h1><br>
@@ -22,8 +34,6 @@
       <h2>Gain Insights</h2>
       <p>With your receipts, we track grocery prices and spending habits while you use us. We can suggest improvements to your spending in order to save you money!</p>
     </article>
-  </div>
-  <a class="button" href="<%= new_user_session_path %>">Sign up/Sign in</a>
 </section>
 
 <% content_for :body_class, 'intro' %>

@@ -75,12 +75,6 @@ body.intro {
     }
   }
 
-  .sign-in-container {
-    background-color: #eee;
-    border-radius: 12px;
-    padding: 24px;
-  }
-
 
   // MOBILE
   @media screen and (max-width: 1260px) {
@@ -94,6 +88,12 @@ body.intro {
           min-width: 350px;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 1007px) {
+    .navbar {
+      background-color: transparent;
     }
   }
 }
