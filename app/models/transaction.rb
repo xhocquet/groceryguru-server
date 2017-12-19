@@ -12,6 +12,8 @@ class Transaction < ApplicationRecord
   after_commit :update_metadata, on: [:create, :update]
   after_commit :touch_receipt
 
+  delegate :display_date, to: :receipt
+
   def complete?
     return false if price.blank?
     return false if weight.blank? && count.blank?

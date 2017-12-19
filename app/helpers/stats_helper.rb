@@ -12,18 +12,14 @@ module StatsHelper
 
   def transaction_summary(transaction, best_ppu, worst_ppu)
     if best_ppu && transaction.price_per_unit == best_ppu
-      summary = content_tag(:i, "check_circle", class: "material-icons")
-      summary += content_tag(:h2, "You saved up to $#{transaction_saved(transaction, worst_ppu)} on your last purchase", class: "title")
+      content_tag(:h2, "You saved up to $#{transaction_saved(transaction, worst_ppu)} on your last purchase", class: "title")
     elsif worst_ppu && transaction.price_per_unit == worst_ppu
-      summary = content_tag(:i, "error", class: "material-icons")
-      summary += content_tag(:h2, "You lost $#{transaction_loss(transaction, best_ppu)} on your last purchase", class: 'title')
+      content_tag(:h2, "You lost $#{transaction_loss(transaction, best_ppu)} on your last purchase", class: 'title')
     else
-      summary = content_tag(:i, "help", class: "material-icons")
       if best_ppu
-        summary += content_tag(:h2, "You could have saved $#{transaction_loss(transaction, best_ppu)} more on your last purchase", class: 'title')
+        content_tag(:h2, "You could have saved $#{transaction_loss(transaction, best_ppu)} more on your last purchase", class: 'title')
       end
     end
-    return summary
   end
 
   def transaction_loss(recent_transaction, best_ppu)
@@ -31,9 +27,9 @@ module StatsHelper
 
     diff = recent_transaction.price_per_unit - best_ppu
     if recent_transaction.count.present?
-      (diff * recent_transaction.count).round(2)
+      '%.2f' %  (diff * recent_transaction.count)
     elsif recent_transaction.weight.present?
-      weight_diff_math(recent_transaction.weight, diff)
+      '%.2f' %  weight_diff_math(recent_transaction.weight, diff)
     else
       nil
     end
@@ -42,9 +38,9 @@ module StatsHelper
   def transaction_saved(recent_transaction, worst_ppu)
     diff = worst_ppu - recent_transaction.price_per_unit
     if recent_transaction.count.present?
-      (diff * recent_transaction.count).round(2)
+      '%.2f' %  (diff * recent_transaction.count)
     elsif recent_transaction.weight.present?
-      weight_diff_math(recent_transaction.weight, diff)
+      '%.2f' %  weight_diff_math(recent_transaction.weight, diff)
     else
       nil
     end
