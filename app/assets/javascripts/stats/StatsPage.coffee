@@ -72,7 +72,7 @@ class @StatsPage
     $('.price-chart').each (i, element) =>
       data = []
 
-      $(element).siblings('table').find('tbody').find('tr').each (i, el) ->
+      $(element).parents('.box').find('tbody').find('tr').each (i, el) ->
         cells = $(el).find('td')
 
         price = undefined

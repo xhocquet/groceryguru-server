@@ -11,7 +11,7 @@ class StatsController < ApplicationController
                           }.group_by { |_, transactions|
                             best_ppu = transactions.map(&:price_per_unit).compact.min
                             worst_ppu = transactions.map(&:price_per_unit).compact.max
-                            most_recent_transaction = transactions.sort_by{|t| t.receipt.created_at}.reverse.first
+                            most_recent_transaction = transactions.sort_by{|t| (t.receipt.date || t.receipt.created_at)}.reverse.first
 
                             if most_recent_transaction.price_per_unit == best_ppu
                               'best-transactions'
