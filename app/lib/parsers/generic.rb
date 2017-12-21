@@ -5,7 +5,7 @@ module Parsers
 
       transactions = []
 
-      @receipt.text.split("\n").each_with_index do |line, index|
+      @receipt.lines.each_with_index do |line, index|
         next if line.strip.blank?
 
         price = line.match(/(\$?\d{1,2}\.\d{1,2})(?!.*\$?\d{1,2}\.\d{1,2})/).to_s.presence

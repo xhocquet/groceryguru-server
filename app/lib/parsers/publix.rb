@@ -5,7 +5,7 @@ module Parsers
       double_line_buffer = []
       transactions = []
 
-      @receipt.text.split("\n").each_with_index do |line, index|
+      @receipt.lines.each_with_index do |line, index|
         if line.strip.blank?
           double_line_buffer = []
           next

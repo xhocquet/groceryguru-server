@@ -32,7 +32,7 @@ class ReceiptsController < ApplicationController
   end
 
   def show
-    @receipt = current_user.receipts.includes(transactions: :item).find(params.permit(:id)[:id])
+    @receipt = current_user.receipts.includes(transactions: :item).find(params[:id].to_i)
   end
 
   def update
