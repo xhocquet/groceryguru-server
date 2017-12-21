@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   acts_as_token_authentication_handler_for User, if: lambda { |controller| controller.request.format.json? }
   before_action :authenticate_user!, if: lambda { |controller| controller.request.format.html? }, except: :index
-  before_action :set_raven_context, if: "Rails.env.production?"
+  before_action :set_raven_context, if: lambda { Rails.env.production? }
   protect_from_forgery with: :exception
 
   default_form_builder AppFormBuilder
