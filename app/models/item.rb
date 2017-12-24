@@ -19,11 +19,14 @@ class Item < ApplicationRecord
   def self.fuzzy_query(query)
     {
       query: {
-        match_phrase_prefix: {
-          name: {
-            query: query,
-            slop: 3,
-            max_expansions: 30
+        bool: {
+          must: {
+            fuzzy: {
+              name: {
+                value: query,
+                fuzziness: 3,
+              }
+            }
           }
         }
       }
