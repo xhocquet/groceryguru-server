@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20171218062918) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "coupons", force: :cascade do |t|
     t.datetime "expiration_date"
     t.datetime "store_begin_date"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20171218062918) do
     t.string "description"
     t.integer "type", default: 0
     t.integer "status", default: 1
-    t.integer "store_id"
-    t.integer "item_id"
+    t.bigint "store_id"
+    t.bigint "item_id"
     t.index ["item_id"], name: "index_coupons_on_item_id"
     t.index ["store_id"], name: "index_coupons_on_store_id"
   end
@@ -39,8 +42,8 @@ ActiveRecord::Schema.define(version: 20171218062918) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "usda_id"
-    t.integer "group_id"
-    t.integer "submission_id"
+    t.bigint "group_id"
+    t.bigint "submission_id"
     t.index ["group_id"], name: "index_items_on_group_id"
     t.index ["submission_id"], name: "index_items_on_submission_id"
   end
@@ -50,10 +53,10 @@ ActiveRecord::Schema.define(version: 20171218062918) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "pdf"
     t.datetime "date"
-    t.integer "store_id"
+    t.bigint "store_id"
     t.integer "line_count", default: 0
     t.boolean "processed", default: false
     t.boolean "completed", default: false
@@ -64,8 +67,8 @@ ActiveRecord::Schema.define(version: 20171218062918) do
 
   create_table "store_locations", force: :cascade do |t|
     t.string "postal_code"
-    t.integer "store_id"
-    t.integer "submission_id"
+    t.bigint "store_id"
+    t.bigint "submission_id"
     t.index ["store_id"], name: "index_store_locations_on_store_id"
     t.index ["submission_id"], name: "index_store_locations_on_submission_id"
   end
@@ -75,7 +78,7 @@ ActiveRecord::Schema.define(version: 20171218062918) do
     t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "submission_id"
+    t.bigint "submission_id"
     t.index ["name", "postal_code"], name: "index_stores_on_name_and_postal_code", unique: true
     t.index ["submission_id"], name: "index_stores_on_submission_id"
   end
@@ -83,7 +86,7 @@ ActiveRecord::Schema.define(version: 20171218062918) do
   create_table "submissions", force: :cascade do |t|
     t.string "model_type"
     t.string "value"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
@@ -97,10 +100,10 @@ ActiveRecord::Schema.define(version: 20171218062918) do
     t.string "price_currency", default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "receipt_id"
+    t.bigint "user_id"
+    t.bigint "receipt_id"
     t.text "name"
-    t.integer "item_id"
+    t.bigint "item_id"
     t.integer "line_number"
     t.text "weight"
     t.index ["item_id"], name: "index_transactions_on_item_id"
@@ -136,4 +139,8 @@ ActiveRecord::Schema.define(version: 20171218062918) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "receipts", "stores"
+  add_foreign_key "receipts", "users"
+  add_foreign_key "transactions", "receipts"
+  add_foreign_key "transactions", "users"
 end
