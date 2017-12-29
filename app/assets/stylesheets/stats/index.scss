@@ -17,7 +17,7 @@ body.stats.index {
     font-size: 36px;
   }
 
-  button {
+  .toggle-transaction-group {
     width: 100%;
     justify-content: space-between;
 
@@ -35,6 +35,40 @@ body.stats.index {
         font-size: 36px;
         margin-left: -8px;
       }
+    }
+  }
+
+  .toggle-card-button {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .field {
+      margin-bottom: 0.75rem;
+
+      &:last-child {
+        margin-left: 8px;
+        overflow: hidden;
+
+        span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
+    i {
+      font-size: 36px;
+      margin-left: -8px;
+    }
+  }
+
+  .chart-container {
+    margin: 0 auto;
+    width: 50%;
+
+    @media screen and (max-width: 1069px) {
+      width: 100%;
     }
   }
 

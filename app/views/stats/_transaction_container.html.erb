@@ -30,7 +30,9 @@
           </span>
         </div>
         <div class="field is-grouped">
-          <%= n_days_ago(most_recent_transaction) %>
+          <span>
+            <%= n_days_ago(most_recent_transaction) %>
+          </span>
         </div>
       </button>
 
@@ -39,15 +41,14 @@
 
         </div>
 
-        <div class="columns box data-container">
-          <div class="column is-6">
-            <canvas data-transaction-id="<%= most_recent_transaction.item.try(:id) %>" class="price-chart" height="200"></canvas>
-          </div>
+        <div class=" box data-container">
+            <div class="chart-container">
+              <canvas data-transaction-id="<%= most_recent_transaction.item.try(:id) %>" class="price-chart"></canvas>
+            </div>
 
-          <div class="column is-6">
             <%= transaction_summary(most_recent_transaction, best_ppu, worst_ppu) %>
 
-            <table class="table">
+            <table class="table is-hidden-mobile">
               <thead>
                 <tr>
                   <th>Date</th>
@@ -79,7 +80,6 @@
               <% end %>
               </tbody>
             </table>
-          </div>
 
         </div>
       </div>
